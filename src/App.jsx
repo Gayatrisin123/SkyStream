@@ -13,7 +13,7 @@
 
 
 import React from "react";
-import { Button } from "../src/components/@/components/ui/button";
+import { Button } from "../src/@/components/ui/button";
 
 const ExampleButton = () => {
   return (
