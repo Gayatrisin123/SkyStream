@@ -8,6 +8,8 @@ import Resources from './pages/Resources.jsx';
 import About from './pages/About.jsx';
 import ContactUs from './pages/ContactUs.jsx';
 import Help from './pages/HelpCenter.jsx';
+import Host from './components/HostRoom.jsx';
+import Join from './components/JoinRoom.jsx';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/help-center" element={<Help />} />
+              <Route path="/host" element={<Host />} />
+              <Route path="/join" element={<Join />} />
             </Route>
           </Routes>
         </>
