@@ -5,23 +5,23 @@ import { PiNumberOneBold, PiNumberTwoBold, PiNumberThreeBold, PiNumberFourBold }
 
 const steps = [
   {
-    title: "Create a Room",
-    description: "A random room code will be generated for you instantly.",
+    title: "Create Your Room Instantly",
+    description: "Generate a unique room code with just one click to get started.",
     icon: <PiNumberOneBold className="text-white text-[1.8rem]" />,
   },
   {
-    title: "Start the Code",
-    description: "Click the 'Share Screen' button and allow access to your screen.",
+    title: "Initiate Screen Sharing",
+    description: "Easily sharing your screen by clicking 'Share Screen' and give access.",
     icon: <PiNumberTwoBold className="text-white text-[1.8rem]" />,
   },
   {
-    title: "Collaborate in Real-Time",
-    description: "Share your screen with others in real-time, without any limitations!",
+    title: "Collaborate Seamlessly",
+    description: "Work together in real-time with smooth & unrestricted screen sharing.",
     icon: <PiNumberThreeBold className="text-white text-[1.8rem]" />,
   },
   {
     title: "End Your Session",
-    description: "Wrap up smoothly and save your progress hassle-free.",
+    description: "End your session effortlessly and securely save your progress.",
     icon: <PiNumberFourBold className="text-white text-[1.8rem]" />,
   },
 ];
@@ -30,7 +30,7 @@ export default function HelpCenter() {
   return (
     <section
       id="help-center"
-      className="relative py-28 max-w-7xl mx-auto px-6 md:px-10 lg:px-16 overflow-hidden"
+      className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-16 overflow-hidden"
     >
       {/* Floating Background Effects */}
       <div className="absolute top-10 left-10 w-16 h-16 bg-blue-500 rounded-full blur-3xl opacity-30 animate-pulse"></div>
