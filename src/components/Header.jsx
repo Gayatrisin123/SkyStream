@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+import logo from "../../public/SkyShare-Logo.png";
 
 function Header() {
-
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -35,9 +35,19 @@ function Header() {
         zIndex: 1000,
       }}
     >
-      <h1 style={{ fontSize: "1.4rem", margin: 0, fontWeight: 600 }}>
-        SkyStream<span style={{ color: "var(--blue)" }}>.</span>
-      </h1>
+      <a href="/" style={{ textDecoration: "none" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <img
+            src={logo}
+            alt="SkyShare-Logo"
+            style={{ width: "30px", height: "auto" }}
+          />
+          <h1 style={{ fontSize: "1.4rem", margin: 0, fontWeight: 600 }}>
+            SkyStream<span style={{ color: "var(--blue)" }}>.</span>
+          </h1>
+        </div>
+      </a>
+
       <div
         style={{
           display: "flex",
@@ -82,18 +92,24 @@ function Header() {
             About
           </p>
         </a>
-        <div 
+        <div
           ref={dropdownRef}
-          style={{ position: "relative", display: "inline-block" }}>
+          style={{ position: "relative", display: "inline-block" }}
+        >
           <a
-            href="#" style={{ textDecoration: "none" }}
+            href="#"
+            style={{ textDecoration: "none" }}
             onClick={(e) => {
               e.preventDefault();
               toggleDropdown();
             }}
           >
             <p
-              style={{ fontSize: "1.6rem", color: "var(--grey)", cursor: "pointer", }}
+              style={{
+                fontSize: "1.6rem",
+                color: "var(--grey)",
+                cursor: "pointer",
+              }}
             >
               <i className="bi bi-person-fill"></i>
             </p>
