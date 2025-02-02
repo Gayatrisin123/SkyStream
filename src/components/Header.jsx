@@ -58,7 +58,7 @@ function Header() {
             Home
           </p>
         </a>
-        <a href="/about" style={{ textDecoration: "none" }}>
+        <a href="/resources" style={{ textDecoration: "none" }}>
           <p
             style={{
               fontSize: "0.85rem",
