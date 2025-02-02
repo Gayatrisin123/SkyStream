@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import logo from "../../public/SkyShare-Logo.png";
+import logo from "../assets/SkyShare-Logo.png";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
