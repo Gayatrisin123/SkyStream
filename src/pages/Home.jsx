@@ -9,7 +9,7 @@ import {
 import { Monitor, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export default function Hero() {
+export default function Home() {
   return (
     <section className="relative py-28 px-6 sm:px-10 lg:px-16 bg-black overflow-hidden">
       {/* Background Glow */}
