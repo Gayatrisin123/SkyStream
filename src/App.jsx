@@ -1,28 +1,23 @@
-// import { useState } from 'react'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// function App() {
-//   return (
-//     <>
-//       <h1 style={{alignContent: 'center', justifyContent: 'center'}}>Vite + React</h1>
-//     </>
-//   )
-// }
+import Layout from "./components/Layout.jsx";
+import Header from './components/Header.jsx';
+import Home from './pages/Home.jsx'
 
-// export default App
-
-
-
-import React from "react";
-import { Button } from "../src/@/components/ui/button";
-
-const ExampleButton = () => {
+function App() {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <Button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md">
-        Click Me
-      </Button>
-    </div>
+    <Router>
+        <Header/>
+        <>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Home />} />
+            </Route>
+          </Routes>
+        </>
+    </Router>
   );
-};
+}
 
-export default ExampleButton;
+export default App;
