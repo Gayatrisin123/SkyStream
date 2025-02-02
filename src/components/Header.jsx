@@ -104,21 +104,36 @@ function Header() {
                 position: "absolute",
                 top: "2.5rem",
                 right: "-1rem",
-                backgroundColor: "white",
+                backgroundColor: "rgba(255,255,255,0.35)",
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                 borderRadius: "8px",
                 zIndex: 1000,
-                padding: "0.6rem",
-                width: "170px",
+                padding: "0.5rem",
+                width: "160px",
               }}
             >
               <ul style={{ listStyleType: "none", margin: 0, padding: 0 }}>
                 <li style={{ margin: "0.5rem 0" }}>
                   <a
+                    href="/contact"
+                    style={{
+                      textDecoration: "none",
+                      color: "white",
+                      fontWeight: "600",
+                      fontSize: "1rem",
+                      display: "block",
+                    }}
+                  >
+                    Contact Us
+                  </a>
+                </li>
+                <li style={{ margin: "0.5rem 0" }}>
+                  <a
                     href="/help-center"
                     style={{
                       textDecoration: "none",
-                      color: "black",
+                      color: "white",
+                      fontWeight: "600",
                       fontSize: "1rem",
                       display: "block",
                     }}
