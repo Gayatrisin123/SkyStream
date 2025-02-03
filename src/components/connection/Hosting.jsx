@@ -151,7 +151,10 @@ return (
         </div>
       )}
   
-      <Card className="bg-gray-900 text-white shadow-xl rounded-xl p-6">
+      <Card className="bg-gray-900 text-white shadow-xl hover:border-purple-500 rounded-xl p-6"
+        style={{
+            boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
+        }}>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-xl font-bold">
             <Monitor className="h-6 w-6 text-purple-400" />
