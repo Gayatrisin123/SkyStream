@@ -11,6 +11,7 @@ import { Input } from "../../@/components/ui/input";
 import { ArrowLeft, Users } from "lucide-react";
 import { cn } from "../../@/components/lib/utils";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
 
 export default function JoinPage() {
   const [roomId, setRoomId] = useState("");
@@ -80,27 +81,34 @@ export default function JoinPage() {
   return (
     <div
       className={cn(
-        "mx-auto space-y-8 flex-1 transition-all duration-300 ",
+        "mx-auto space-y-8 flex-1 transition-all duration-300 p-6",
         isConnected ? "max-w-6xl" : "max-w-2xl"
       )}
     >
       {/* Back Button */}
-      <Button
-        variant="outline"
-        className="flex items-center gap-2 px-6 py-3 text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 rounded-xl shadow-xl"
-        onClick={() => window.history.back()}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="flex justify-between"
       >
-        <ArrowLeft className="h-5 w-5" />
-        Back to Home
-      </Button>
+        <Button
+            variant="outline"
+            className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 rounded-xl shadow-xl"
+            onClick={() => window.history.back()}
+        >
+            <ArrowLeft className="h-5 w-5" />
+            Back to Home
+        </Button>
+      </motion.div>
       
-      <Card className="relative bg-white/10 backdrop-blur-lg border border-transparent hover:border-purple-500 rounded-xl rounded-xl shadow-2xl p-8 transition-all duration-300"
+      <Card className="bg-gray-900 text-white shadow-xl hover:border-purple-500 rounded-xl p-6"
         style={{
           boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
-        }}>
+      }}>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-white text-3xl font-extrabold">
-            <Users className="h-8 w-8 text-blue-500 hover:scale-110 transition-transform duration-300" />
+          <CardTitle className="flex items-center gap-2 text-white text-2xl font-extrabold">
+            <Users className="h-7 w-7 text-blue-500 hover:scale-110 transition-transform duration-300" />
             Join a Room
           </CardTitle>
           <CardDescription className="text-gray-400 text-sm">
