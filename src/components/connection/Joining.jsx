@@ -93,8 +93,11 @@ export default function JoinPage() {
         <ArrowLeft className="h-5 w-5" />
         Back to Home
       </Button>
-
-      <Card className="relative bg-white/10 backdrop-blur-lg border border-transparent hover:border-purple-500 rounded-xl rounded-xl shadow-2xl p-8 transition-all duration-300">
+      
+      <Card className="relative bg-white/10 backdrop-blur-lg border border-transparent hover:border-purple-500 rounded-xl rounded-xl shadow-2xl p-8 transition-all duration-300"
+        style={{
+          boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
+        }}>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-white text-3xl font-extrabold">
             <Users className="h-8 w-8 text-blue-500 hover:scale-110 transition-transform duration-300" />
