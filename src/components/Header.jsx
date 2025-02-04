@@ -68,7 +68,7 @@ function Header() {
             Home
           </p>
         </a>
-        <a href="/resources" style={{ textDecoration: "none" }}>
+        <a href="/chat" style={{ textDecoration: "none" }}>
           <p
             style={{
               fontSize: "0.85rem",
@@ -77,7 +77,7 @@ function Header() {
               cursor: "pointer",
             }}
           >
-            Resources
+            ChatRoom
           </p>
         </a>
         <a href="/about" style={{ textDecoration: "none" }}>
