@@ -10,6 +10,7 @@ import ContactUs from './pages/ContactUs.jsx';
 import Help from './pages/HelpCenter.jsx';
 import Host from './components/HostRoom.jsx';
 import Join from './components/JoinRoom.jsx';
+import './App.scss';
 
 function App() {
   return (
