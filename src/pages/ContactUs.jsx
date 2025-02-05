@@ -1,9 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function HelpCenter() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const toastId = toast.info("Please wait, Content is loading...", {
+      position: "top-center",
+      autoClose: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+    });
+
+    setTimeout(() => {
+      toast.dismiss(toastId);
+    }, 5000);
+
     const script = document.createElement("script");
     script.src = "https://static-bundles.visme.co/forms/vismeforms-embed.js";
     script.async = true;
@@ -49,6 +62,8 @@ export default function HelpCenter() {
         data-min-height="500px"
         data-form-id="112506"
       ></div>
+
+      <ToastContainer />
     </section>
   );
 }
