@@ -109,7 +109,7 @@ export default function Home() {
               <Link to="/join">
                 <Button
                   variant="outline"
-                  className="w-full border-2 border-gray-500 text-white bg-gradient-to-r hover:text-gray-300 hover:shadow-lg transition-transform transform hover:scale-105 rounded-lg"
+                  className="w-full border-2 border-gray-500 text-white bg-gradient-to-r hover:shadow-lg transition-transform transform hover:scale-105 rounded-lg"
                 >
                   Join Room
                 </Button>
