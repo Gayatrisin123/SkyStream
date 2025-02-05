@@ -15,6 +15,15 @@ import {
 } from "../../@/components/ui/card";
 import { motion } from "framer-motion";
 
+const textVariant = (delay) => ({
+  hidden: { y: -50, opacity: 0 },
+  show: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", duration: 1.25, delay: delay },
+  },
+});
+
 export default function HostPage() {
   const [roomId, setRoomId] = useState("");
   const [peer, setPeer] = useState(null);
@@ -107,9 +116,9 @@ export default function HostPage() {
       <ToastContainer position="top-right" autoClose={3000} />
 
       <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
+        variants={textVariant(0.9)}
+        initial="hidden"
+        animate="show"
         className="flex justify-between"
       >
         <Button
@@ -148,6 +157,11 @@ export default function HostPage() {
         </div>
       )}
 
+      <motion.div
+        variants={textVariant(0.3)}
+        initial="hidden"
+        animate="show"
+      >
       <Card
         className="bg-gray-900 text-white shadow-xl hover:border-purple-500 rounded-xl p-6"
         style={{ boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)" }}
@@ -223,6 +237,7 @@ export default function HostPage() {
           )}
         </CardContent>
       </Card>
+      </motion.div>
     </div>
   );
 }
