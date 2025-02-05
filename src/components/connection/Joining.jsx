@@ -9,6 +9,15 @@ import { ArrowLeft, Users } from "lucide-react";
 import { cn } from "../../@/components/lib/utils";
 import { motion } from "framer-motion";
 
+const textVariant = (delay) => ({
+  hidden: { y: -50, opacity: 0 },
+  show: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", duration: 1.25, delay: delay },
+  },
+});
+
 export default function JoinPage() {
   const [roomId, setRoomId] = useState("");
   const [isConnecting, setIsConnecting] = useState(false);
@@ -71,9 +80,9 @@ export default function JoinPage() {
       <ToastContainer position="top-right" autoClose={3000} />
       
       <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
+        variants={textVariant(0.9)}
+        initial="hidden"
+        animate="show"
         className="flex justify-between"
       >
         <Button
@@ -86,6 +95,11 @@ export default function JoinPage() {
         </Button>
       </motion.div>
       
+      <motion.div
+        variants={textVariant(0.35)}
+        initial="hidden"
+        animate="show"
+      >
       <Card className="bg-gray-900 text-white shadow-xl hover:border-purple-500 rounded-xl p-6"
         style={{ boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)" }}>
         <CardHeader>
@@ -131,6 +145,7 @@ export default function JoinPage() {
           )}
         </CardContent>
       </Card>
+      </motion.div>
     </div>
   );
 }
