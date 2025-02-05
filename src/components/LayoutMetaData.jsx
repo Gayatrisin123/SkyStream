@@ -3,7 +3,7 @@ import React from "react";
 const metadata = {
   title: "SkyShare",
   description: "Share your screen📽️ instantly with anyone using a simple room code. No logins, no downloads required, just instant access.",
-  metadataBase: "",
+  metadataBase: "https://sky-stream-share.vercel.app/",
 };
 
 function LayoutMetaData({ children }) {
