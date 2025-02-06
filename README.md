@@ -1,4 +1,4 @@
-# SkyStream
+# SkyStream - Screen-Sharing & Chating
  
 Instantly share your screen without the hassle—no logins, no downloads, just instant access. Fast, secure, and hassle-free, SkyStream makes real-time collaboration effortless and accessible for everyone, anywhere.
 
@@ -53,7 +53,7 @@ You can visit the live site here - https://sky-stream-share.vercel.app/
 ![image](https://github.com/user-attachments/assets/e94abf2c-d044-4c41-ab7f-099f781fd607)
 
 ## Contributing 🤝
-Sorry But this project not welcome Contributions! Yes u gave a Feedback and Suggestion via raising the PR's.
+Sorry But this project not welcome Contributions! Yes u gave a Feedback and Suggestion via raising the [Issues](https://github.com/UjjwalSaini07/SkyStream/issues/new?template=Blank+issue).
 
 ## Feedback 💬
 If you have any feedback, please reach out to us at [Mail](ujjwalsaini0007+skystream@gmail.com).
