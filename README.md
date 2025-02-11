@@ -1,5 +1,4 @@
 # SkyStream - Screen-Sharing & Chating
- 
 Instantly share your screen without the hassle—no logins, no downloads, just instant access. Fast, secure, and hassle-free, SkyStream makes real-time collaboration effortless and accessible for everyone, anywhere.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/UjjwalSaini07/SkyStream/blob/main/LICENSE)
@@ -8,7 +7,6 @@ Instantly share your screen without the hassle—no logins, no downloads, just i
 [![GitHub stars](https://img.shields.io/github/stars/UjjwalSaini07/MailScoutVerify?style=social&label=Star&maxAge=2592100)](https://github.com/UjjwalSaini07/SkyStream)
 
 ## Features 🎯
-
 - **Instant Screen Sharing**  
   - 🖥️ Share your screen immediately without the need for logins or downloads.  
 - **Security**  
