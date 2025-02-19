@@ -22,145 +22,110 @@ function Header() {
     };
   }, []);
 
+  const currentPath = window.location.pathname;
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "1.5rem 3rem",
-        position: "sticky",
-        top: 0,
-        backgroundColor: "var(--black)",
-        zIndex: 1000,
-      }}
-    >
+    <div className="flex justify-between items-center p-7 sticky top-0 bg-black z-50">
       <a href="/" style={{ textDecoration: "none" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <div style={{ display: "flex", alignItems: "center", marginLeft: "1rem" }}>
           <img
             src={logo}
             alt="SkyShare-Logo"
             style={{ width: "30px", height: "auto" }}
           />
-          <h1 style={{ fontSize: "1.4rem", margin: 0, fontWeight: 600 }}>
-            SkyStream<span style={{ color: "var(--blue)" }}>.</span>
+          <h1 className="text-lg md:text-xl font-semibold text-white sm:ml-2">
+            SkyStream<span className="text-blue-500">.</span>
           </h1>
         </div>
       </a>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          gap: "1rem",
-        }}
-      >
-        <a href="/" style={{ textDecoration: "none" }}>
-          <p
-            style={{
-              fontSize: "0.85rem",
-              color: "var(--grey)",
-              fontWeight: 600,
-              cursor: "pointer",
-            }}
-          >
-            Home
-          </p>
-        </a>
-        <a href="/chat" style={{ textDecoration: "none" }}>
-          <p
-            style={{
-              fontSize: "0.85rem",
-              color: "var(--grey)",
-              fontWeight: 600,
-              cursor: "pointer",
-            }}
-          >
-            ChatRoom
-          </p>
-        </a>
-        <a href="/about" style={{ textDecoration: "none" }}>
-          <p
-            style={{
-              fontSize: "0.85rem",
-              color: "var(--grey)",
-              fontWeight: 600,
-              cursor: "pointer",
-            }}
-          >
-            About
-          </p>
-        </a>
-        <div
-          ref={dropdownRef}
-          style={{ position: "relative", display: "inline-block" }}
-        >
+      <div className="hidden md:flex justify-center items-center gap-7 flex-1 sm:mr-14">
+        {[
+          { name: "Home", path: "/" },
+          { name: "ChatRoom", path: "/chat" },
+          { name: "About", path: "/about" },
+          { name: "Contact Us", path: "/contact" },
+          { name: "Help Center", path: "/help-center" },
+        ].map((link) => (
           <a
-            href="#"
-            style={{ textDecoration: "none" }}
-            onClick={(e) => {
-              e.preventDefault();
-              toggleDropdown();
-            }}
+            key={link.path}
+            href={link.path}
+            className={`text-sm font-semibold ${
+              currentPath === link.path
+                ? "text-white"
+                : "text-gray-400 hover:text-white"
+            } transition`}
           >
-            <p
-              style={{
-                fontSize: "1.6rem",
-                color: "var(--grey)",
-                cursor: "pointer",
-              }}
-            >
-              <i className="bi bi-person-fill"></i>
-            </p>
+            {link.name}
           </a>
-          {isOpen && (
-            <div
-              style={{
-                position: "absolute",
-                top: "2.5rem",
-                right: "-1rem",
-                backgroundColor: "rgba(255,255,255,0.35)",
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                borderRadius: "8px",
-                zIndex: 1000,
-                padding: "0.5rem",
-                width: "160px",
-              }}
-            >
-              <ul style={{ listStyleType: "none", margin: 0, padding: 0 }}>
-                <li style={{ margin: "0.5rem 0" }}>
+        ))}
+      </div>
+
+      {/* Mobile*/}
+      <div ref={dropdownRef} className="relative md:hidden">
+        <button
+          className="text-gray-400 text-2xl cursor-pointer focus:outline-none"
+          onClick={toggleDropdown}
+        >
+          <i className="bi bi-list"></i>
+        </button>
+        {isOpen && (
+          <div className="absolute top-12 right-0 bg-white shadow-lg rounded-lg z-50 p-4 w-48">
+            <ul className="list-none space-y-2">
+              {[
+                { name: "Home", path: "/" },
+                { name: "ChatRoom", path: "/chat" },
+                { name: "About", path: "/about" },
+                { name: "Contact Us", path: "/contact" },
+                { name: "Help Center", path: "/help-center" },
+              ].map((link) => (
+                <li key={link.path}>
                   <a
-                    href="/contact"
-                    style={{
-                      textDecoration: "none",
-                      color: "white",
-                      fontWeight: "600",
-                      fontSize: "1rem",
-                      display: "block",
-                    }}
+                    href={link.path}
+                    className={`block text-base ${
+                      currentPath === link.path
+                        ? "text-blue-500"
+                        : "text-black hover:text-blue-500"
+                    } transition`}
                   >
-                    Contact Us
+                    {link.name}
                   </a>
                 </li>
-                <li style={{ margin: "0.5rem 0" }}>
-                  <a
-                    href="/help-center"
-                    style={{
-                      textDecoration: "none",
-                      color: "white",
-                      fontWeight: "600",
-                      fontSize: "1rem",
-                      display: "block",
-                    }}
-                  >
-                    Help Center
-                  </a>
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      <div ref={dropdownRef} className="relative hidden md:inline-block">
+        <button
+          className="text-gray-400 hover:text-blue-400 text-2xl cursor-pointer flex items-center focus:outline-none"
+          onClick={toggleDropdown}
+        >
+          <i className="bi bi-person-fill mr-2 transition-transform transform hover:scale-110"></i>
+        </button>
+        {isOpen && (
+          <div className="absolute top-12 right-0 bg-white shadow-lg rounded-lg z-50 p-4 w-48">
+            <ul className="list-none space-y-2">
+              <li>
+                <a
+                  href="/contact"
+                  className="block text-black text-base hover:text-blue-500 transition"
+                >
+                  Contact Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/help-center"
+                  className="block text-black text-base hover:text-blue-500 transition"
+                >
+                  Help Center
+                </a>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
