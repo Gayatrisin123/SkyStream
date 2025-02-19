@@ -162,7 +162,7 @@ export default function About() {
         </motion.div>
       </div>
 
-      <div className="mt-16 text-center text-white text-lg">
+      <div className="mt-16 text-center text-white text-lg hidden md:block">
         <a
           className="fixed bottom-2 right-2 backdrop-blur-md opacity-80 hover:opacity-95 p-2 rounded"
           href="https://github.com/UjjwalSaini07"
