@@ -44,13 +44,12 @@ function FireChatRoom() {
   const [user] = useAuthState(auth);
 
   return (
-    <div className="min-h-screen flex flex-col bg-transparent text-white">
-      <header className="fixed top-0 w-full flex justify-between items-center px-6 py-4 backdrop-blur-lg bg-opacity-60 bg-gray-800 shadow-lg z-10">
-        <h1 className="text-2xl font-bold tracking-wide">⚛️🔥 Chat App</h1>
-        {user ? <SignOut /> : null}
-      </header>
+    <div className="flex flex-col bg-transparent text-white">
+      <div className="text-left">
+        {user && <SignOut />}
+      </div>
 
-      <main className="flex-1 mt-16 w-full flex flex-col items-center">
+      <main className="flex-1 mt-16 mb-15 w-full flex flex-col items-center">
         {user ? <ChatRoom /> : <SignIn />}
       </main>
     </div>
@@ -98,7 +97,10 @@ function SignIn() {
     try {
       const user = auth.currentUser;
       if (user && user.email && window.location.href) {
-        const credential = EmailAuthProvider.credentialWithLink(email, window.location.href);
+        const credential = EmailAuthProvider.credentialWithLink(
+          email,
+          window.location.href
+        );
         await linkWithCredential(user, credential);
         alert("Email linked successfully!");
       }
@@ -119,7 +121,10 @@ function SignIn() {
 
       <div className="flex flex-col items-center mb-4">
         <p className="text-gray-400">OR</p>
-        <form onSubmit={handleEmailSignIn} className="mt-4 flex flex-col items-center">
+        <form
+          onSubmit={handleEmailSignIn}
+          className="mt-4 flex flex-col items-center"
+        >
           <input
             type="email"
             className="px-4 py-2 mb-2 bg-gray-700 text-gray-200 rounded-lg"
@@ -201,7 +206,6 @@ function ChatRoom() {
   };
 
   useEffect(() => {
-    // Scroll to the bottom whenever messages change
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop =
         chatContainerRef.current.scrollHeight;
@@ -210,17 +214,17 @@ function ChatRoom() {
 
   return (
     <div
-      className="flex flex-col w-full h-full px-4 overflow-hidden"
+      className="flex flex-col w-full h-full px-4 -mb-4 overflow-hidden"
       ref={chatContainerRef}
     >
-      <div className="flex-1 flex flex-col-reverse justify-end overflow-auto">
+      <div
+        className="flex-1 flex flex-col justify-end overflow-auto"
+        style={{ scrollBehavior: "smooth" }}
+        ref={chatContainerRef}
+      >
         {messages &&
-          messages.map((msg) => (
-            <ChatMessage key={msg.id} message={msg} />
-          ))}
-        <div ref={dummy}></div>
+          messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
       </div>
-
       <form
         onSubmit={sendMessage}
         className="fixed bottom-0 left-0 w-full px-4 py-3 backdrop-blur-lg bg-gray-800 bg-opacity-50 shadow-md flex items-center"
