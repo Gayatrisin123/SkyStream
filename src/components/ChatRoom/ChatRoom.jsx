@@ -45,9 +45,7 @@ function FireChatRoom() {
 
   return (
     <div className="flex flex-col bg-transparent text-white">
-      <div className="text-left">
-        {user && <SignOut />}
-      </div>
+      <div className="text-left">{user && <SignOut />}</div>
 
       <main className="flex-1 mt-16 mb-15 w-full flex flex-col items-center">
         {user ? <ChatRoom /> : <SignIn />}
@@ -168,14 +166,7 @@ function SignIn() {
 }
 
 function SignOut() {
-  return (
-    <button
-      className="px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 transition"
-      onClick={() => signOut(auth)}
-    >
-      Sign Out
-    </button>
-  );
+  return <div></div>;
 }
 
 function ChatRoom() {
@@ -215,11 +206,23 @@ function ChatRoom() {
           messages.map((msg, idx) => <ChatMessage key={idx} message={msg} />)
         ) : (
           <div className="flex flex-col items-center justify-center py-10 mt-12 text-gray-500">
-            <svg className="w-12 h-12 mb-4 text-gray-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M7 8h10M7 12h4m1 8a9 9 0 100-18 9 9 0 000 18z" />
+            <svg
+              className="w-12 h-12 mb-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M7 8h10M7 12h4m1 8a9 9 0 100-18 9 9 0 000 18z"
+              />
             </svg>
             <p className="text-lg font-medium">No messages yet</p>
-            <p className="text-sm text-gray-400">Start a conversation to see messages here.</p>
+            <p className="text-sm text-gray-400">
+              Start a conversation to see messages here.
+            </p>
           </div>
         )}
         <div ref={bottomRef} />
@@ -270,9 +273,7 @@ function ChatMessage({ message }) {
       <div
         className={`px-6 py-2 rounded-2xl shadow-lg max-w-md break-words transition-all duration-300 ${messageStyle}`}
       >
-        <span className="text-sm leading-snug whitespace-pre-wrap">
-          {text}
-        </span>
+        <span className="text-sm leading-snug whitespace-pre-wrap">{text}</span>
       </div>
     </div>
   );
