@@ -5,7 +5,7 @@ import Layout from "./components/Layout.jsx";
 import Header from './components/Header.jsx';
 import Home from './pages/Home.jsx';
 // import ChatRoom from './pages/ChatRoom.jsx';
-import ChatRoom from './components/ChatRoom.jsx';
+import ChatRoom from './components/ChatRoom/ChatRoom.jsx';
 import About from './pages/About.jsx';
 import ContactUs from './pages/ContactUs.jsx';
 import Help from './pages/HelpCenter.jsx';
