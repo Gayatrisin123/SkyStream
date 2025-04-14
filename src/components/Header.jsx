@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useLocation } from 'react-router-dom';
 import logo from "../assets/SkyShare-Logo.png";
 
 function Header() {
@@ -6,6 +7,9 @@ function Header() {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const mobileMenuRef = useRef(null);
   const userMenuRef = useRef(null);
+
+  const location = useLocation();
+  const isChatRoute = location.pathname === '/chat';
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
@@ -75,12 +79,19 @@ function Header() {
 
       {/* Desktop User Menu */}
       <div ref={userMenuRef} className="relative hidden md:inline-block">
-        <button
-          className="text-gray-400 hover:text-blue-400 text-2xl cursor-pointer flex items-center focus:outline-none"
-          onClick={toggleUserMenu}
-        >
-          <i className="bi bi-person-fill transition-transform transform hover:scale-110"></i>
-        </button>
+        <div className="flex flex-row justify-between items-center space-x-4">
+          {isChatRoute && (
+            <button className="px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 transition">
+              Sign Out
+            </button>
+          )}
+          <button
+            className="text-gray-400 hover:text-blue-400 text-2xl cursor-pointer flex items-center focus:outline-none"
+            onClick={toggleUserMenu}
+          >
+            <i className="bi bi-person-fill transition-transform transform hover:scale-110"></i>
+          </button>
+        </div>
         {isUserMenuOpen && (
           <div className="absolute top-12 right-0 bg-white shadow-lg rounded-lg z-50 p-4 w-48">
             <ul className="list-none space-y-2">
