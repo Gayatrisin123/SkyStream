@@ -21,7 +21,7 @@ function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
-              <Route path="/chat" element={<ChatRoom />} />
+              <Route path="/chatroom" element={<ChatRoom />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/help-center" element={<Help />} />
