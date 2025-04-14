@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "../@/components/ui/button";
+import { Button } from "../components/ui/button";
 import img from "../assets/howitworks.png";
 import { PiNumberOneBold, PiNumberTwoBold, PiNumberThreeBold, PiNumberFourBold } from "react-icons/pi";
 

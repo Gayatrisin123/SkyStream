@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { initializeApp } from "firebase/app";
 import { getAuth, signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import logo from "../assets/SkyShare-Logo.png";
+import logo from "../../assets/SkyShare-Logo.png";
 
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

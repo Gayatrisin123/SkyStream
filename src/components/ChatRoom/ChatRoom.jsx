@@ -22,6 +22,8 @@ import {
 } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import UserProfile from "../../assets/UserProfile.png";
 
 // Firebase configuration
@@ -65,15 +67,29 @@ function SignIn() {
     try {
       const userCredential = await signInWithPopup(auth, provider);
       const user = userCredential.user;
-
-      // Check if the user has verified their email
       if (!user.emailVerified) {
-        // Send a verification email
         await sendEmailVerification(user);
-        alert("Verification email sent! Please check your inbox.");
+        toast.success("Verification email sent! Please check your inbox.", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          theme: "dark",
+        });
       }
     } catch (error) {
       console.error("Error during Google sign-in:", error);
+      toast.error("Error during Google sign-in: " + error.message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        theme: "dark",
+      });
     }
   };
 
@@ -85,9 +101,25 @@ function SignIn() {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
-      setError("");
+      toast.success("Join ChatRoom Successfully!!!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        theme: "dark",
+      });
     } catch (error) {
-      setError("Error signing in: " + error.message);
+      toast.error("Error Signing in: " + error.message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        theme: "dark",
+      });
     }
   };
 
@@ -100,11 +132,27 @@ function SignIn() {
           window.location.href
         );
         await linkWithCredential(user, credential);
-        alert("Email linked successfully!");
+        toast.success("Email linked successfully!!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          theme: "dark",
+        });
       }
     } catch (error) {
       console.error("Error linking email:", error);
-      setError("Error linking email: " + error.message);
+      toast.error("Error linking email: " + error.message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        theme: "dark",
+      });
     }
   };
 
@@ -139,7 +187,7 @@ function SignIn() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {/* {error && <p className="text-red-500 text-sm">{error}</p>} */}
           <button
             className="px-6 py-3 bg-blue-500 bg-opacity-80 text-white font-semibold rounded-lg shadow-md hover:bg-opacity-100 transition-transform transform hover:scale-105"
             type="submit"
@@ -192,6 +240,15 @@ function ChatRoom() {
       setFormValue("");
     } catch (error) {
       console.error("Error sending message:", error);
+      toast.error("Error sending message:" + error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        theme: "dark",
+      });
     }
   };
 
@@ -252,9 +309,7 @@ function ChatRoom() {
 
 function ChatMessage({ message }) {
   const { text, uid, photoURL } = message;
-
   const isCurrentUser = uid === auth.currentUser?.uid;
-
   const messageStyle = isCurrentUser
     ? "bg-blue-600 text-white rounded-br-none"
     : "bg-gray-100 text-gray-900 rounded-bl-none";
