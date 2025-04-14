@@ -207,23 +207,26 @@ function ChatRoom() {
 
   useEffect(() => {
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop =
-        chatContainerRef.current.scrollHeight;
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
     }
   }, [messages]);
-
+  
   return (
     <div
       className="flex flex-col w-full h-full px-4 -mb-4 overflow-hidden"
       ref={chatContainerRef}
     >
       <div
-        className="flex-1 flex flex-col justify-end overflow-auto"
+        className="flex-1 flex flex-col justify-end overflow-auto pb-12"
         style={{ scrollBehavior: "smooth" }}
         ref={chatContainerRef}
       >
         {messages &&
           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
+        
       </div>
       <form
         onSubmit={sendMessage}
@@ -251,24 +254,29 @@ function ChatMessage({ message }) {
   const { text, uid, photoURL } = message;
 
   const isCurrentUser = uid === auth.currentUser?.uid;
+
   const messageStyle = isCurrentUser
-    ? "bg-blue-500 text-white self-end"
-    : "bg-gray-200 text-gray-900 self-start";
+    ? "bg-blue-600 text-white rounded-br-none"
+    : "bg-gray-100 text-gray-900 rounded-bl-none";
 
   return (
     <div
-      className={`flex items-center mb-2 ${isCurrentUser ? "flex-row-reverse" : ""}`}
+      className={`flex items-end mb-4 px-4 ${
+        isCurrentUser ? "flex-row-reverse" : ""
+      }`}
     >
       <img
-        className="w-10 h-10 rounded-full mx-2"
+        className="w-10 h-10 rounded-full shadow-md mx-3 border-2 border-white ring-2 ring-blue-400"
         src={photoURL || UserProfile}
         alt="User avatar"
       />
-      <p
-        className={`px-4 py-2 rounded-2xl shadow-md max-w-xs break-words ${messageStyle}`}
+      <div
+        className={`px-6 py-2 rounded-2xl shadow-lg max-w-md break-words transition-all duration-300 ${messageStyle}`}
       >
-        {text}
-      </p>
+        <span className="text-sm leading-snug whitespace-pre-wrap">
+          {text}
+        </span>
+      </div>
     </div>
   );
 }
