@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from 'react-router-dom';
+import { initializeApp } from "firebase/app";
+import { getAuth, signOut } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 import logo from "../assets/SkyShare-Logo.png";
 
 function Header() {
@@ -8,8 +11,21 @@ function Header() {
   const mobileMenuRef = useRef(null);
   const userMenuRef = useRef(null);
 
+  const firebaseConfig = {
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+  };
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const [user] = useAuthState(auth);
+
   const location = useLocation();
-  const isChatRoute = location.pathname === '/chat';
+  const isChatRoute = location.pathname === '/chatroom';
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
@@ -58,7 +74,7 @@ function Header() {
       <div className="hidden md:flex justify-center items-center gap-7 flex-1 mr-14">
         {[
           { name: "Home", path: "/" },
-          { name: "ChatRoom", path: "/chat" },
+          { name: "ChatRoom", path: "/chatroom" },
           { name: "About", path: "/about" },
           { name: "Contact Us", path: "/contact" },
           { name: "Help Center", path: "/help-center" },
@@ -80,8 +96,11 @@ function Header() {
       {/* Desktop User Menu */}
       <div ref={userMenuRef} className="relative hidden md:inline-block">
         <div className="flex flex-row justify-between items-center space-x-4">
-          {isChatRoute && (
-            <button className="px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 transition">
+          {isChatRoute && user && (
+            <button 
+              className="px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 transition"
+              onClick={() => signOut(auth)}
+              >
               Sign Out
             </button>
           )}
@@ -129,7 +148,7 @@ function Header() {
             <ul className="list-none space-y-3">
               {[
                 { name: "Home", path: "/" },
-                { name: "ChatRoom", path: "/chat" },
+                { name: "ChatRoom", path: "/chatroom" },
                 { name: "About", path: "/about" },
                 { name: "Contact Us", path: "/contact" },
                 { name: "Help Center", path: "/help-center" },
