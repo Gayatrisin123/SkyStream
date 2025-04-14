@@ -179,8 +179,7 @@ function SignOut() {
 }
 
 function ChatRoom() {
-  const dummy = useRef(null);
-  const chatContainerRef = useRef(null);
+  const bottomRef = useRef(null);
   const messagesRef = collection(firestore, "messages");
   const messagesQuery = query(messagesRef, orderBy("createdAt"), limit(50));
   const [messages] = useCollectionData(messagesQuery, { idField: "id" });
@@ -206,28 +205,26 @@ function ChatRoom() {
   };
 
   useEffect(() => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTo({
-        top: chatContainerRef.current.scrollHeight,
-        behavior: 'smooth',
-      });
-    }
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-  
+
   return (
-    <div
-      className="flex flex-col w-full h-full px-4 -mb-4 overflow-hidden"
-      ref={chatContainerRef}
-    >
-      <div
-        className="flex-1 flex flex-col justify-end overflow-auto pb-12"
-        style={{ scrollBehavior: "smooth" }}
-        ref={chatContainerRef}
-      >
-        {messages &&
-          messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
-        
+    <div className="flex flex-col w-full h-full px-4 overflow-hidden">
+      <div className="flex-1 flex flex-col justify-end overflow-auto pb-20">
+        {messages && messages.length > 0 ? (
+          messages.map((msg, idx) => <ChatMessage key={idx} message={msg} />)
+        ) : (
+          <div className="flex flex-col items-center justify-center py-10 mt-12 text-gray-500">
+            <svg className="w-12 h-12 mb-4 text-gray-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M7 8h10M7 12h4m1 8a9 9 0 100-18 9 9 0 000 18z" />
+            </svg>
+            <p className="text-lg font-medium">No messages yet</p>
+            <p className="text-sm text-gray-400">Start a conversation to see messages here.</p>
+          </div>
+        )}
+        <div ref={bottomRef} />
       </div>
+
       <form
         onSubmit={sendMessage}
         className="fixed bottom-0 left-0 w-full px-4 py-3 backdrop-blur-lg bg-gray-800 bg-opacity-50 shadow-md flex items-center"
