@@ -145,30 +145,37 @@ function Header() {
         </button>
         {isMobileMenuOpen && (
           <div className="absolute top-12 right-0 bg-white shadow-lg rounded-lg z-50 p-4 w-56">
-            <ul className="list-none space-y-3">
-              {[
-                { name: "Home", path: "/" },
-                { name: "ChatRoom", path: "/chatroom" },
-                { name: "About", path: "/about" },
-                { name: "Contact Us", path: "/contact" },
-                { name: "Help Center", path: "/help-center" },
-              ].map((link) => (
-                <li key={link.path}>
-                  <a
-                    href={link.path}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`block text-base ${
-                      currentPath === link.path
-                        ? "text-blue-500"
-                        : "text-black hover:text-blue-500"
-                    } transition`}
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="list-none space-y-3">
+            {[{ name: "Home", path: "/" },
+              { name: "ChatRoom", path: "/chatroom" },
+              { name: "About", path: "/about" },
+              { name: "Contact Us", path: "/contact" },
+              { name: "Help Center", path: "/help-center" },
+            ].map((link) => (
+              <li key={link.path}>
+                <a
+                  href={link.path}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block text-base ${currentPath === link.path ? "text-blue-500" : "text-black hover:text-blue-500"} transition`}
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        
+          {isMobileMenuOpen && isChatRoute && user && (
+            <button
+            className="px-6 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 transition mt-4 w-full sm:w-auto text-center"
+            onClick={() => {
+              signOut(auth);
+              setIsMobileMenuOpen(false);
+            }}
+          >
+            Sign Out
+          </button>
+          )}
+        </div>
         )}
       </div>
     </div>
