@@ -1,4 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useLocation } from 'react-router-dom';
+import { initializeApp } from "firebase/app";
+import { getAuth, signOut } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 import logo from "../assets/SkyShare-Logo.png";
 
 function Header() {
@@ -6,6 +10,22 @@ function Header() {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const mobileMenuRef = useRef(null);
   const userMenuRef = useRef(null);
+
+  const firebaseConfig = {
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+  };
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const [user] = useAuthState(auth);
+
+  const location = useLocation();
+  const isChatRoute = location.pathname === '/chatroom';
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
@@ -54,7 +74,7 @@ function Header() {
       <div className="hidden md:flex justify-center items-center gap-7 flex-1 mr-14">
         {[
           { name: "Home", path: "/" },
-          { name: "ChatRoom", path: "/chat" },
+          { name: "ChatRoom", path: "/chatroom" },
           { name: "About", path: "/about" },
           { name: "Contact Us", path: "/contact" },
           { name: "Help Center", path: "/help-center" },
@@ -75,12 +95,22 @@ function Header() {
 
       {/* Desktop User Menu */}
       <div ref={userMenuRef} className="relative hidden md:inline-block">
-        <button
-          className="text-gray-400 hover:text-blue-400 text-2xl cursor-pointer flex items-center focus:outline-none"
-          onClick={toggleUserMenu}
-        >
-          <i className="bi bi-person-fill transition-transform transform hover:scale-110"></i>
-        </button>
+        <div className="flex flex-row justify-between items-center space-x-4">
+          {isChatRoute && user && (
+            <button 
+              className="px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 transition"
+              onClick={() => signOut(auth)}
+              >
+              Sign Out
+            </button>
+          )}
+          <button
+            className="text-gray-400 hover:text-blue-400 text-2xl cursor-pointer flex items-center focus:outline-none"
+            onClick={toggleUserMenu}
+          >
+            <i className="bi bi-person-fill transition-transform transform hover:scale-110"></i>
+          </button>
+        </div>
         {isUserMenuOpen && (
           <div className="absolute top-12 right-0 bg-white shadow-lg rounded-lg z-50 p-4 w-48">
             <ul className="list-none space-y-2">
@@ -115,30 +145,37 @@ function Header() {
         </button>
         {isMobileMenuOpen && (
           <div className="absolute top-12 right-0 bg-white shadow-lg rounded-lg z-50 p-4 w-56">
-            <ul className="list-none space-y-3">
-              {[
-                { name: "Home", path: "/" },
-                { name: "ChatRoom", path: "/chat" },
-                { name: "About", path: "/about" },
-                { name: "Contact Us", path: "/contact" },
-                { name: "Help Center", path: "/help-center" },
-              ].map((link) => (
-                <li key={link.path}>
-                  <a
-                    href={link.path}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`block text-base ${
-                      currentPath === link.path
-                        ? "text-blue-500"
-                        : "text-black hover:text-blue-500"
-                    } transition`}
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="list-none space-y-3">
+            {[{ name: "Home", path: "/" },
+              { name: "ChatRoom", path: "/chatroom" },
+              { name: "About", path: "/about" },
+              { name: "Contact Us", path: "/contact" },
+              { name: "Help Center", path: "/help-center" },
+            ].map((link) => (
+              <li key={link.path}>
+                <a
+                  href={link.path}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block text-base ${currentPath === link.path ? "text-blue-500" : "text-black hover:text-blue-500"} transition`}
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        
+          {isMobileMenuOpen && isChatRoute && user && (
+            <button
+            className="px-6 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 transition mt-4 w-full sm:w-auto text-center"
+            onClick={() => {
+              signOut(auth);
+              setIsMobileMenuOpen(false);
+            }}
+          >
+            Sign Out
+          </button>
+          )}
+        </div>
         )}
       </div>
     </div>
