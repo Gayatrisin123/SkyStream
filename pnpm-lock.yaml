@@ -29,6 +29,9 @@ importers:
       '@shadcn/ui':
         specifier: ^0.0.4
         version: 0.0.4
+      '@splinetool/react-spline':
+        specifier: ^4.0.0
+        version: 4.0.0(@splinetool/runtime@1.9.82)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@stream-io/stream-chat-css':
         specifier: ^5.8.0
         version: 5.8.0
@@ -2201,6 +2204,20 @@ packages:
   '@sinonjs/fake-timers@8.1.0':
     resolution: {integrity: sha512-OAPJUAtgeINhh/TAlUID4QTs53Njm7xzddaVlEs/SXwgtiD1tW22zAB/W1wdqfrpmikgaWQ9Fw6Ws+hsiRm5Vg==}
 
+  '@splinetool/react-spline@4.0.0':
+    resolution: {integrity: sha512-FqrV7/K2q998Y0t83QUauQxsifKWAg9CFZoSb64qRuH7IfHkDs5/OgU1ACkg0aTgsEPtFlH+kATQ+8X6MrizHQ==}
+    peerDependencies:
+      '@splinetool/runtime': '*'
+      next: '>=14.2.0'
+      react: '*'
+      react-dom: '*'
+    peerDependenciesMeta:
+      next:
+        optional: true
+
+  '@splinetool/runtime@1.9.82':
+    resolution: {integrity: sha512-qfNTnezSGuh7nPUPgRVfpH+g2FYywvYmHzOLmp8dahMxuY7HshOwLEhKVapaaWxIpq4h/WweU83pBWb48bwA8A==}
+
   '@stream-io/escape-string-regexp@5.0.1':
     resolution: {integrity: sha512-qIaSrzJXieZqo2fZSYTdzwSbZgHHsT3tkd646vvZhh4fr+9nO4NlvqGmPF43Y+OfZiWf+zYDFgNiPGG5+iZulQ==}
     engines: {node: '>=12'}
@@ -3226,6 +3243,9 @@ packages:
 
   bluebird@3.7.2:
     resolution: {integrity: sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==}
+
+  blurhash@2.0.5:
+    resolution: {integrity: sha512-cRygWd7kGBQO3VEhPiTgq4Wc43ctsM+o46urrmPOiuAe+07fzlSB9OJVdpgDL0jPqXUVQ9ht7aq7kxOeJHRK+w==}
 
   body-parser@1.20.3:
     resolution: {integrity: sha512-7rAxByjUMqQ3/bHJy7D6OGXvx/MMc4IqBn/X0fcM1QUcAItpZrBEYhWGem+tzXH90c+G01ypMcYJBO9Y30203g==}
@@ -6548,6 +6568,10 @@ packages:
   obuf@1.1.2:
     resolution: {integrity: sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==}
 
+  on-change@4.0.2:
+    resolution: {integrity: sha512-cMtCyuJmTx/bg2HCpHo3ZLeF7FZnBOapLqZHr2AlLeJ5Ul0Zu2mUJJz051Fdwu/Et2YW04ZD+TtU+gVy0ACNCA==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
   on-finished@2.3.0:
     resolution: {integrity: sha512-ikqdkGAAyf/X/gPhXGvfgAytDZtDbr+bkNUJ0N9h5MI/dmdgCs3l6hoHrcUv41sRKew3jIwrp4qQDXiK99Utww==}
     engines: {node: '>= 0.8'}
@@ -7477,6 +7501,9 @@ packages:
       '@types/react': '>=18'
       react: '>=18'
 
+  react-merge-refs@2.1.1:
+    resolution: {integrity: sha512-jLQXJ/URln51zskhgppGJ2ub7b2WFKGq3cl3NYKtlHoTG+dN2q7EzWrn3hN3EgPsTMvpR9tpq5ijdp7YwFZkag==}
+
   react-player@2.10.1:
     resolution: {integrity: sha512-ova0jY1Y1lqLYxOehkzbNEju4rFXYVkr5rdGD71nsiG4UKPzRXQPTd3xjoDssheoMNjZ51mjT5ysTrdQ2tEvsg==}
     peerDependencies:
@@ -8022,6 +8049,9 @@ packages:
     resolution: {integrity: sha512-th5B4L2U+eGLq1TVh7zNRGBapioSORUeymIydxgFpwww9d2qyKvtuPU2jJuHvYAwwqi2Y596QBL3eEqcPEYL8Q==}
     engines: {node: '>=10'}
 
+  semver-compare@1.0.0:
+    resolution: {integrity: sha512-YM3/ITh2MJ5MtzaM429anh+x2jiLVjqILF4m4oyQB18W7Ggea7BfqdH/wGMK7dDiMghv/6WG7znWMwUDzJiXow==}
+
   semver-diff@3.1.1:
     resolution: {integrity: sha512-GX0Ix/CJcHyB8c4ykpHGIAvLyOwOobtM/8d+TQkAd81/bEjgPHrfba41Vpesr7jX/t8Uh+R3EX9eAS5be+jQYg==}
     engines: {node: '>=8'}
@@ -8556,6 +8586,9 @@ packages:
 
   through@2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
+
+  thumbhash@0.1.1:
+    resolution: {integrity: sha512-kH5pKeIIBPQXAOni2AiY/Cu/NKdkFREdpH+TLdM0g6WA7RriCv0kPLgP731ady67MhTAqrVG/4mnEeibVuCJcg==}
 
   thunky@1.1.0:
     resolution: {integrity: sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==}
@@ -11597,6 +11630,21 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 1.8.6
 
+  '@splinetool/react-spline@4.0.0(@splinetool/runtime@1.9.82)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@splinetool/runtime': 1.9.82
+      blurhash: 2.0.5
+      lodash.debounce: 4.0.8
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-merge-refs: 2.1.1
+      thumbhash: 0.1.1
+
+  '@splinetool/runtime@1.9.82':
+    dependencies:
+      on-change: 4.0.2
+      semver-compare: 1.0.0
+
   '@stream-io/escape-string-regexp@5.0.1':
     optional: true
 
@@ -12772,6 +12820,8 @@ snapshots:
       readable-stream: 3.6.2
 
   bluebird@3.7.2: {}
+
+  blurhash@2.0.5: {}
 
   body-parser@1.20.3:
     dependencies:
@@ -16980,6 +17030,8 @@ snapshots:
 
   obuf@1.1.2: {}
 
+  on-change@4.0.2: {}
+
   on-finished@2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -17999,6 +18051,8 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  react-merge-refs@2.1.1: {}
+
   react-player@2.10.1(react@18.3.1):
     dependencies:
       deepmerge: 4.3.1
@@ -18669,6 +18723,8 @@ snapshots:
     dependencies:
       '@types/node-forge': 1.3.11
       node-forge: 1.3.1
+
+  semver-compare@1.0.0: {}
 
   semver-diff@3.1.1:
     dependencies:
@@ -19371,6 +19427,8 @@ snapshots:
       xtend: 4.0.2
 
   through@2.3.8: {}
+
+  thumbhash@0.1.1: {}
 
   thunky@1.1.0: {}
 
