@@ -48,6 +48,29 @@ You can visit the live site here - https://sky-stream-share.vercel.app/
  ```
 - Open your browser and navigate to http://localhost:5173 to view the localhost website
 
+## Project Setup Using Docker Containerization:
+1. Start the Docker Engine Locally or Use Any Service
+2. Navigate to the project Root directory:
+```bash
+    cd SkyStream
+```
+3. Run DockerFile:
+```bash
+    docker-compose up --build
+```
+4. Wait for Generating the Image
+<details>	
+ <summary><b>How Docker Image Builds Looks</b></summary><br>
+
+  ![image](https://github.com/user-attachments/assets/9873d1e2-ca40-4909-98c4-eacdf0d1e1a8)
+</details>
+<details>	
+ <summary><b>Project Docker Container</b></summary><br>
+
+  ![image](https://github.com/user-attachments/assets/aa315263-21d1-4365-93dc-056a5af4eb10)
+</details>
+5. Now Simply use the Project using Docker Container
+
 ## Author
 - [@Ujjwal Saini](https://github.com/UjjwalSaini07)
 
