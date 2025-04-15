@@ -27,7 +27,7 @@ export default function About() {
           animate="show"
         >
         <h2 className="text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight">
-          About Sky Share
+          About Sky Stream
         </h2>
         </motion.div>
         <motion.div
@@ -36,7 +36,7 @@ export default function About() {
           animate="show"
         >
         <p className="text-lg text-white mt-4 max-w-3xl mx-auto opacity-90">
-          Sky Share allows screen-sharing solution that enables instant collaboration with zero downloads or logins. Fast, secure, and effortless—experience the next level of remote communication.
+          Sky Stream transforms remote collaboration with instant, secure screen sharing requiring no downloads or logins. Its integrated chat rooms enhance interactions, offering a seamless experience that becomes personalized and secure through a simple sign-in process.
         </p>
         </motion.div>
         <motion.div
@@ -142,8 +142,7 @@ export default function About() {
           animate="show"
         >
         <p className="mt-4 text-lg text-white opacity-90">
-          No need to install apps or create accounts. Simply start sharing your screen 
-          in seconds and enjoy a hassle-free collaboration experience.
+        No apps to install or accounts to create—start sharing your screen instantly and enjoy seamless, hassle-free collaboration within seconds, making teamwork faster, easier, and more efficient than ever before.
         </p>
         </motion.div>
         <motion.div
