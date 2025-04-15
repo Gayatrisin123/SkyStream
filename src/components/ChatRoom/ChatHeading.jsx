@@ -2,19 +2,8 @@ import React from 'react';
 import { motion } from "framer-motion";
 
 const ChatHeading = () => {
-  const textVariant = (delay) => ({
-    hidden: { y: -50, opacity: 0 },
-    show: {
-      y: 0,
-      opacity: 1,
-      transition: { type: "spring", duration: 1.5, delay: delay },
-    },
-  });
-
   const marqueeVariants = {
-    start: {
-      x: '100%',
-    },
+    start: { x: '100%' },
     center: {
       x: '0%',
       transition: {
@@ -31,30 +20,48 @@ const ChatHeading = () => {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    marginBottom: '-3rem',
-    height: '15vh',
+    marginBottom: '-3.5rem',
+    marginTop: '-1.8rem',
+    height: '20vh',
     overflow: 'hidden',
     backgroundColor: '#000',
     color: 'white',
+    textAlign: 'center',
   };
 
-  const marqueeStyle = {
-    position: 'absolute',
-    top: '2%',
-    fontSize: '85px',
+  const headingStyle = {
+    fontSize: 'clamp(2rem, 5vw, 4rem)',
     fontFamily: "'Times New Roman', Times, serif",
     whiteSpace: 'nowrap',
+    marginBottom: '-0.5rem',
+  };
+
+  const descriptionStyle = {
+    fontSize: 'clamp(1rem, 3vw, 1.4rem)',
+    fontFamily: "'Arial', sans-serif",
+    whiteSpace: 'normal',
+    marginBottom: '-0.5rem',
   };
 
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} aria-label="Chat Room Heading">
       <motion.div
-        style={marqueeStyle}
+        style={headingStyle}
         variants={marqueeVariants}
         initial="start"
         animate="center"
+        aria-label="Main heading"
       >
         CHAT ROOM
+      </motion.div>
+      <motion.div
+        style={descriptionStyle}
+        variants={marqueeVariants}
+        initial="start"
+        animate="center"
+        aria-label="Subheading"
+      >
+        Sign In or Create Account to Start Chatting...
       </motion.div>
     </div>
   );
