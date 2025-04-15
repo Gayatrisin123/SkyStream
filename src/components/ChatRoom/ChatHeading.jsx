@@ -2,8 +2,19 @@ import React from 'react';
 import { motion } from "framer-motion";
 
 const ChatHeading = () => {
-  const marqueeVariants = {
+  const marqueeHeadingVariants = {
     start: { x: '100%' },
+    center: {
+      x: '0%',
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 10,
+      },
+    },
+  };
+  const marqueeDescriptionVariants = {
+    start: { x: '250%' },
     center: {
       x: '0%',
       transition: {
@@ -47,7 +58,7 @@ const ChatHeading = () => {
     <div style={containerStyle} aria-label="Chat Room Heading">
       <motion.div
         style={headingStyle}
-        variants={marqueeVariants}
+        variants={marqueeHeadingVariants}
         initial="start"
         animate="center"
         aria-label="Main heading"
@@ -56,7 +67,7 @@ const ChatHeading = () => {
       </motion.div>
       <motion.div
         style={descriptionStyle}
-        variants={marqueeVariants}
+        variants={marqueeDescriptionVariants}
         initial="start"
         animate="center"
         aria-label="Subheading"
