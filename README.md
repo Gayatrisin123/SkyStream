@@ -48,7 +48,7 @@ You can visit the live site here - https://sky-stream-share.vercel.app/
 - [@Ujjwal Saini](https://github.com/UjjwalSaini07)
 
 ## Screenshots
-![image](https://github.com/user-attachments/assets/e94abf2c-d044-4c41-ab7f-099f781fd607)
+![image](https://github.com/user-attachments/assets/a0335b72-debe-498b-b435-51860fa20150)
 
 ## Contributing 🤝
 Sorry But this project not welcome Contributions! Yes u gave a Feedback and Suggestion via raising the [Issues](https://github.com/UjjwalSaini07/SkyStream/issues/new?template=Blank+issue).
