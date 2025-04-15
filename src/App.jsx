@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, } from "react-router-
 import Layout from "./components/common/Layout.jsx";
 import Header from "./components/common/Header.jsx";
 import Home from "./pages/Home.jsx";
-import ChatRoom from "./components/ChatRoom/ChatRoom.jsx";
+import ChatRoom from "./pages/ChatRoom.jsx";
 import About from "./pages/About.jsx";
 import ContactUs from "./pages/ContactUs.jsx";
 import Help from "./pages/HelpCenter.jsx";

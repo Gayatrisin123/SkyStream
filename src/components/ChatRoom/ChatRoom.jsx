@@ -23,7 +23,10 @@ import {
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import MarequeHead from "./ChatHeading";
 import UserProfile from "../../assets/UserProfile.png";
 
 // Firebase configuration
@@ -37,6 +40,15 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
+const textVariant = (delay) => ({
+  hidden: { y: -50, opacity: 0 },
+  show: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", duration: 1.25, delay: delay },
+  },
+});
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -48,10 +60,16 @@ function FireChatRoom() {
   return (
     <div className="flex flex-col bg-transparent text-white">
       <div className="text-left">{user && <SignOut />}</div>
-
-      <main className="flex-1 mt-16 mb-15 w-full flex flex-col items-center">
-        {user ? <ChatRoom /> : <SignIn />}
-      </main>
+      {!user && (
+        <div>
+          <MarequeHead />
+        </div>
+      )}
+      <motion.div variants={textVariant(0.7)} initial="hidden" animate="show">
+        <main className="flex-1 mt-16 mb-15 w-full flex flex-col items-center">
+          {user ? <ChatRoom /> : <SignIn />}
+        </main>
+      </motion.div>
     </div>
   );
 }
@@ -157,58 +175,91 @@ function SignIn() {
   };
 
   return (
-    <div className="flex flex-col items-center mt-16">
-      <button
-        className="px-6 py-3 bg-blue-500 bg-opacity-80 text-white font-semibold rounded-lg shadow-md hover:bg-opacity-100 transition-transform transform hover:scale-105 mb-4"
-        onClick={signInWithGoogle}
-      >
-        Sign in with Google
-      </button>
-
-      <div className="flex flex-col items-center mb-4">
-        <p className="text-gray-400">OR</p>
-        <form
-          onSubmit={handleEmailSignIn}
-          className="mt-4 flex flex-col items-center"
-        >
-          <input
-            type="email"
-            className="px-4 py-2 mb-2 bg-gray-700 text-gray-200 rounded-lg"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            className="px-4 py-2 mb-4 bg-gray-700 text-gray-200 rounded-lg"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          {/* {error && <p className="text-red-500 text-sm">{error}</p>} */}
-          <button
-            className="px-6 py-3 bg-blue-500 bg-opacity-80 text-white font-semibold rounded-lg shadow-md hover:bg-opacity-100 transition-transform transform hover:scale-105"
-            type="submit"
-          >
-            {isSignUp ? "Sign Up" : "Sign In"}
-          </button>
-          <p className="text-gray-400 text-sm mt-2">
-            {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
-            <span
-              onClick={() => setIsSignUp(!isSignUp)}
-              className="text-blue-400 cursor-pointer"
+    <div className="flex justify-center items-center">
+      <Card className="w-full max-w-lg shadow-2xl rounded-3xl">
+        <CardHeader>
+          <CardTitle className="text-center text-3xl font-bold text-white">
+            {isSignUp ? "Create an Account" : "Welcome Back"}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col items-center">
+            <button
+              className="w-full px-6 py-3 bg-blue-600 bg-opacity-90 text-white font-semibold rounded-lg shadow-md hover:bg-opacity-100 transition-transform transform hover:scale-105 mb-6"
+              onClick={signInWithGoogle}
             >
-              {isSignUp ? "Sign In" : "Sign Up"}
-            </span>
-          </p>
-        </form>
-      </div>
+              Sign in with Google
+            </button>
 
-      <p className="text-gray-400 text-sm mt-4">
-        Be respectful and follow the community rules.
-      </p>
+            <div className="flex flex-col items-center w-full">
+              <p className="text-gray-400">OR</p>
+              <form
+                onSubmit={handleEmailSignIn}
+                className="mt-4 flex flex-col items-center w-full"
+              >
+                <div className="w-full mb-4">
+                  <label
+                    className="block text-sm font-medium text-gray-300 mb-1"
+                    htmlFor="email"
+                  >
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    className="w-full px-4 py-3 bg-gray-700 text-gray-200 placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className="w-full mb-6">
+                  <label
+                    className="block text-sm font-medium text-gray-300 mb-1"
+                    htmlFor="password"
+                  >
+                    Password
+                  </label>
+                  <input
+                    id="password"
+                    type="password"
+                    className="w-full px-4 py-3 bg-gray-700 text-gray-200 placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <button
+                  className="w-full px-6 py-3 bg-blue-600 bg-opacity-90 text-white font-semibold rounded-lg shadow-md hover:bg-opacity-100 transition-transform transform hover:scale-105"
+                  type="submit"
+                >
+                  {isSignUp ? "Sign Up" : "Sign In"}
+                </button>
+
+                <p className="text-gray-400 text-sm mt-4">
+                  {isSignUp
+                    ? "Already have an account?"
+                    : "Don't have an account?"}{" "}
+                  <span
+                    onClick={() => setIsSignUp(!isSignUp)}
+                    className="text-blue-400 cursor-pointer hover:underline"
+                  >
+                    {isSignUp ? "Sign In" : "Sign Up"}
+                  </span>
+                </p>
+              </form>
+            </div>
+
+            <p className="text-gray-400 text-sm mt-6 text-center">
+              Be respectful and follow the community rules.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
@@ -264,22 +315,45 @@ function ChatRoom() {
         ) : (
           <div className="flex flex-col items-center justify-center py-10 mt-12 text-gray-500">
             <svg
-              className="w-12 h-12 mb-4 text-gray-400"
+              width="80px"
+              height="80px"
+              viewBox="0 0 32 32"
               fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M7 8h10M7 12h4m1 8a9 9 0 100-18 9 9 0 000 18z"
+                d="M2 11.6C2 8.23969 2 6.55953 2.65396 5.27606C3.2292 4.14708 4.14708 3.2292 5.27606 2.65396C6.55953 2 8.23969 2 11.6 2H20.4C23.7603 2 25.4405 2 26.7239 2.65396C27.8529 3.2292 28.7708 4.14708 29.346 5.27606C30 6.55953 30 8.23969 30 11.6V20.4C30 23.7603 30 25.4405 29.346 26.7239C28.7708 27.8529 27.8529 28.7708 26.7239 29.346C25.4405 30 23.7603 30 20.4 30H11.6C8.23969 30 6.55953 30 5.27606 29.346C4.14708 28.7708 3.2292 27.8529 2.65396 26.7239C2 25.4405 2 23.7603 2 20.4V11.6Z"
+                fill="url(#paint0_linear_87_7269)"
               />
+              <path
+                d="M16 23C20.9706 23 25 19.6421 25 15.5C25 11.3579 20.9706 8 16 8C11.0294 8 7 11.3579 7 15.5C7 18.1255 8.61889 20.4359 11.0702 21.7758C10.9881 22.4427 10.7415 23.3327 10 24C11.4021 23.7476 12.5211 23.2405 13.3571 22.6714C14.1928 22.885 15.0803 23 16 23Z"
+                fill="white"
+              />
+              <defs>
+                <linearGradient
+                  id="paint0_linear_87_7269"
+                  x1="16"
+                  y1="2"
+                  x2="16"
+                  y2="30"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#5AF575" />
+                  <stop offset="1" stop-color="#13BD2C" />
+                </linearGradient>
+              </defs>
             </svg>
-            <p className="text-lg font-medium">No messages yet</p>
-            <p className="text-sm text-gray-400">
-              Start a conversation to see messages here.
-            </p>
+            <div className="flex flex-col items-center justify-center h-full text-center space-y-2">
+              <p className="text-2xl font-semibold text-gray-700">
+                No messages yet
+              </p>
+              <p className="text-sm text-gray-500">
+                Start a conversation to see messages here.
+              </p>
+            </div>
+            <button className="px-4 py-2 mt-4 text-sm font-medium text-white bg-blue-500 rounded-lg shadow hover:bg-blue-600">
+              Start a Conversation
+            </button>
           </div>
         )}
         <div ref={bottomRef} />
