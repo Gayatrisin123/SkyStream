@@ -24,7 +24,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import MarequeHead from "./ChatHeading";
 import UserProfile from "../../assets/UserProfile.png";
 
 // Firebase configuration
@@ -38,6 +40,15 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
+const textVariant = (delay) => ({
+  hidden: { y: -50, opacity: 0 },
+  show: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", duration: 1.25, delay: delay },
+  },
+});
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -49,10 +60,12 @@ function FireChatRoom() {
   return (
     <div className="flex flex-col bg-transparent text-white">
       <div className="text-left">{user && <SignOut />}</div>
-
+      <div><MarequeHead/></div>
+      <motion.div variants={textVariant(0.7)} initial="hidden" animate="show">
       <main className="flex-1 mt-16 mb-15 w-full flex flex-col items-center">
         {user ? <ChatRoom /> : <SignIn />}
       </main>
+      </motion.div>
     </div>
   );
 }
@@ -159,70 +172,85 @@ function SignIn() {
 
   return (
     <div className="flex justify-center items-center">
-      <Card className="w-full max-w-md shadow-xl rounded-2xl">
-        <CardHeader>
-          <CardTitle className="text-center text-2xl font-bold text-white">
-            {isSignUp ? "Create an Account" : "Welcome Back"}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col items-center">
-            <button
-              className="w-full px-6 py-3 bg-blue-500 bg-opacity-80 text-white font-semibold rounded-lg shadow-md hover:bg-opacity-100 transition-transform transform hover:scale-105 mb-6"
-              onClick={signInWithGoogle}
-            >
-              Sign in with Google
-            </button>
+    <Card className="w-full max-w-lg shadow-2xl rounded-3xl">
+      <CardHeader>
+        <CardTitle className="text-center text-3xl font-bold text-white">
+          {isSignUp ? "Create an Account" : "Welcome Back"}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-col items-center">
+          <button
+            className="w-full px-6 py-3 bg-blue-600 bg-opacity-90 text-white font-semibold rounded-lg shadow-md hover:bg-opacity-100 transition-transform transform hover:scale-105 mb-6"
+            onClick={signInWithGoogle}
+          >
+            Sign in with Google
+          </button>
 
-            <div className="flex flex-col items-center w-full">
-              <p className="text-gray-400">OR</p>
-              <form
-                onSubmit={handleEmailSignIn}
-                className="mt-4 flex flex-col items-center w-full"
-              >
+          <div className="flex flex-col items-center w-full">
+            <p className="text-gray-400">OR</p>
+            <form
+              onSubmit={handleEmailSignIn}
+              className="mt-4 flex flex-col items-center w-full"
+            >
+              <div className="w-full mb-4">
+                <label className="block text-sm font-medium text-gray-300 mb-1" htmlFor="email">
+                  Email
+                </label>
                 <input
+                  id="email"
                   type="email"
-                  className="w-full px-4 py-2 mb-3 bg-gray-700 text-gray-200 placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Email"
+                  className="w-full px-4 py-3 bg-gray-700 text-gray-200 placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
+                  placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
+              </div>
+
+              <div className="w-full mb-6">
+                <label className="block text-sm font-medium text-gray-300 mb-1" htmlFor="password">
+                  Password
+                </label>
                 <input
+                  id="password"
                   type="password"
-                  className="w-full px-4 py-2 mb-4 bg-gray-700 text-gray-200 placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Password"
+                  className="w-full px-4 py-3 bg-gray-700 text-gray-200 placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
+                  placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
-                <button
-                  className="w-full px-6 py-3 bg-blue-500 bg-opacity-80 text-white font-semibold rounded-lg shadow-md hover:bg-opacity-100 transition-transform transform hover:scale-105"
-                  type="submit"
-                >
-                  {isSignUp ? "Sign Up" : "Sign In"}
-                </button>
-                <p className="text-gray-400 text-sm mt-4">
-                  {isSignUp
-                    ? "Already have an account?"
-                    : "Don't have an account?"}{" "}
-                  <span
-                    onClick={() => setIsSignUp(!isSignUp)}
-                    className="text-blue-400 cursor-pointer hover:underline"
-                  >
-                    {isSignUp ? "Sign In" : "Sign Up"}
-                  </span>
-                </p>
-              </form>
-            </div>
+              </div>
 
-            <p className="text-gray-400 text-sm mt-6 text-center">
-              Be respectful and follow the community rules.
-            </p>
+              <button
+                className="w-full px-6 py-3 bg-blue-600 bg-opacity-90 text-white font-semibold rounded-lg shadow-md hover:bg-opacity-100 transition-transform transform hover:scale-105"
+                type="submit"
+              >
+                {isSignUp ? "Sign Up" : "Sign In"}
+              </button>
+
+              <p className="text-gray-400 text-sm mt-4">
+                {isSignUp
+                  ? "Already have an account?"
+                  : "Don't have an account?"}{" "}
+                <span
+                  onClick={() => setIsSignUp(!isSignUp)}
+                  className="text-blue-400 cursor-pointer hover:underline"
+                >
+                  {isSignUp ? "Sign In" : "Sign Up"}
+                </span>
+              </p>
+            </form>
           </div>
-        </CardContent>
-      </Card>
-    </div>
+
+          <p className="text-gray-400 text-sm mt-6 text-center">
+            Be respectful and follow the community rules.
+          </p>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
   );
 }
 
