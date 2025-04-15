@@ -22,6 +22,13 @@ SkyStream makes remote collaboration effortless without the hassle with instant,
 ## Demo 🖥️
 You can visit the live site here - https://sky-stream-share.vercel.app/
 
+## Technologies Used 👨🏻‍💻
+- **React.js** – A powerful JavaScript library for building fast and scalable web applications.
+- **Tailwind CSS** – A utility-first CSS framework for efficient and responsive styling.
+- **SCSS** – A preprocessor for CSS to enhance styling capabilities.
+- **Docker** – Containerization for seamless deployment and scalability.
+- **ShadCN** – Used for beautifully designed, responsive components.
+
 ## Installation 🛠️
 - First Read this [License](https://github.com/UjjwalSaini07/SkyStream/blob/main/LICENSE) & their terms then proceed.
 - Star the [Repository](https://github.com/UjjwalSaini07/SkyStream)
