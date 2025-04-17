@@ -6,7 +6,7 @@ import { initializeApp } from "firebase/app";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, } from "firebase/auth";
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
-import MarequeHead from "../ChatHeading";
+import MarequeHead from "../common/ChatHeading";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
