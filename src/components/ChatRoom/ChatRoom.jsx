@@ -26,7 +26,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import MarequeHead from "./ChatHeading";
+import MarequeHead from "./common/ChatHeading";
 import UserProfile from "../../assets/UserProfile.png";
 
 // Firebase configuration
