@@ -9,7 +9,9 @@ import { Button } from "../../ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from "../../ui/card";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc, } from "firebase/firestore";
+import Auth from "../AuthChecking/Auth";
 import ChatMessaging from "../Messaging/ChatMessaging";
 
 const firebaseConfig = {
@@ -35,7 +37,7 @@ const textVariant = (delay) => ({
   },
 });
 
-export default function CreateChatRoom() {
+function CreateChatRoom() {
   const [roomId, setRoomId] = useState("");
   const [isConnecting, setIsConnecting] = useState(false);
   const [currentRoomId, setCurrentRoomId] = useState(null);
@@ -248,3 +250,15 @@ export default function CreateChatRoom() {
     </>
   );
 }
+
+function CreateAuthCheck() {
+  const [user] = useAuthState(auth);
+
+  return (
+    <div>
+      {!user ? <Auth /> : <CreateChatRoom />}
+    </div>
+  );
+}
+
+export default CreateAuthCheck;

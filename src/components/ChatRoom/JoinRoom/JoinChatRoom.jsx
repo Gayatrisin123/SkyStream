@@ -11,6 +11,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore, collection, query, orderBy, limit, addDoc, serverTimestamp, doc, getDoc, } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Auth from "../AuthChecking/Auth";
 import ChatMessaging from "../Messaging/ChatMessaging";
 
 const textVariant = (delay) => ({
@@ -36,7 +38,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const firestore = getFirestore(app);
 
-export default function JoinChatRoom() {
+function JoinChatRoom() {
   const [roomId, setRoomId] = useState("");
   const [isConnecting, setIsConnecting] = useState(false);
   const [currentRoomId, setCurrentRoomId] = useState(null);
@@ -144,8 +146,20 @@ export default function JoinChatRoom() {
           </motion.div>
         </div>
       ) : (
-        <ChatMessaging roomId={currentRoomId} messages={messages} />
+        <ChatMessaging />
       )}
     </>
   );
 }
+
+function JoinAuthCheck() {
+  const [user] = useAuthState(auth);
+
+  return (
+    <div>
+      {!user ? <Auth /> : <JoinChatRoom />}
+    </div>
+  );
+}
+
+export default JoinAuthCheck;
