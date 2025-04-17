@@ -25,7 +25,7 @@ function Header() {
   const [user] = useAuthState(auth);
 
   const location = useLocation();
-  const isChatRoute = location.pathname === '/chatroom';
+  const isChatRoute = ['/chatroom', '/createroom', '/joinroom'].includes(location.pathname);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
