@@ -9,6 +9,8 @@ import ContactUs from "./pages/ContactUs.jsx";
 import Help from "./pages/HelpCenter.jsx";
 import Host from "./components/HostRoom.jsx";
 import Join from "./components/JoinRoom.jsx";
+import CreateChatRoom from "./components/ChatRoom/CreateRoom/CreateChatRoom.jsx";
+import JoinChatRoom from "./components/ChatRoom/JoinRoom/JoinChatRoom.jsx";
 import Error404 from "./components/common/Error404.jsx";
 import "./App.scss";
 
@@ -21,6 +23,8 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/chatroom" element={<ChatRoom />} />
+              <Route path="/joinroom" element={<JoinChatRoom />} />
+              <Route path="/createroom" element={<CreateChatRoom />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/help-center" element={<Help />} />
