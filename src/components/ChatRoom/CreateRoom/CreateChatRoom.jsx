@@ -185,7 +185,7 @@ function CreateGroupRoom() {
             <Button
               variant="outline"
               className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 rounded-xl shadow-xl"
-              onClick={() => navigate("/")}
+              onClick={() => window.history.back()}
             >
               <ArrowLeft className="h-5 w-5" />
               Back to Home
