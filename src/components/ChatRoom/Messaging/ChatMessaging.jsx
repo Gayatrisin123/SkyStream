@@ -72,10 +72,21 @@ function ChatRoom({ roomId }) {
 
   const handleEmojiSelect = (emoji) => {
     setFormValue((prevValue) => prevValue + emoji.emoji);
-    setEmojiPickerVisible(false);
+    // setEmojiPickerVisible(false);
   };
 
   const toggleEmojiPicker = () => setEmojiPickerVisible((prev) => !prev);
+
+  const handleInputClick = () => {
+    setEmojiPickerVisible(false);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage(e);
+    }
+  };
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -148,6 +159,8 @@ function ChatRoom({ roomId }) {
           value={formValue}
           onChange={(e) => setFormValue(e.target.value)}
           placeholder="Type your message..."
+          onClick={handleInputClick}
+          onKeyDown={handleKeyDown}
         />
         <button
           type="submit"
