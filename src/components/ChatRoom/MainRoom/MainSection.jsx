@@ -25,7 +25,7 @@ export default function MainSection() {
             initial="hidden"
             animate="show"
           >
-            <h1 className="text-5xl sm:text-6xl font-extrabold text-white tracking-tight">
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
               Create a Room,{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
                 Connect
