@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import logo from "../../assets/SkyShare-Logo.png";
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -59,6 +60,11 @@ function Header() {
 
   const currentPath = window.location.pathname;
 
+  const navigate = useNavigate();
+  const signin = () => {
+    navigate('/roomauth');
+  };
+
   return (
     <div className="flex justify-between items-center p-5 sticky top-0 bg-black z-50">
       <a href="/" style={{ textDecoration: "none" }}>
@@ -96,14 +102,23 @@ function Header() {
       {/* Desktop User Menu */}
       <div ref={userMenuRef} className="relative hidden md:inline-block">
         <div className="flex flex-row justify-between items-center space-x-4">
-          {isChatRoute && user && (
-            <button 
-              className="px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 transition"
-              onClick={() => signOut(auth)}
-              >
-              Sign Out
-            </button>
-          )}
+          {isChatRoute ? (
+            user ? (
+              <button 
+                className="px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 transition"
+                onClick={() => signOut(auth)}
+                >
+                Sign Out
+              </button>
+            ) : (
+              <button 
+                className="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition"
+                onClick={() => signin()}
+                >
+                Sign In
+              </button>
+            )
+          ) : null}
           <button
             className="text-gray-400 hover:text-blue-400 text-2xl cursor-pointer flex items-center focus:outline-none"
             onClick={toggleUserMenu}
@@ -164,17 +179,29 @@ function Header() {
             ))}
           </ul>
         
-          {isMobileMenuOpen && isChatRoute && user && (
-            <button
-            className="px-6 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 transition mt-4 w-full sm:w-auto text-center"
-            onClick={() => {
-              signOut(auth);
-              setIsMobileMenuOpen(false);
-            }}
-          >
-            Sign Out
-          </button>
-          )}
+          {isMobileMenuOpen && isChatRoute ? (
+            user ? (
+              <button
+                className="px-6 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 transition mt-4 w-full sm:w-auto text-center"
+                onClick={() => {
+                  signOut(auth);
+                  setIsMobileMenuOpen(false);
+                }}
+              >
+                Sign Out
+              </button>
+            ) : (
+              <button
+                className="px-6 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition mt-4 w-full sm:w-auto text-center"
+                onClick={() => {
+                  signin();
+                  setIsMobileMenuOpen(false);
+                }}
+              >
+                Sign In
+              </button>
+            )
+          ) : null}
         </div>
         )}
       </div>
