@@ -53,6 +53,12 @@ importers:
       dotenv:
         specifier: ^16.5.0
         version: 16.5.0
+      emoji-mart:
+        specifier: ^5.6.0
+        version: 5.6.0
+      emoji-picker-react:
+        specifier: ^4.12.2
+        version: 4.12.2(react@18.3.1)
       firebase:
         specifier: ^11.6.0
         version: 11.6.0
@@ -112,7 +118,7 @@ importers:
         version: 8.60.0
       stream-chat-react:
         specifier: ^12.14.0
-        version: 12.14.0(@types/react@18.3.20)(jquery@3.7.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stream-chat@8.60.0)
+        version: 12.14.0(@types/react@18.3.20)(emoji-mart@5.6.0)(jquery@3.7.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stream-chat@8.60.0)
       tailwind-merge:
         specifier: ^3.2.0
         version: 3.2.0
@@ -4152,6 +4158,15 @@ packages:
     resolution: {integrity: sha512-uDfvUjVrfGJJhymx/kz6prltenw1u7WrCg1oa94zYY8xxVpLLUu045LAT0dhDZdXG58/EpPL/5kA180fQ/qudg==}
     engines: {node: '>=10'}
 
+  emoji-mart@5.6.0:
+    resolution: {integrity: sha512-eJp3QRe79pjwa+duv+n7+5YsNhRcMl812EcFVwrnRvYKoNPoQb5qxU8DG6Bgwji0akHdp6D4Ln6tYLG58MFSow==}
+
+  emoji-picker-react@4.12.2:
+    resolution: {integrity: sha512-6PDYZGlhidt+Kc0ay890IU4HLNfIR7/OxPvcNxw+nJ4HQhMKd8pnGnPn4n2vqC/arRFCNWQhgJP8rpsYKsz0GQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
 
@@ -4638,6 +4653,9 @@ packages:
 
   fix-webm-duration@1.0.6:
     resolution: {integrity: sha512-zVAqi4gE+8ywxJuAyV/rlJVX6CMtvyapEbQx6jyoeX9TMjdqAlt/FdG5d7rXSSkDVzTvS0H7CtwzHcH/vh4FPA==}
+
+  flairup@1.0.0:
+    resolution: {integrity: sha512-IKlE+pNvL2R+kVL1kEhUYqRxVqeFnjiIvHWDMLFXNaqyUdFXQM2wte44EfMYJNHkW16X991t2Zg8apKkhv7OBA==}
 
   flat-cache@4.0.1:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
@@ -13768,6 +13786,13 @@ snapshots:
 
   emittery@0.8.1: {}
 
+  emoji-mart@5.6.0: {}
+
+  emoji-picker-react@4.12.2(react@18.3.1):
+    dependencies:
+      flairup: 1.0.0
+      react: 18.3.1
+
   emoji-regex@8.0.0: {}
 
   emoji-regex@9.2.2: {}
@@ -14573,6 +14598,8 @@ snapshots:
       - '@react-native-async-storage/async-storage'
 
   fix-webm-duration@1.0.6: {}
+
+  flairup@1.0.0: {}
 
   flat-cache@4.0.1:
     dependencies:
@@ -19053,7 +19080,7 @@ snapshots:
 
   stream-chain@2.2.5: {}
 
-  stream-chat-react@12.14.0(@types/react@18.3.20)(jquery@3.7.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stream-chat@8.60.0):
+  stream-chat-react@12.14.0(@types/react@18.3.20)(emoji-mart@5.6.0)(jquery@3.7.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stream-chat@8.60.0):
     dependencies:
       '@braintree/sanitize-url': 6.0.4
       '@popperjs/core': 2.11.8
@@ -19091,6 +19118,7 @@ snapshots:
       use-sync-external-store: 1.5.0(react@18.3.1)
     optionalDependencies:
       '@stream-io/transliterate': 1.5.5
+      emoji-mart: 5.6.0
       mml-react: 0.4.7(@types/react@18.3.20)(jquery@3.7.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'

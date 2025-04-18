@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { getFirestore, collection, query, orderBy, limit, addDoc, doc, serverTimestamp, } from "firebase/firestore";
+import { getFirestore, collection, query, orderBy, limit, addDoc, doc, serverTimestamp } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { initializeApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import UserProfile from "../../../assets/UserProfile.png";
+import EmojiPicker from 'emoji-picker-react';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -24,6 +25,7 @@ const firestore = getFirestore(app);
 function ChatRoom({ roomId }) {
   const [user] = useAuthState(auth);
   const [formValue, setFormValue] = useState("");
+  const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
   const bottomRef = useRef(null);
 
   const messagesRef = roomId
@@ -68,6 +70,13 @@ function ChatRoom({ roomId }) {
     }
   };
 
+  const handleEmojiSelect = (emoji) => {
+    setFormValue((prevValue) => prevValue + emoji.emoji);
+    setEmojiPickerVisible(false);
+  };
+
+  const toggleEmojiPicker = () => setEmojiPickerVisible((prev) => !prev);
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -111,12 +120,8 @@ function ChatRoom({ roomId }) {
               </defs>
             </svg>
             <div className="flex flex-col items-center justify-center h-full text-center space-y-2">
-              <p className="text-2xl font-semibold text-gray-700">
-                No messages yet
-              </p>
-              <p className="text-sm text-gray-500">
-                Start a conversation to see messages here.
-              </p>
+              <p className="text-2xl font-semibold text-gray-700">No messages yet</p>
+              <p className="text-sm text-gray-500">Start a conversation to see messages here.</p>
             </div>
             <button className="px-4 py-2 mt-4 text-sm font-medium text-white bg-blue-500 rounded-lg shadow hover:bg-blue-600">
               Start a Conversation
@@ -128,8 +133,16 @@ function ChatRoom({ roomId }) {
 
       <form
         onSubmit={sendMessage}
-        className="fixed bottom-0 left-0 w-full px-4 py-3 backdrop-blur-lg bg-gray-800 bg-opacity-50 shadow-md flex items-center"
+        className="fixed bottom-0 left-0 w-full px-4 py-3 backdrop-blur-lg bg-gray-800 bg-opacity-50 shadow-md flex items-center justify-between"
       >
+        <button
+          type="button"
+          onClick={toggleEmojiPicker}
+          className="mr-2 px-4 py-2 bg-gray-700 text-white rounded-lg"
+        >
+          😊
+        </button>
+
         <input
           className="flex-1 px-4 py-2 bg-gray-700 bg-opacity-40 text-gray-200 rounded-lg focus:outline-none placeholder-gray-400"
           value={formValue}
@@ -139,10 +152,24 @@ function ChatRoom({ roomId }) {
         <button
           type="submit"
           disabled={!formValue}
-          className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
+          className="ml-2 px-6 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
         >
           Send
         </button>
+        
+        {emojiPickerVisible && (
+          <div className="absolute bottom-16 left-4 z-50">
+            <EmojiPicker
+              onEmojiClick={handleEmojiSelect}
+              pickerStyle={{
+                position: "absolute",
+                bottom: "0",
+                left: "0",
+                zIndex: 1000,
+              }}
+            />
+          </div>
+        )}
       </form>
     </div>
   );
