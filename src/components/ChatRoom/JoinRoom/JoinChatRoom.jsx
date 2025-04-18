@@ -127,8 +127,13 @@ function JoinChatRoom() {
             animate="show"
           >
             <Card
-              className="bg-gray-900 text-white shadow-xl hover:border-purple-500 rounded-xl p-6"
-              style={{ boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)" }}
+              className="bg-gray-900 text-white rounded-2xl p-6 border border-gray-400 hover:border-purple-500 transition duration-300 shadow-lg hover:shadow-purple-500/30"
+              style={{
+                background: "linear-gradient(135deg, #1f2937, #111827)",
+                boxShadow: "0 12px 24px rgba(31, 38, 135, 0.2), 0 4px 6px rgba(0, 0, 0, 0.1)",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
+              }}
             >
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white text-2xl font-extrabold">

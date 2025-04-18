@@ -31,7 +31,7 @@ function ChatRoom({ roomId }) {
     : null;
 
   const messagesQuery = messagesRef
-    ? query(messagesRef, orderBy("createdAt"), limit(200))
+    ? query(messagesRef, orderBy("createdAt"), limit(500))
     : null;
 
   const [messages] = useCollectionData(messagesQuery, { idField: "id" });
