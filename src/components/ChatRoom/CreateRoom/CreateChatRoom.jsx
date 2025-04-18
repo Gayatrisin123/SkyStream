@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ArrowLeft, Copy, Monitor, Share2 } from "lucide-react";
+import { ArrowLeft, Copy, Share2, CircleFadingPlus } from "lucide-react";
 import QRCode from "react-qr-code";
 import { motion } from "framer-motion";
 import { Button } from "../../ui/button";
@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from "../.
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc, } from "firebase/firestore";
+import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc, arrayUnion, updateDoc, } from "firebase/firestore";
 import Auth from "../AuthChecking/Auth";
 import ChatMessaging from "../Messaging/ChatMessaging";
 
@@ -37,14 +37,17 @@ const textVariant = (delay) => ({
   },
 });
 
-function CreateChatRoom() {
+function CreateGroupRoom() {
+  const [groupName, setGroupName] = useState("");
+  const [groupDescription, setGroupDescription] = useState("");
   const [roomId, setRoomId] = useState("");
+  const [showQR, setShowQR] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
   const [currentRoomId, setCurrentRoomId] = useState(null);
   const bottomRef = useRef(null);
   const isConnected = Boolean(currentRoomId);
-  const [showQR, setShowQR] = useState(false);
   const navigate = useNavigate();
+  const [user] = useAuthState(auth);
   const baseUrl = import.meta.env.VITE_BASE_URL || "http://localhost:5173";
 
   useEffect(() => {
@@ -59,6 +62,14 @@ function CreateChatRoom() {
     }
   }, [showQR]);
 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const room = urlParams.get("room");
+    if (room) {
+      setRoomId(room);
+    }
+  }, []);
+
   const copyRoomId = async () => {
     try {
       await navigator.clipboard.writeText(roomId);
@@ -68,29 +79,41 @@ function CreateChatRoom() {
     }
   };
 
-  const createRoom = async () => {
+  const createGroup = async () => {
     if (!auth.currentUser) {
-      toast.error("You must be logged in to create a room.");
+      toast.error("You must be logged in to create a group.");
       return;
     }
+
+    if (!groupName.trim()) {
+      toast.error("Group name cannot be empty.");
+      return;
+    }
+
     try {
-      const roomDoc = await addDoc(collection(firestore, "Groups"), {
-        createdBy: auth.currentUser.uid,
+      const groupDoc = await addDoc(collection(firestore, "Groups"), {
+        name: groupName,
+        description: groupDescription,
+        ownerId: auth.currentUser.uid,
+        members: [auth.currentUser.uid],
         createdAt: serverTimestamp(),
       });
-      setRoomId(roomDoc.id);
-      toast.success("Room created successfully! Room ID: " + roomDoc.id, {
+
+      const newRoomId = groupDoc.id;
+      setRoomId(newRoomId);
+
+      toast.success("Group created successfully!", {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
       });
     } catch (error) {
-      console.error("Error creating room:", error);
-      toast.error("Error creating room: " + error.message);
+      console.error("Error creating group:", error);
+      toast.error("Error creating group: " + error.message);
     }
   };
 
   const joinRoom = async () => {
-    if (!auth.currentUser) {
+    if (!user) {
       toast.error("You must be logged in to join a room.");
       return;
     }
@@ -102,7 +125,8 @@ function CreateChatRoom() {
 
     setIsConnecting(true);
     try {
-      const roomDoc = await getDoc(doc(firestore, "Groups", roomId.trim()));
+      const roomRef = doc(firestore, "Groups", roomId.trim());
+      const roomDoc = await getDoc(roomRef);
 
       if (!roomDoc.exists()) {
         toast.error("Room does not exist. Please check the Room ID.");
@@ -110,11 +134,27 @@ function CreateChatRoom() {
         return;
       }
 
-      setCurrentRoomId(roomId.trim());
-      toast.success("Successfully joined the room!");
+      const roomData = roomDoc.data();
+      const isMember = roomData.members.includes(user.uid);
+
+      console.log("Room data:", roomData);
+      console.log("User UID:", user.uid);
+
+      // If the user is already a member, no need to update
+      if (isMember) {
+        setCurrentRoomId(roomId.trim());
+        toast.success("Successfully joined the room!");
+      } else {
+        await updateDoc(roomRef, {
+          members: arrayUnion(user.uid), // Add user to the members array
+        });
+        setCurrentRoomId(roomId.trim());
+        toast.success("You have been added to the room!");
+      }
     } catch (error) {
       console.error("Error joining room:", error);
       toast.error(`Error joining room: ${error.message}`);
+    } finally {
       setIsConnecting(false);
     }
   };
@@ -131,11 +171,12 @@ function CreateChatRoom() {
 
   return (
     <>
-      {!isConnecting ? (
-        <div className="max-w-3xl mx-auto space-y-8 flex-1 p-6 relative">
+      {!currentRoomId ? (
+        <div className="max-w-3xl mx-auto p-6 space-y-6 flex-1  relative">
           <ToastContainer position="top-right" autoClose={3000} />
+
           <motion.div
-            variants={textVariant(0.9)}
+            variants={textVariant(0.3)}
             initial="hidden"
             animate="show"
             className="flex justify-between"
@@ -143,12 +184,11 @@ function CreateChatRoom() {
             <Button
               variant="outline"
               className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 rounded-xl shadow-xl"
-              onClick={() => navigate("/")}
+              onClick={() => window.history.back()}
             >
               <ArrowLeft className="h-5 w-5" />
               Back to Home
             </Button>
-
             <Button
               variant="outline"
               className="px-4 py-3 text-white bg-gray-800 hover:bg-gray-700 rounded-xl shadow-lg"
@@ -168,7 +208,7 @@ function CreateChatRoom() {
               onClick={(e) => e.stopPropagation()}
             >
               <QRCode
-                value={`${baseUrl}/chatroomjoin?room=${roomId}`}
+                value={`${baseUrl}/joinroom?room=${roomId}`}
                 size={150}
                 fgColor="#ffffff"
                 bgColor="#1a202c"
@@ -188,51 +228,83 @@ function CreateChatRoom() {
             >
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl font-bold">
-                  <Monitor className="h-6 w-6 text-purple-400" />
-                  Your Screen Sharing Room
+                  <CircleFadingPlus className="h-7 w-7 text-purple-500 duration-300 hover:scale-110 transition-transform" />
+                  Create a Group Room
                 </CardTitle>
                 <CardDescription className="text-gray-400">
-                  Share this room code with others to let them view your screen.
+                  Start a new group for messaging and collaboration.
                 </CardDescription>
               </CardHeader>
-
-              <CardContent className="space-y-6">
-                <div className="flex items-center gap-2">
-                  <code className="flex-1 py-2 px-3 bg-gray-800 rounded-lg text-lg font-mono">
-                    {roomId || "Generating room code..."}
-                  </code>
-                  <Button
-                    size="icon"
-                    onClick={copyRoomId}
-                    className="bg-gray-700 hover:bg-gray-600"
-                  >
-                    <Copy className="size-4 text-white" />
-                  </Button>
-
-                  {navigator.share && roomId && (
-                    <Button
-                      size="icon"
-                      onClick={async () => {
-                        const shareUrl = `${baseUrl}/chatroomjoin?room=${roomId}`;
-                        try {
-                          await navigator.share({
-                            title: "Join my screen sharing session",
-                            text: "Click to join my screen sharing session",
-                            url: shareUrl,
-                          });
-                        } catch (err) {
-                          if (err.name !== "AbortError") {
-                            await navigator.clipboard.writeText(shareUrl);
-                            toast.success("Link copied to clipboard!");
-                          }
-                        }
-                      }}
-                      className="bg-blue-600 hover:bg-blue-500"
-                    >
-                      <Share2 className="size-4 text-white" />
-                    </Button>
-                  )}
+              <CardContent className="space-y-4">
+                <div>
+                  <label className="block text-gray-300 mb-2">Group Name</label>
+                  <input
+                    type="text"
+                    value={groupName}
+                    onChange={(e) => setGroupName(e.target.value)}
+                    placeholder="Enter group name"
+                    className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:ring-2 focus:ring-purple-500"
+                  />
                 </div>
+
+                <div>
+                  <label className="block text-gray-300 mb-2">
+                    Group Description
+                  </label>
+                  <textarea
+                    value={groupDescription}
+                    onChange={(e) => setGroupDescription(e.target.value)}
+                    placeholder="Enter group description (optional)"
+                    className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:ring-2 focus:ring-purple-500"
+                  ></textarea>
+                </div>
+
+                {roomId && (
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <code className="flex-1 py-2 px-3 bg-gray-800 rounded-lg text-lg font-mono">
+                        {roomId || "Generating room code..."}
+                      </code>
+                      <Button
+                        size="icon"
+                        onClick={copyRoomId}
+                        className="bg-gray-700 hover:bg-gray-600"
+                      >
+                        <Copy className="size-4 text-white" />
+                      </Button>
+                      {navigator.share && roomId && (
+                        <Button
+                          size="icon"
+                          onClick={async () => {
+                            const shareUrl = `${baseUrl}/joinroom?room=${roomId}`;
+                            try {
+                              await navigator.share({
+                                title: "Join my group",
+                                text: "Click to join my group",
+                                url: shareUrl,
+                              });
+                            } catch (err) {
+                              if (err.name !== "AbortError") {
+                                await navigator.clipboard.writeText(shareUrl);
+                                toast.success("Link copied to clipboard!");
+                              }
+                            }
+                          }}
+                          className="bg-blue-600 hover:bg-blue-500"
+                        >
+                          <Share2 className="size-4 text-white" />
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                <Button
+                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                  onClick={createGroup}
+                >
+                  Create Group
+                </Button>
                 <Button
                   className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-transform duration-300"
                   onClick={joinRoom}
@@ -245,7 +317,7 @@ function CreateChatRoom() {
           </motion.div>
         </div>
       ) : (
-        <ChatMessaging />
+        <ChatMessaging roomId={currentRoomId} />
       )}
     </>
   );
@@ -254,11 +326,7 @@ function CreateChatRoom() {
 function CreateAuthCheck() {
   const [user] = useAuthState(auth);
 
-  return (
-    <div>
-      {!user ? <Auth /> : <CreateChatRoom />}
-    </div>
-  );
+  return <div>{!user ? <Auth /> : <CreateGroupRoom />}</div>;
 }
 
 export default CreateAuthCheck;

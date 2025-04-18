@@ -9,8 +9,7 @@ import { cn } from "../../../lib/utils";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from "../../ui/card";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore, collection, query, orderBy, limit, addDoc, serverTimestamp, doc, getDoc, } from "firebase/firestore";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import { getFirestore, doc, getDoc, arrayUnion, updateDoc, } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Auth from "../AuthChecking/Auth";
 import ChatMessaging from "../Messaging/ChatMessaging";
@@ -44,6 +43,7 @@ function JoinChatRoom() {
   const [currentRoomId, setCurrentRoomId] = useState(null);
   const bottomRef = useRef(null);
   const isConnected = Boolean(currentRoomId);
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -54,28 +54,44 @@ function JoinChatRoom() {
   }, []);
 
   const joinRoom = async () => {
-    if (!auth.currentUser) {
+    if (!user) {
       toast.error("You must be logged in to join a room.");
       return;
     }
-
+  
     if (!roomId.trim()) {
       toast.error("Please enter a valid Room ID.");
       return;
     }
-
+  
     setIsConnecting(true);
     try {
-      const roomDoc = await getDoc(doc(firestore, "Groups", roomId.trim()));
-
+      const roomRef = doc(firestore, "Groups", roomId.trim());
+      const roomDoc = await getDoc(roomRef);
+  
       if (!roomDoc.exists()) {
         toast.error("Room does not exist. Please check the Room ID.");
         setIsConnecting(false);
         return;
       }
+  
+      const roomData = roomDoc.data();
+      const isMember = roomData.members.includes(user.uid);
 
-      setCurrentRoomId(roomId.trim());
-      toast.success("Successfully joined the room!");
+      console.log("Room data:", roomData);
+      console.log("User UID:", user.uid);
+  
+      // If the user is already a member, no need to update
+      if (isMember) {
+        setCurrentRoomId(roomId.trim());
+        toast.success("Successfully joined the room!");
+      } else {
+        await updateDoc(roomRef, {
+          members: arrayUnion(user.uid), // Add user to the members array
+        });
+        setCurrentRoomId(roomId.trim());
+        toast.success("You have been added to the room!");
+      }
     } catch (error) {
       console.error("Error joining room:", error);
       toast.error(`Error joining room: ${error.message}`);
@@ -111,8 +127,13 @@ function JoinChatRoom() {
             animate="show"
           >
             <Card
-              className="bg-gray-900 text-white shadow-xl hover:border-purple-500 rounded-xl p-6"
-              style={{ boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)" }}
+              className="bg-gray-900 text-white rounded-2xl p-6 border border-gray-400 hover:border-purple-500 transition duration-300 shadow-lg hover:shadow-purple-500/30"
+              style={{
+                background: "linear-gradient(135deg, #1f2937, #111827)",
+                boxShadow: "0 12px 24px rgba(31, 38, 135, 0.2), 0 4px 6px rgba(0, 0, 0, 0.1)",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
+              }}
             >
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white text-2xl font-extrabold">
@@ -146,7 +167,7 @@ function JoinChatRoom() {
           </motion.div>
         </div>
       ) : (
-        <ChatMessaging />
+        <ChatMessaging roomId={currentRoomId} />
       )}
     </>
   );
@@ -155,11 +176,7 @@ function JoinChatRoom() {
 function JoinAuthCheck() {
   const [user] = useAuthState(auth);
 
-  return (
-    <div>
-      {!user ? <Auth /> : <JoinChatRoom />}
-    </div>
-  );
+  return <div>{!user ? <Auth /> : <JoinChatRoom />}</div>;
 }
 
 export default JoinAuthCheck;

@@ -25,7 +25,7 @@ export default function MainSection() {
             initial="hidden"
             animate="show"
           >
-            <h1 className="text-5xl sm:text-6xl font-extrabold text-white tracking-tight">
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
               Create a Room,{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
                 Connect
@@ -52,9 +52,10 @@ export default function MainSection() {
             animate="show"
           >
             <Card
-              className="relative bg-white/10 backdrop-blur-lg border border-transparent hover:border-gradient-to-r hover:from-purple-500 hover:to-blue-500 rounded-xl shadow-lg"
+              className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/10 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] transition-transform duration-300 hover:scale-[1.015] hover:shadow-[0_12px_45px_rgba(31,38,135,0.4)] hover:border-gradient-to-r hover:from-purple-500 hover:to-blue-500"
               style={{
-                boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
+                background:
+                  "linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1))",
               }}
             >
               <div className="absolute -top-3 -right-3 h-8 w-8 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 blur-xl opacity-30"></div>
@@ -83,9 +84,10 @@ export default function MainSection() {
             animate="show"
           >
             <Card
-              className="relative bg-white/10 backdrop-blur-lg border border-transparent hover:border-gradient-to-r hover:from-blue-500 hover:to-green-400 rounded-xl shadow-lg"
+              className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/10 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] transition-transform duration-300 hover:scale-[1.015] hover:shadow-[0_12px_45px_rgba(31,38,135,0.4)] hover:border-gradient-to-r hover:hover:from-purple-400 hover:to-yellow-400"
               style={{
-                boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
+                background:
+                  "linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1))",
               }}
             >
               <div className="absolute -top-3 -right-3 h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-green-400 blur-xl opacity-30"></div>
