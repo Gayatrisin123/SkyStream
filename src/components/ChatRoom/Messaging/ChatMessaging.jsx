@@ -1,11 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
-import { getFirestore, collection, query, orderBy, limit, addDoc, serverTimestamp } from "firebase/firestore";
+import { toast } from "react-toastify";
+import { getFirestore, collection, query, orderBy, limit, addDoc, doc, serverTimestamp, } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-
-import { toast } from "react-toastify";
 import UserProfile from "../../../assets/UserProfile.png";
 
 const firebaseConfig = {
@@ -18,41 +17,54 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
-const app = initializeApp(firebaseConfig);
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 const auth = getAuth(app);
 const firestore = getFirestore(app);
 
-function ChatRoom() {
-  const bottomRef = useRef(null);
-  const messagesRef = collection(firestore, "messages");
-  const messagesQuery = query(messagesRef, orderBy("createdAt"), limit(50));
-  const [messages] = useCollectionData(messagesQuery, { idField: "id" });
+function ChatRoom({ roomId }) {
+  const [user] = useAuthState(auth);
   const [formValue, setFormValue] = useState("");
+  const bottomRef = useRef(null);
+
+  const messagesRef = roomId
+    ? collection(firestore, "Groups", roomId, "messages")
+    : null;
+
+  const messagesQuery = messagesRef
+    ? query(messagesRef, orderBy("createdAt"), limit(200))
+    : null;
+
+  const [messages] = useCollectionData(messagesQuery, { idField: "id" });
+
+  useEffect(() => {
+    if (!roomId) {
+      toast.error("Room ID is not available.");
+    }
+  }, [roomId]);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const sendMessage = async (e) => {
     e.preventDefault();
-
-    const { uid, photoURL } = auth.currentUser;
+    if (!formValue.trim()) return;
 
     try {
+      const user = auth.currentUser;
+      const roomRef = doc(firestore, "Groups", roomId);
+      const messagesRef = collection(roomRef, "messages");
+
       await addDoc(messagesRef, {
         text: formValue,
         createdAt: serverTimestamp(),
-        uid,
-        photoURL,
+        uid: user.uid,
+        photoURL: user.photoURL || UserProfile,
       });
 
       setFormValue("");
-    } catch (error) {
-      toast.error("Error sending message: " + error.message, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        theme: "dark",
-      });
+    } catch (err) {
+      toast.error("Error sending message: " + err.message);
     }
   };
 
@@ -60,11 +72,13 @@ function ChatRoom() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  if (!roomId) return null;
+
   return (
     <div className="flex flex-col w-full h-full px-4 overflow-hidden">
       <div className="flex-1 flex flex-col justify-end overflow-auto pb-20">
         {messages && messages.length > 0 ? (
-          messages.map((msg, idx) => <ChatMessage key={idx} message={msg} />)
+          messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)
         ) : (
           <div className="flex flex-col items-center justify-center py-10 mt-12 text-gray-500">
             <svg
@@ -120,12 +134,12 @@ function ChatRoom() {
           className="flex-1 px-4 py-2 bg-gray-700 bg-opacity-40 text-gray-200 rounded-lg focus:outline-none placeholder-gray-400"
           value={formValue}
           onChange={(e) => setFormValue(e.target.value)}
-          placeholder="Type your message here..."
+          placeholder="Type your message..."
         />
         <button
-          className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition"
           type="submit"
           disabled={!formValue}
+          className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
         >
           Send
         </button>
@@ -135,30 +149,27 @@ function ChatRoom() {
 }
 
 function ChatMessage({ message }) {
-    const { text, uid, photoURL } = message;
-    const isCurrentUser = uid === auth.currentUser?.uid;
-    const messageStyle = isCurrentUser
-      ? "bg-blue-600 text-white rounded-br-none"
-      : "bg-gray-100 text-gray-900 rounded-bl-none";
-  
-    return (
+  const { text, uid, photoURL } = message;
+  const isUser = uid === auth.currentUser?.uid;
+
+  return (
+    <div className={`flex items-end px-4 mb-4 ${isUser ? "flex-row-reverse" : ""}`}>
+      <img
+        src={photoURL || UserProfile}
+        alt="User-Avatar"
+        className="w-10 h-10 rounded-full shadow-md mx-3 border-2 border-white ring-2 ring-blue-400"
+      />
       <div
-        className={`flex items-end mb-4 px-4 ${
-          isCurrentUser ? "flex-row-reverse" : ""
+        className={`px-6 py-2 rounded-2xl max-w-md ${
+          isUser
+            ? "bg-blue-600 text-white rounded-br-none"
+            : "bg-gray-200 text-gray-900 rounded-bl-none"
         }`}
       >
-        <img
-          className="w-10 h-10 rounded-full shadow-md mx-3 border-2 border-white ring-2 ring-blue-400"
-          src={photoURL || UserProfile}
-          alt="User avatar"
-        />
-        <div
-          className={`px-6 py-2 rounded-2xl shadow-lg max-w-md break-words transition-all duration-300 ${messageStyle}`}
-        >
-          <span className="text-sm leading-snug whitespace-pre-wrap">{text}</span>
-        </div>
+        <span>{text}</span>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
 export default ChatRoom;
