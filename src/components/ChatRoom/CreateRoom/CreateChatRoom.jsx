@@ -48,8 +48,7 @@ function CreateGroupRoom() {
   const isConnected = Boolean(currentRoomId);
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
-  const baseUrl = "http://localhost:5173";
-  // const baseUrl = import.meta.env.VITE_BASE_URL || "http://localhost:5173";
+  const baseUrl = import.meta.env.VITE_BASE_URL || "http://localhost:5173";
 
   useEffect(() => {
     if (showQR) {
