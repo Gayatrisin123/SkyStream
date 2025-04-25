@@ -27,6 +27,7 @@ You can visit the live site here - https://sky-stream-share.vercel.app/
 - **Tailwind CSS** – A utility-first CSS framework for efficient and responsive styling.
 - **SCSS** – A preprocessor for CSS to enhance styling capabilities.
 - **Docker** – Containerization for seamless deployment and scalability.
+- **Firebase** – Used for authentication, backend functions and Firestore.
 - **ShadCN** – Used for beautifully designed, responsive components.
 
 ## Installation 🛠️
