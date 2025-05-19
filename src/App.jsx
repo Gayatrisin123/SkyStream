@@ -10,6 +10,7 @@ import Help from "./pages/HelpCenter.jsx";
 import Host from "./components/ScreenSharing/HostRoom.jsx";
 import Join from "./components/ScreenSharing/JoinRoom.jsx";
 import CreateChatRoom from "./components/ChatRoom/CreateRoom/CreateChatRoom.jsx";
+import ScreenShare from "./components/ScreenSharing/MainSection/MainHome.jsx";
 import VideoRoom from "./components/VideoRoom/VideoRoom.jsx";
 import FireSharing from "./components/FileSharing/MainSection/MainScreen.jsx";
 import SendFile from "./components/FileSharing/SendingFile/SendFile.jsx";
@@ -31,6 +32,7 @@ function App() {
               <Route path="/joinroom" element={<JoinChatRoom />} />
               <Route path="/createroom" element={<CreateChatRoom />} />
               <Route path="/roomauth" element={<RoomAuth />} />
+            <Route path="/sharescreen" element={<ScreenShare />} />
             <Route path="/videoroom" element={<VideoRoom />} />
               <Route path="/videoroom/:id" element={<VideoRoom />} />
             <Route path="/fileshare" element={<FireSharing />} />

@@ -81,6 +81,7 @@ function Header() {
         {[
           { name: "Home", path: "/" },
           { name: "ChatRoom", path: "/chatroom" },
+          { name: "ScreenShare", path: "/sharescreen" },
           { name: "VideoRoom", path: "/videoroom" },
           { name: "FileSharing", path: "/fileshare" },
           { name: "About", path: "/about" },
@@ -178,6 +179,7 @@ function Header() {
           <ul className="list-none space-y-3">
             {[{ name: "Home", path: "/" },
               { name: "ChatRoom", path: "/chatroom" },
+              { name: "ScreenShare", path: "/sharescreen" },
               { name: "VideoRoom", path: "/videoroom" },
               { name: "FileSharing", path: "/fileshare" },
               { name: "About", path: "/about" },
