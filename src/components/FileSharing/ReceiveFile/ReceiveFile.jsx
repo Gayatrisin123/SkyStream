@@ -30,6 +30,14 @@ export default function ReceiveFile() {
   const peerRef = useRef(null);
   const connectionRef = useRef(null);
 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const sendcode = urlParams.get("senderscode");
+    if (sendcode) {
+      setRoomId(sendcode);
+    }
+  }, []);
+
   const joinRoom = () => {
     if (!roomId.trim()) {
       toast.error("Sender's code is required! Please enter a valid Sender's code.");
