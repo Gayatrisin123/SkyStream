@@ -10,6 +10,7 @@ import Help from "./pages/HelpCenter.jsx";
 import Host from "./components/HostRoom.jsx";
 import Join from "./components/JoinRoom.jsx";
 import CreateChatRoom from "./components/ChatRoom/CreateRoom/CreateChatRoom.jsx";
+import VideoRoom from "./components/VideoRoom/VideoRoom.jsx";
 import JoinChatRoom from "./components/ChatRoom/JoinRoom/JoinChatRoom.jsx";
 import RoomAuth from "./components/ChatRoom/AuthChecking/Auth.jsx";
 import Error404 from "./components/common/Error404.jsx";
@@ -27,6 +28,8 @@ function App() {
               <Route path="/joinroom" element={<JoinChatRoom />} />
               <Route path="/createroom" element={<CreateChatRoom />} />
               <Route path="/roomauth" element={<RoomAuth />} />
+            <Route path="/videoroom" element={<VideoRoom />} />
+              <Route path="/videoroom/:id" element={<VideoRoom />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/help-center" element={<Help />} />
