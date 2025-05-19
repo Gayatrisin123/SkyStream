@@ -24,7 +24,7 @@ const textVariant = (delay) => ({
   },
 });
 
-export default function HostPage() {
+export default function SendFile() {
   const [roomId, setRoomId] = useState("");
   const [peer, setPeer] = useState(null);
   const [viewers, setViewers] = useState(0);
@@ -77,18 +77,34 @@ export default function HostPage() {
       return;
     }
 
+    const CHUNK_SIZE = 16 * 1024; // 16 KB
     const reader = new FileReader();
+
     reader.onload = () => {
       const fileData = reader.result;
+      const totalChunks = Math.ceil(fileData.byteLength / CHUNK_SIZE);
 
       connections.forEach((conn) => {
-        conn.send({
-          fileName: selectedFile.name,
-          fileData,
-        });
-      });
+        let offset = 0;
 
-      toast.success("File sent to all receivers!");
+        const sendChunk = () => {
+          if (offset < fileData.byteLength) {
+            const chunk = fileData.slice(offset, offset + CHUNK_SIZE);
+            conn.send({ chunk });
+            offset += CHUNK_SIZE;
+            setTimeout(sendChunk, 50); // Delay to avoid overloading
+          } else {
+            conn.send({
+              done: true,
+              name: selectedFile.name,
+              type: selectedFile.type,
+            });
+            toast.success("File sent to all receivers!");
+          }
+        };
+
+        sendChunk();
+      });
     };
 
     reader.readAsArrayBuffer(selectedFile);
@@ -152,92 +168,88 @@ export default function HostPage() {
         </div>
       )}
 
-      <motion.div
-        variants={textVariant(0.3)}
-        initial="hidden"
-        animate="show"
-      >
-      <Card
-        className="bg-gray-900 text-white shadow-xl hover:border-purple-500 rounded-xl p-6"
-        style={{ boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)" }}
-      >
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-xl font-bold">
-            <Users className="h-6 w-6 text-purple-400" />
-            Your File Sharing Room
-          </CardTitle>
-          <CardDescription className="text-gray-400">
-            Share this room code with others to let them receive your file.
-          </CardDescription>
-        </CardHeader>
+      <motion.div variants={textVariant(0.3)} initial="hidden" animate="show">
+        <Card
+          className="bg-gray-900 text-white shadow-xl hover:border-purple-500 rounded-xl p-6"
+          style={{ boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)" }}
+        >
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-xl font-bold">
+              <Users className="h-6 w-6 text-purple-400" />
+              Your File Sharing Room
+            </CardTitle>
+            <CardDescription className="text-gray-400">
+              Share this room code with others to let them receive your file.
+            </CardDescription>
+          </CardHeader>
 
-        <CardContent className="space-y-6">
-          <div className="flex items-center gap-2">
-            <code className="flex-1 py-2 px-3 bg-gray-800 rounded-lg text-lg font-mono">
-              {roomId || "Generating room code..."}
-            </code>
-            <Button
-              size="icon"
-              onClick={copyRoomId}
-              className="bg-gray-700 hover:bg-gray-600"
-            >
-              <Copy className="size-4 text-white" />
-            </Button>
-
-            {navigator.share && (
+          <CardContent className="space-y-6">
+            <div className="flex items-center gap-2">
+              <code className="flex-1 py-2 px-3 bg-gray-800 rounded-lg text-lg font-mono">
+                {roomId || "Generating room code..."}
+              </code>
               <Button
                 size="icon"
-                onClick={async () => {
-                  const shareUrl = `${baseUrl}/receivefile?roomId=${roomId}`; //! Error
-                  try {
-                    await navigator.share({
-                      title: "Join my file sharing session",
-                      text: "Click to join my file sharing session",
-                      url: shareUrl,
-                    });
-                  } catch (err) {
-                    if (err.name !== "AbortError") {
-                      await navigator.clipboard.writeText(shareUrl);
-                      toast.success("Link copied to clipboard!");
-                    }
-                  }
-                }}
-                className="bg-blue-600 hover:bg-blue-500"
+                onClick={copyRoomId}
+                className="bg-gray-700 hover:bg-gray-600"
               >
-                <Share2 className="size-4 text-white" />
+                <Copy className="size-4 text-white" />
               </Button>
-            )}
-          </div>
 
-          <input
-            type="file"
-            onChange={handleFileSelect}
-            className="w-full text-white bg-gray-800 p-3 rounded-lg"
-          />
-
-          {selectedFile && (
-            <div className="text-gray-400">
-              Selected File: <strong>{selectedFile.name}</strong>
+              {navigator.share && (
+                <Button
+                  size="icon"
+                  onClick={async () => {
+                    const shareUrl = `${baseUrl}/receivefile?roomId=${roomId}`; //! Error
+                    try {
+                      await navigator.share({
+                        title: "Join my file sharing session",
+                        text: "Click to join my file sharing session",
+                        url: shareUrl,
+                      });
+                    } catch (err) {
+                      if (err.name !== "AbortError") {
+                        await navigator.clipboard.writeText(shareUrl);
+                        toast.success("Link copied to clipboard!");
+                      }
+                    }
+                  }}
+                  className="bg-blue-600 hover:bg-blue-500"
+                >
+                  <Share2 className="size-4 text-white" />
+                </Button>
+              )}
             </div>
-          )}
 
-          <Button
-            className="w-full bg-green-600 hover:bg-green-500"
-            onClick={sendFile}
-            disabled={!selectedFile}
-          >
-            Send File
-          </Button>
+            <input
+              type="file"
+              onChange={handleFileSelect}
+              className="w-full text-white bg-gray-800 p-3 rounded-lg"
+            />
 
-          <Button
-            className="w-full bg-red-600 hover:bg-red-500"
-            onClick={endSession}
-          >
-            <XCircle className="h-5 w-5" />
-            End Session
-          </Button>
-        </CardContent>
-      </Card>
+            {selectedFile && (
+              <div className="text-gray-400">
+                Selected File: <strong>{selectedFile.name}</strong>
+              </div>
+            )}
+
+            <Button
+              className="w-full bg-green-600 hover:bg-green-500"
+              onClick={sendFile}
+              disabled={!selectedFile}
+            >
+              Send File
+            </Button>
+
+            <Button
+              className="w-full bg-red-600 hover:bg-red-500"
+              onClick={endSession}
+            >
+              <XCircle className="h-5 w-5" />
+              End Session
+            </Button>
+          </CardContent>
+        </Card>
       </motion.div>
     </div>
   );

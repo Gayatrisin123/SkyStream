@@ -23,12 +23,15 @@ export default function ReceiveFile() {
   const [isConnecting, setIsConnecting] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
   const [receivedFile, setReceivedFile] = useState(null);
+  const [receivedChunks, setReceivedChunks] = useState([]);
+  const [fileName, setFileName] = useState("");
+  const [fileType, setFileType] = useState("");
   const peerRef = useRef(null);
   const connectionRef = useRef(null);
 
   const joinRoom = () => {
     if (!roomId.trim()) {
-      toast.error("Sender's code is required! Please enter a valid Senders code.");
+      toast.error("Sender's code is required! Please enter a valid Sender's code.");
       return;
     }
 
@@ -45,11 +48,16 @@ export default function ReceiveFile() {
         toast.success("Connected successfully! Waiting for file...");
       });
 
+      const chunks = [];
       conn.on("data", (data) => {
-        if (data.name && data.content) {
-          const blob = new Blob([data.content], { type: data.type });
+        if (data.chunk) {
+          chunks.push(data.chunk);
+        } else if (data.done) {
+          const blob = new Blob(chunks, { type: data.type });
           const url = URL.createObjectURL(blob);
-
+          setReceivedChunks([]);
+          setFileName(data.name);
+          setFileType(data.type);
           setReceivedFile({ name: data.name, url });
           toast.success("File received successfully!");
         }
