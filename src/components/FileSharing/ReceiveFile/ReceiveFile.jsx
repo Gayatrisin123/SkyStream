@@ -26,6 +26,7 @@ export default function ReceiveFile() {
   const [receivedChunks, setReceivedChunks] = useState([]);
   const [fileName, setFileName] = useState("");
   const [fileType, setFileType] = useState("");
+  const [fileSize, setFileSize] = useState(0);
   const peerRef = useRef(null);
   const connectionRef = useRef(null);
 
@@ -49,9 +50,13 @@ export default function ReceiveFile() {
       });
 
       const chunks = [];
+      let totalSize = 0;
+
       conn.on("data", (data) => {
         if (data.chunk) {
           chunks.push(data.chunk);
+          totalSize += data.chunk.byteLength;
+          setFileSize(totalSize);
         } else if (data.done) {
           const blob = new Blob(chunks, { type: data.type });
           const url = URL.createObjectURL(blob);
@@ -131,16 +136,30 @@ export default function ReceiveFile() {
                 </Button>
               </div>
             ) : receivedFile ? (
-              <div className="space-y-4 text-center">
-                <p className="text-green-400 text-xl">File Received: {receivedFile.name}</p>
+                <div className="space-y-6 text-center p-6 bg-gray-900 rounded-lg shadow-xl border border-gray-700">
+                <h3 className="text-white text-2xl font-semibold">🎉File Transfer Successful</h3>
+                <div className="bg-gray-800 rounded-md p-4 shadow-inner">
+                    <div className="flex justify-between items-center border-b border-gray-700 pb-2 mb-2 text-gray-300">
+                    <span className="font-medium">File Name:</span>
+                    <span className="text-gray-100">{receivedFile.name}</span>
+                    </div>
+                    <div className="flex justify-between items-center border-b border-gray-700 pb-2 mb-2 text-gray-300">
+                    <span className="font-medium">File Type:</span>
+                    <span className="text-gray-100">{fileType}</span>
+                    </div>
+                    <div className="flex justify-between items-center text-gray-300">
+                    <span className="font-medium">File Size:</span>
+                    <span className="text-gray-100">{(fileSize / (1024 * 1024)).toFixed(2)} MB</span>
+                    </div>
+                </div>
                 <a
-                  href={receivedFile.url}
-                  download={receivedFile.name}
-                  className="text-blue-400 hover:underline text-lg"
+                    href={receivedFile.url}
+                    download={receivedFile.name}
+                    className="inline-block px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 >
-                  Click here to download
+                    Download File
                 </a>
-              </div>
+                </div>
             ) : (
               <div className="text-gray-400 text-center">Waiting for file...</div>
             )}
