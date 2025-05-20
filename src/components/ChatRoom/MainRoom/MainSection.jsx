@@ -30,7 +30,10 @@ export default function MainSection() {
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
                 Connect
               </span>{" "}
-              Instantly Anywhere
+              Instantly{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
+                Anywhere
+              </span>{" "}
             </h1>
           </motion.div>
           <motion.div

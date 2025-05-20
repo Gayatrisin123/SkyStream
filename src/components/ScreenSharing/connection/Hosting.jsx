@@ -30,7 +30,7 @@ export default function HostPage() {
   const [viewers, setViewers] = useState(0);
   const [showQR, setShowQR] = useState(false);
   const [activeStream, setActiveStream] = useState(null);
-  const [connections, setConnections] = useState([]); // Store viewer connections
+  const [connections, setConnections] = useState([]);
   const navigate = useNavigate();
   const baseUrl = import.meta.env.VITE_BASE_URL || "http://localhost:5173";
 
@@ -108,7 +108,7 @@ export default function HostPage() {
     setRoomId("");
     setConnections([]);
     toast.warning("Screen sharing session ended.");
-    navigate("/");
+    navigate("/sharescreen");
   };
 
   return (
@@ -124,7 +124,7 @@ export default function HostPage() {
         <Button
           variant="outline"
           className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 rounded-xl shadow-xl"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/sharescreen")}
         >
           <ArrowLeft className="h-5 w-5" />
           Back to Home
@@ -148,7 +148,7 @@ export default function HostPage() {
           onClick={(e) => e.stopPropagation()}
         >
           <QRCode
-            value={roomId ? `${baseUrl}/join?room=${roomId}` : ""}
+            value={roomId ? `${baseUrl}/sharescreen/join?room=${roomId}` : ""}
             size={150}
             fgColor="#ffffff"
             bgColor="#1a202c"
@@ -193,7 +193,7 @@ export default function HostPage() {
               <Button
                 size="icon"
                 onClick={async () => {
-                  const shareUrl = `${baseUrl}/join?room=${roomId}`;
+                  const shareUrl = `${baseUrl}/sharescreen/join?room=${roomId}`;
                   try {
                     await navigator.share({
                       title: "Join my screen sharing session",

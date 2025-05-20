@@ -9,8 +9,10 @@ import { useNavigate } from 'react-router-dom';
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isHelpMenuOpen, setIsHelpMenuOpen] = useState(false);
   const mobileMenuRef = useRef(null);
   const userMenuRef = useRef(null);
+  const helpMenuRef = useRef(null);
 
   const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -36,6 +38,10 @@ function Header() {
     setIsUserMenuOpen((prev) => !prev);
   };
 
+  const toggleHelpMenu = () => {
+    setIsHelpMenuOpen((prev) => !prev);
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -49,6 +55,12 @@ function Header() {
         !userMenuRef.current.contains(event.target)
       ) {
         setIsUserMenuOpen(false);
+      }
+      if (
+        helpMenuRef.current &&
+        !helpMenuRef.current.contains(event.target)
+      ) {
+        setIsHelpMenuOpen(false);
       }
     };
 
@@ -81,11 +93,9 @@ function Header() {
         {[
           { name: "Home", path: "/" },
           { name: "ChatRoom", path: "/chatroom" },
+          { name: "ScreenShare", path: "/sharescreen" },
           { name: "VideoRoom", path: "/videoroom" },
           { name: "FileSharing", path: "/fileshare" },
-          { name: "About", path: "/about" },
-          { name: "Contact Us", path: "/contact" },
-          { name: "Help Center", path: "/help-center" },
         ].map((link) => (
           <a
             key={link.path}
@@ -99,6 +109,59 @@ function Header() {
             {link.name}
           </a>
         ))}
+
+        {/* Help Menu */}
+        <div ref={helpMenuRef} className="relative">
+          <button
+            className="text-sm font-semibold flex text-gray-400 hover:text-white transition focus:outline-none"
+            onClick={toggleHelpMenu}
+          >
+            Help
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="22"
+              fill="currentColor"
+              className="bi bi-chevron-down ml-2"
+              viewBox="0 0 14 14"
+            >
+              <path
+                fillRule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
+              />
+            </svg>
+          </button>
+          {isHelpMenuOpen && (
+            <div className="absolute top-10 left-0 bg-white shadow-lg rounded-lg z-50 p-4 w-40">
+              <ul className="list-none space-y-2">
+                <li>
+                  <a
+                    href="/about"
+                    className="block text-black text-base hover:text-blue-500 transition"
+                  >
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/contact"
+                    className="block text-black text-base hover:text-blue-500 transition"
+                  >
+                    Contact Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/help-center"
+                    className="block text-black text-base hover:text-blue-500 transition"
+                  >
+                    Help Center
+                  </a>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Desktop User Menu */}
@@ -131,7 +194,7 @@ function Header() {
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-chevron-down"
+              className="bi bi-chevron-down"
               viewBox="0 0 16 16"
             >
               <path
@@ -178,6 +241,7 @@ function Header() {
           <ul className="list-none space-y-3">
             {[{ name: "Home", path: "/" },
               { name: "ChatRoom", path: "/chatroom" },
+              { name: "ScreenShare", path: "/sharescreen" },
               { name: "VideoRoom", path: "/videoroom" },
               { name: "FileSharing", path: "/fileshare" },
               { name: "About", path: "/about" },

@@ -71,7 +71,7 @@ export default function MainSection() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Link to="/sendfile">
+                <Link to="/fileshare/sendfile">
                   <Button className="w-full bg-gradient-to-r border-2 border-gray-500 text-white hover:shadow-lg hover:shadow-purple-500/50 text-white transition-transform transform hover:scale-105 rounded-lg">
                     Send a File
                   </Button>
@@ -103,7 +103,7 @@ export default function MainSection() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Link to="/receivefile">
+                <Link to="/fileshare/receivefile">
                   <Button
                     variant="outline"
                     className="w-full border-2 border-gray-500 text-white bg-gradient-to-r hover:shadow-lg transition-transform transform hover:scale-105 rounded-lg"

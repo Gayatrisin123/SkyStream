@@ -1,14 +1,14 @@
 "use client";;
-import { cn } from "../../lib/utils";
+import { cn } from "../../../lib/utils";
 import { motion } from "motion/react";
 
 export const BorderBeam = ({
   className,
-  size = 50,
+  size = 800,
   delay = 0,
   duration = 6,
-  colorFrom = "#ffaa40",
-  colorTo = "#9c40ff",
+  colorFrom = "#ff4d6d",
+  colorTo = "#c70039",
   transition,
   style,
   reverse = false,

@@ -159,7 +159,7 @@ export default function SendFile() {
           onClick={(e) => e.stopPropagation()}
         >
           <QRCode
-            value={roomId ? `${baseUrl}/receivefile?senderscode=${roomId}` : ""} //! Error
+            value={roomId ? `${baseUrl}/fileshare/receivefile?senderscode=${roomId}` : ""} //! Error
             size={150}
             fgColor="#ffffff"
             bgColor="#1a202c"
@@ -200,7 +200,7 @@ export default function SendFile() {
                 <Button
                   size="icon"
                   onClick={async () => {
-                    const shareUrl = `${baseUrl}/receivefile?senderscode=${roomId}`; //! Error
+                    const shareUrl = `${baseUrl}/fileshare/receivefile?senderscode=${roomId}`; //! Error
                     try {
                       await navigator.share({
                         title: "Join my file sharing session",
