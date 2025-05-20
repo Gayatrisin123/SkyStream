@@ -148,7 +148,7 @@ export default function HostPage() {
           onClick={(e) => e.stopPropagation()}
         >
           <QRCode
-            value={roomId ? `${baseUrl}/join?room=${roomId}` : ""}
+            value={roomId ? `${baseUrl}/sharescreen/join?room=${roomId}` : ""}
             size={150}
             fgColor="#ffffff"
             bgColor="#1a202c"
@@ -193,7 +193,7 @@ export default function HostPage() {
               <Button
                 size="icon"
                 onClick={async () => {
-                  const shareUrl = `${baseUrl}/join?room=${roomId}`;
+                  const shareUrl = `${baseUrl}/sharescreen/join?room=${roomId}`;
                   try {
                     await navigator.share({
                       title: "Join my screen sharing session",

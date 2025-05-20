@@ -28,21 +28,27 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
+            {/* Route - ChatRoom */}
             <Route path="/chatroom" element={<ChatRoom />} />
               <Route path="/joinroom" element={<JoinChatRoom />} />
               <Route path="/createroom" element={<CreateChatRoom />} />
               <Route path="/roomauth" element={<RoomAuth />} />
+            {/* Route - ScreenSharing */}
             <Route path="/sharescreen" element={<ScreenShare />} />
+              <Route path="/sharescreen/host" element={<Host />} />
+              <Route path="/sharescreen/join" element={<Join />} />
+            {/* Route - VideRoom */}
             <Route path="/videoroom" element={<VideoRoom />} />
               <Route path="/videoroom/:id" element={<VideoRoom />} />
+            {/* Route - FileSharing */}
             <Route path="/fileshare" element={<FireSharing />} />
               <Route path="/sendfile" element={<SendFile />} />
               <Route path="/receivefile" element={<ReceiveFile />} />
+            {/* Route - Common Routes */}
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/help-center" element={<Help />} />
-            <Route path="/host" element={<Host />} />
-            <Route path="/join" element={<Join />} />
+            {/* Route - Error Route Handling */}
             <Route path="/error404" element={<Error404 />} />
             <Route path="*" element={<Navigate to="/error404" />} />
           </Route>
