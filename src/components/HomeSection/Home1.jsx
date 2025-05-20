@@ -1,12 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
+import { Share2, Activity, Cloud, Sparkles } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
 import BG from "../ui/grid-bg";
 import Spotlight from "../ui/spotlight";
 import AnimatedCard from "../ui/AnimatedCard";
 import AnimatedBeamCard from "../ui/AnimatedBeamCard";
-import { Check, Grid3x3, Cloud, Sparkles } from "lucide-react";
 
 const textMotion = ({ 
   delay = 0, 
@@ -72,6 +73,7 @@ const textMotionFromRight = ({
 });
 
 export default function HomeHero1() {
+  const navigate = useNavigate();
   return (
     <div className="relative min-h-screen overflow-hidden bg-black text-white px-4 py-20">
       <div className="absolute inset-0 z-0">
@@ -104,7 +106,7 @@ export default function HomeHero1() {
         </motion.div>
         <div className="flex justify-center gap-4 mb-12">
           <motion.div variants={ textMotion({ delay: 4, duration: 1, startY: -100, easingType: "easeOut" })} initial="hidden" animate="show">
-            <Button className="bg-pink-600 hover:bg-pink-700 text-white font-bold px-6 py-3 rounded-full shadow-md hover:shadow-pink-500/40 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2">
+            <Button onClick={() => navigate('/chatroom')} className="bg-pink-600 hover:bg-pink-700 text-white font-bold px-6 py-3 rounded-full shadow-md hover:shadow-pink-500/40 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2">
               Get Started
             </Button>
           </motion.div>
@@ -119,8 +121,8 @@ export default function HomeHero1() {
           <motion.div variants={ textMotionFromLeft({ delay: 5, duration: 1, startY: -100, easingType: "easeOut" })} initial="hidden" animate="show">
             <AnimatedCard
               icon={<Sparkles size={28} className="text-white" />}
-              title="Slick UI"
-              description="Highly interactive and animated card with live data"
+              title="Real-Time Brilliance"
+  description="Leverage interactive WebRTC components designed for flawless real-time collaboration, empowering seamless video, chat, and file-sharing experiences effortlessly."
               className="p-6 -mt-20"
             />
           </motion.div>
@@ -128,18 +130,18 @@ export default function HomeHero1() {
           <div className="flex flex-col justify-between gap-6">
             <motion.div variants={ textMotion({ delay: 6, duration: 1, startY: -100, easingType: "easeOut" })} initial="hidden" animate="show">
               <AnimatedBeamCard
-                icon={<Cloud className="text-white" size={28} />}
-                title="Cloud Ready"
-                description="Sync and scale with real-time infrastructure."
+                icon={<Activity className="text-white" size={28} />}
+                title="Performance Optimized"
+                description="Experience lightning-fast interactions with real-time efficiency."
                 beamColorFrom="#ff4d6d"
                 beamColorTo="#c70039"
               />
             </motion.div>
             <motion.div variants={ textMotion({ delay: 6.5, duration: 1, startY: -100, easingType: "easeOut" })} initial="hidden" animate="show">
               <AnimatedBeamCard
-                icon={<Cloud className="text-white" size={28} />}
-                title="Animated Out of Box"
-                description="No setup and smooth UI interactions."
+                icon={<Share2 className="text-white" size={28} />}
+                title="Effortless Collaboration"
+                description="Simplify teamwork with seamless sharing and communication tools."
                 beamColorFrom="#ff4d6d"
                 beamColorTo="#c70039"
               />
@@ -150,7 +152,7 @@ export default function HomeHero1() {
             <AnimatedCard
               icon={<Cloud  size={36} className="text-white" />}
               title="WebRTC Ready"
-              description="Real-time collaboration with WebSocket & cloud sync"
+              description="Empower real-time communication with WebRTC technology, offering seamless connectivity, low latency, and reliable cloud synchronization."
               className="p-6 -mt-20"
             />
           </motion.div>
