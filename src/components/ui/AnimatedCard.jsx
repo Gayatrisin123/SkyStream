@@ -31,7 +31,7 @@ const AnimatedCard = ({ icon, title, description, className }) => {
     setRandomString(generateRandomString(1500));
   };
 
-  const maskImage = useMotionTemplate`radial-gradient(250px at ${mouseX}px ${mouseY}px, white, transparent)`;
+  const maskImage = useMotionTemplate`radial-gradient(200px at ${mouseX}px ${mouseY}px, white, transparent)`;
   const maskStyle = { maskImage, WebkitMaskImage: maskImage };
 
   return (
@@ -53,7 +53,7 @@ const AnimatedCard = ({ icon, title, description, className }) => {
         className="absolute inset-0 rounded-2xl opacity-0 group-hover/card:opacity-100 transition duration-500 mix-blend-overlay pointer-events-none z-0"
         style={maskStyle}
       >
-        <p className="absolute inset-0 px-6 py-6 text-[10px] leading-[12px] whitespace-pre-wrap break-words text-white font-mono font-bold select-none">
+        <p className="absolute inset-0 px-6 py-6 text-[10px] leading-[15px] whitespace-pre-wrap break-words text-white font-mono font-bold select-none">
           {randomString}
         </p>
       </motion.div>

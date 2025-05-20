@@ -1,18 +1,18 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Card, CardContent } from "./card";
 import { cn } from "../../lib/utils";
 import { BorderBeam } from "./magicui/border-beam";
 
-const AnimatedBeamCard = ({
+const AnimatedBeamCardHome2 = ({
   icon,
   title,
   description,
   className,
   beamColorFrom = "#ff4d6d",
   beamColorTo = "#c70039",
+  children,
 }) => {
   return (
     <Card
@@ -25,20 +25,21 @@ const AnimatedBeamCard = ({
         <BorderBeam
           colorFrom={beamColorFrom}
           colorTo={beamColorTo}
-          size={140}
-          style={{ strokeWidth: 10 }} // thicker beam stroke
+          size={160}
+          style={{ strokeWidth: 20 }}
         />
       </div>
 
-      <CardContent className="relative z-10 flex flex-col items-center justify-center text-center space-y-4">
+      <CardContent className="relative z-10 flex flex-col items-center justify-between text-center h-full space-y-4">
         <div className="w-14 h-14 flex items-center justify-center rounded-full bg-white/10 border border-white/20 backdrop-blur-md shadow-inner">
           {icon}
         </div>
         <h3 className="text-xl font-semibold text-white">{title}</h3>
         <p className="text-sm text-gray-300 max-w-xs">{description}</p>
+        <div className="pt-2">{children}</div>
       </CardContent>
     </Card>
   );
 };
 
-export default AnimatedBeamCard;
+export default AnimatedBeamCardHome2;
