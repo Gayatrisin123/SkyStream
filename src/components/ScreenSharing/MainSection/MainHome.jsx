@@ -37,7 +37,10 @@ export default function MainHome() {
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
               Connect
             </span>{" "}
-            in Real-Time
+            in{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
+              Real-Time
+            </span>{" "}
           </h1>
           </motion.div>
           <motion.div
