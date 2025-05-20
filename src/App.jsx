@@ -42,8 +42,8 @@ function App() {
               <Route path="/videoroom/:id" element={<VideoRoom />} />
             {/* Route - FileSharing */}
             <Route path="/fileshare" element={<FireSharing />} />
-              <Route path="/sendfile" element={<SendFile />} />
-              <Route path="/receivefile" element={<ReceiveFile />} />
+              <Route path="/fileshare/sendfile" element={<SendFile />} />
+              <Route path="/fileshare/receivefile" element={<ReceiveFile />} />
             {/* Route - Common Routes */}
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<ContactUs />} />
