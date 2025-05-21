@@ -1,4 +1,4 @@
-# SkyStream - Screen-Sharing & Chating
+# SkyStream - Effortless Real-Time Collaboration with WebRTC 🌐
 SkyStream makes remote collaboration effortless without the hassle with instant, secure screen sharing—no downloads or logins required! 🌐✨ Integrated chat rooms enhance interaction, and a simple sign-in process ensures a personalized, seamless experience. Fast, secure, and accessible, SkyStream brings teams together effortlessly, anytime, anywhere. 🚀
 
 [![Github License](https://img.shields.io/github/license/UjjwalSaini07/SkyStream)](https://github.com/UjjwalSaini07/SkyStream/blob/main/LICENSE)
