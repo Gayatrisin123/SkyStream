@@ -11,26 +11,34 @@ export default function Footer() {
       </div>
 
       <div className="container mx-auto max-w-7xl px-6 py-16">
-        <div className="flex flex-col gap-10 md:flex-row md:justify-between">
+        <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           <div className="md:w-1/2">
-            <div className="mb-4 flex items-center gap-3">
-              <img src={Logo} alt="logo" className="h-10 w-10 rounded-full" />
-              <span className="text-3xl font-bold bg-gradient-to-br from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="mb-5 flex items-center gap-4 cursor-pointer focus:outline-none"
+            >
+              <img src={Logo} alt="logo" className="h-12 w-12 rounded-full" />
+              <span className="text-3xl font-extrabold bg-gradient-to-br from-blue-400 to-purple-500 bg-clip-text text-transparent">
                 SkyStream
               </span>
-            </div>
-            <p className="mb-6 max-w-lg text-sm text-gray-400 text-justify">
-                Real-time WebRTC made simple. Plug, play, and collaborate.
+            </button>
+
+            <p className="mb-6 max-w-md text-sm leading-relaxed text-justify">
+              Real-time WebRTC made simple. Plug, play, and collaborate
+              effortlessly.
             </p>
-            <div className="flex gap-3">
-              <SocialIcon href="https://github.com/UjjwalSaini07" icon={<Github size={18} />} />
-              <SocialIcon href="#" icon={<Twitter size={18} />} />
-              <SocialIcon href="#" icon={<Instagram size={18} />} />
-              <SocialIcon href="#" icon={<Linkedin size={18} />} />
+            <div className="flex gap-4">
+              <SocialIcon
+                href="https://github.com/UjjwalSaini07"
+                icon={<Github size={20} />}
+              />
+              <SocialIcon href="#" icon={<Twitter size={20} />} />
+              <SocialIcon href="#" icon={<Instagram size={20} />} />
+              <SocialIcon href="#" icon={<Linkedin size={20} />} />
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:w-1/2 md:justify-end">
+          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:w-1/2 md:justify-end">
             <FooterColumn
               title="Products"
               links={[
@@ -60,12 +68,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom Strip */}
-        <div className="relative mt-12 border-t border-gray-800 pt-6">
+        <div className="relative mt-14 border-t border-gray-800 pt-6">
           <div className="absolute left-1/2 top-0 h-0.5 w-1/2 -translate-x-1/2 bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
           <div className="flex flex-col items-center justify-between text-sm text-gray-500 md:flex-row">
             <p>
               © {new Date().getFullYear()}{" "}
-              <span className="font-medium text-white">SkyStream</span>. All rights reserved.
+              <span className="font-semibold text-white">SkyStream</span>. All
+              rights reserved.
             </p>
             <p className="mt-3 md:mt-0">
               Building in public at{" "}
@@ -73,7 +82,7 @@ export default function Footer() {
                 href="#"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-1 font-medium text-purple-400 hover:text-white transition"
+                className="ml-1 font-medium text-purple-400 hover:text-white transition hover:underline"
               >
                 UjjwalS
               </a>
@@ -91,7 +100,7 @@ function SocialIcon({ href, icon }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center justify-center rounded-full bg-gray-900 p-2 shadow-sm hover:scale-110 hover:bg-gray-800 transition duration-200"
+      className="inline-flex items-center justify-center rounded-full bg-gray-900 p-2 shadow-md hover:scale-110 hover:bg-gray-800 transition-all duration-200 hover:ring-1 hover:ring-purple-500"
     >
       <span className="text-gray-300 hover:text-white transition">{icon}</span>
     </a>
@@ -101,14 +110,17 @@ function SocialIcon({ href, icon }) {
 function FooterColumn({ title, links }) {
   return (
     <div>
-      <h3 className="mb-4 text-sm font-semibold text-white">{title}</h3>
-      <ul className="space-y-2 text-sm">
+      <h3 className="mb-5 text-sm font-bold text-white tracking-widest uppercase">
+        {title}
+      </h3>
+      <ul className="space-y-3 text-sm">
         {links.map(({ label, href }) => (
           <li key={label}>
             <a
               href={href}
-              className="text-gray-400 hover:text-white hover:underline transition"
+              className="group relative inline-flex items-center gap-2 text-gray-400 hover:text-white transition"
             >
+              <span className="absolute -left-4 top-1/2 h-1 w-1 rounded-full bg-purple-400 opacity-0 group-hover:opacity-100 transform -translate-y-1/2 transition-all duration-200" />
               {label}
             </a>
           </li>
