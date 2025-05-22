@@ -7,8 +7,8 @@ export function LampSeparator() {
     <div className="relative w-full h-24 bg-black overflow-hidden z-0">
       {/* Left White Conic Gradient */}
       <motion.div
-        initial={{ opacity: 0.4, width: "15rem" }}
-        whileInView={{ opacity: 0.4, width: "30rem" }}
+        initial={{ opacity: 0.4, width: "30rem" }}
+        whileInView={{ opacity: 0.4, width: "65rem" }}
         transition={{
           delay: 0.3,
           duration: 0.8,
@@ -25,8 +25,8 @@ export function LampSeparator() {
 
       {/* Right White Conic Gradient */}
       <motion.div
-        initial={{ opacity: 0.4, width: "15rem" }}
-        whileInView={{ opacity: 0.4, width: "30rem" }}
+        initial={{ opacity: 0.4, width: "30rem" }}
+        whileInView={{ opacity: 0.4, width: "65rem" }}
         transition={{
           delay: 0.3,
           duration: 0.8,
