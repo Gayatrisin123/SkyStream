@@ -1,3 +1,6 @@
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { AnimatedTestimonials } from "../ui/animated-testimonials";
 
 const data = [
@@ -32,13 +35,31 @@ const data = [
 ];
 
 export default function Home3() {
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      delay: 10,
+      duration: 2000,
+      easing: "ease",
+      once: false,
+    });
+  }, []);
   return (
     <div className="flex justify-end items-center">
       <div className="w-full">
-        <h1 className="text-4xl font-extrabold text-white mb-8 drop-shadow-lg">
-            Discover What Makes Us Unique
+        <h1
+          data-aos="zoom-in-down"
+          className="text-4xl font-extrabold text-white mb-8 drop-shadow-lg"
+        >
+          Discover What Makes Us Unique
         </h1>
-        <AnimatedTestimonials testimonials={data} autoplay={true} />
+        <div
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="3000"
+        >
+          <AnimatedTestimonials testimonials={data} autoplay={true} />
+        </div>
       </div>
     </div>
   );

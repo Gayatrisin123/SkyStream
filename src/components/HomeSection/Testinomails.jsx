@@ -1,4 +1,6 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import avatar1 from "../../assets/UserProfile.png";
 import avatar2 from "../../assets/TestUser4.png";
 import avatar3 from "../../assets/TestUser2.png";
@@ -135,6 +137,16 @@ const Testimonials = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      delay: 10,
+      duration: 2000,
+      easing: "ease",
+      once: false,
+    });
+  }, []);
+
   return (
     <section id="reviews" className="relative z-10 bg-gradient-to-b from-[#050505] via-[#111] to-[#050505] py-20">
       <div className="mx-auto max-w-7xl">
@@ -167,7 +179,7 @@ const Testimonials = () => {
             essential tool for users around the world.
           </p>
         </motion.div>
-        <div className="flex max-h-[738px] justify-center gap-6 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)]">
+        <div data-aos="zoom-in-down" className="flex max-h-[738px] justify-center gap-6 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)]">
           <TestimonialsColumn testimonials={firstColumn} duration={15} />
           <TestimonialsColumn
             testimonials={secondColumn}
