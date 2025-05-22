@@ -1,70 +1,77 @@
 import React, { useRef } from "react";
-import avatar1 from "../../assets/TestUser1.png";
-import avatar2 from "../../assets/TestUser1.png";
-import avatar3 from "../../assets/TestUser1.png";
+import avatar1 from "../../assets/UserProfile.png";
+import avatar2 from "../../assets/TestUser4.png";
+import avatar3 from "../../assets/TestUser2.png";
 import avatar4 from "../../assets/TestUser1.png";
-import avatar5 from "../../assets/TestUser1.png";
-import avatar6 from "../../assets/TestUser1.png";
-import avatar7 from "../../assets/TestUser1.png";
-import avatar8 from "../../assets/TestUser1.png";
-import avatar9 from "../../assets/TestUser1.png";
+import avatar5 from "../../assets/TestUser4.png";
+import avatar6 from "../../assets/TestUser3.png";
+import avatar7 from "../../assets/TestUser2.png";
+import avatar8 from "../../assets/UserProfile.png";
+import avatar9 from "../../assets/TestUser2.png";
+import avatar10 from "../../assets/TestUser3.png";
 import { motion, useInView } from "framer-motion";
 import { cn } from "../../lib/utils";
 
 const testimonials = [
   {
-    text: "Mvpblocks has completely changed the way I build UIs. Copy-paste, done. No more design stress.",
+    text: "SkyStream is hands down the easiest way we've ever collaborated remotely. No installs, just share a link and you're in!",
     imageSrc: avatar1,
-    name: "Arjun Mehta",
-    username: "@arjdev",
+    name: "Aarav Mehta",
+    username: "@aaravmehta",
   },
   {
-    text: "Honestly shocked at how smooth the animations and styling are out of the box. Just works.",
+    text: "The screen sharing and video quality are insanely good. It feels like we're all in the same room, even when we’re continents apart.",
     imageSrc: avatar2,
-    name: "Sara Lin",
-    username: "@sara.codes",
+    name: "Sophia Martinez",
+    username: "@soph.codes",
   },
   {
-    text: "Our team launched a client site in 2 days using Mvpblocks. Saved so much time.",
+    text: "We switched our client calls to SkyStream and never looked back. Secure, crystal-clear video and no login headaches.",
     imageSrc: avatar3,
-    name: "Devon Carter",
-    username: "@devninja",
+    name: "Riya Kapoor",
+    username: "@riyakapoor",
   },
   {
-    text: "Plugged a few blocks into our existing codebase and everything blended perfectly. Massive W.",
+    text: "Our remote workshops used to be chaotic—SkyStream changed that overnight. Real-time chat + screen sharing = smooth sessions.",
     imageSrc: avatar4,
-    name: "Priya Shah",
-    username: "@priyacodes",
+    name: "Mark Carlos",
+    username: "@markcarl",
   },
   {
-    text: "Found a beautiful hero section, dropped it into V0, tweaked copy, and shipped in 15 minutes.",
+    text: "The QR code join feature is a genius move. We onboard users in seconds without technical support.",
     imageSrc: avatar5,
-    name: "Leo Martin",
-    username: "@leobuilds",
+    name: "Kavya Iyer",
+    username: "@kavya.iyer",
   },
   {
-    text: "Mvpblocks helped us prototype multiple landing pages without writing CSS once.",
+    text: "We run weekly team standups on SkyStream. No lag, no stress, and sharing files is super fast and secure.",
     imageSrc: avatar6,
-    name: "Chloe Winters",
-    username: "@chloewinters",
+    name: "Liam Bennett",
+    username: "@liamcodes",
   },
   {
-    text: "As a solo founder, Mvpblocks lets me move fast without sacrificing design quality.",
+    text: "SkyStream gives me full control over privacy without any setup. It’s perfect for confidential meetings.",
     imageSrc: avatar7,
-    name: "Ayaan Malik",
-    username: "@ayaan_dev",
+    name: "Ananya Verma",
+    username: "@ananyav",
   },
   {
-    text: "Can’t believe how polished the components look. Clients are impressed every time.",
+    text: "I’ve used a lot of collab tools, but none match SkyStream's balance of speed, security, and simplicity.",
     imageSrc: avatar8,
-    name: "Monica Reeves",
-    username: "@monicareeves",
+    name: "Shubham Roy",
+    username: "@shubroy",
   },
   {
-    text: "This tool is a lifesaver when deadlines are tight. Drop in a block, tweak, and deploy.",
+    text: "Whether it’s client demos or internal syncs, SkyStream makes it frictionless. No installs, just results.",
     imageSrc: avatar9,
-    name: "James Roy",
-    username: "@jamesrdev",
+    name: "Meera Joshi",
+    username: "@meerajoshi",
+  },
+  {
+    text: "Everything just works—no training needed. SkyStream is a no-brainer for remote teams like ours.",
+    imageSrc: avatar10,
+    name: "Daniel Kim",
+    username: "@danieldev",
   },
 ];
 
@@ -77,7 +84,7 @@ const TestimonialsColumn = ({ className, testimonials, duration }) => (
     <motion.div
       animate={{ translateY: "-50%" }}
       transition={{
-        duration: duration || 10,
+        duration: duration || 12,
         repeat: Infinity,
         ease: "linear",
         repeatType: "loop",
@@ -89,35 +96,31 @@ const TestimonialsColumn = ({ className, testimonials, duration }) => (
           {testimonials.map(({ text, imageSrc, name, username }) => (
             <div
               key={text}
-              className="relative w-full max-w-xs overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-[0_15px_30px_-10px_rgba(0,0,0,0.4)] backdrop-blur-md transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl group"
+              className="group relative w-full max-w-xs overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05),_0_20px_50px_-10px_rgba(0,0,0,0.4)] backdrop-blur-md transition-transform duration-300 hover:scale-[1.015] hover:shadow-[0_0_25px_rgba(255,255,255,0.1)]"
             >
-              {/* Background shimmer */}
-              <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.08),transparent_70%)]" />
-              </div>
+              {/* Shine effect on hover */}
+              <div className="absolute inset-0 pointer-events-none group-hover:before:absolute group-hover:before:inset-0 group-hover:before:bg-gradient-to-r group-hover:before:from-transparent group-hover:before:via-white/10 group-hover:before:to-transparent group-hover:before:animate-[shine_1.6s_infinite] group-hover:before:blur-md" />
 
-              {/* Gradient halo */}
-              <div className="absolute -top-8 -left-8 h-40 w-40 rounded-full bg-gradient-to-br from-primary/30 to-pink-500/30 blur-3xl opacity-20 group-hover:opacity-30 transition-all duration-500" />
+              {/* Soft gradient glow */}
+              <div className="absolute -top-10 -left-10 h-48 w-48 rounded-full bg-gradient-to-tr from-purple-500/20 via-pink-500/20 to-transparent blur-3xl opacity-20" />
 
-              <p className="text-sm text-zinc-200 leading-relaxed z-10 relative">
+              <p className="text-sm leading-relaxed text-zinc-200 relative z-10">
                 “{text}”
               </p>
 
-              {/* User */}
-              <div className="mt-6 flex items-center gap-3 z-10 relative">
-                <div className="relative flex-shrink-0">
+              {/* Avatar + user info */}
+              <div className="mt-6 flex items-center gap-3 relative z-10">
+                <div className="relative h-12 w-12">
                   <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary to-pink-500 blur-md opacity-30 group-hover:opacity-50 transition" />
                   <img
                     src={imageSrc}
                     alt={name}
-                    className="h-11 w-11 rounded-full border border-white/20 z-10 relative"
+                    className="relative z-10 h-12 w-12 rounded-full border-2 border-white/10"
                   />
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-sm font-semibold text-white">
-                    {name}
-                  </span>
-                  <span className="text-xs text-zinc-400">{username}</span>
+                <div>
+                  <p className="text-sm font-semibold text-white">{name}</p>
+                  <p className="text-xs text-zinc-400">{username}</p>
                 </div>
               </div>
             </div>
@@ -142,7 +145,7 @@ const Testimonials = () => {
           transition={{ duration: 0.5, delay: 0 }}
           className="mx-auto max-w-[540px]"
         >
-          <div className="flex justify-center">
+          <div className="flex justify-center -mt-14">
             <button
               type="button"
               className="group relative z-[60] mx-auto rounded-full border border-zinc-500/80 bg-background/50 px-6 py-1 text-xs backdrop-blur transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/[0.1] active:scale-100 md:text-sm"
@@ -160,7 +163,7 @@ const Testimonials = () => {
             What our users say
           </h2>
           <p className="mt-3 text-center text-lg text-zinc-500">
-            From intuitive design to powerful features, our app has become an
+            From intuitive design to powerful features, our website has become an
             essential tool for users around the world.
           </p>
         </motion.div>
