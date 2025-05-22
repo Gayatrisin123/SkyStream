@@ -91,14 +91,14 @@ export default function HomeHero1() {
 
       <div className="relative z-20 w-full mx-auto text-center">
         <motion.div variants={ textMotion({ delay: 1, duration: 1, startY: -100, easingType: "easeOut" })} initial="hidden" animate="show">
-          <h1 className="text-4xl sm:text-6xl font-bold leading-tight mb-6">
+          <h1 style={{ fontFamily: 'Orbitron, sans-serif' }} className="text-3xl sm:text-5xl font-bold leading-tight mb-6">
             Empowering real-time connections
             <br />
             through seamless WebRTC experiences
           </h1>
         </motion.div>
         <motion.div variants={ textMotion({ delay: 1.8, duration: 1, startY: -100, easingType: "easeOut" })} initial="hidden" animate="show">
-          <p className="text-gray-400 text-lg max-w-xl mx-auto mb-8">
+          <p style={{ fontFamily: 'Raleway, sans-serif' }} className="text-gray-400 text-lg max-w-xl mx-auto mb-8">
             Plug-and-play WebRTC components for real-time collaboration. No
             complexity, just seamless integration. Build faster, connect
             instantly.
@@ -106,13 +106,13 @@ export default function HomeHero1() {
         </motion.div>
         <div className="flex justify-center gap-4 mb-12">
           <motion.div variants={ textMotion({ delay: 4, duration: 1, startY: -100, easingType: "easeOut" })} initial="hidden" animate="show">
-            <Button onClick={() => navigate('/chatroom')} className="bg-pink-600 hover:bg-pink-700 text-white font-bold px-6 py-3 rounded-full shadow-md hover:shadow-pink-500/40 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2">
+            <Button onClick={() => navigate('/chatroom')} style={{ fontFamily: 'Playfair Display SC, sans-serif' }} className="bg-pink-600 hover:bg-pink-700 text-white font-bold px-6 py-3 rounded-full shadow-md hover:shadow-pink-500/40 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2">
               Get Started
             </Button>
           </motion.div>
         </div>
         <motion.div variants={ textMotionFromLeft({ delay: 4.4, duration: 1, startY: -100, easingType: "easeOut" })} initial="hidden" animate="show">
-          <div className="text-gray-500 text-sm flex items-center justify-center gap-2 mb-16">
+          <div style={{ fontFamily: 'Raleway, sans-serif' }} className="text-gray-500 text-sm flex items-center justify-center gap-2 mb-16">
             <span>Powered by WebRTC. Built for impact.</span>
           </div>
         </motion.div>

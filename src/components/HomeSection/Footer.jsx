@@ -17,8 +17,8 @@ export default function Footer() {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="mb-5 flex items-center gap-4 cursor-pointer focus:outline-none"
             >
-              <img src={Logo} alt="logo" className="h-12 w-12 rounded-full" />
-              <span className="text-3xl font-extrabold bg-gradient-to-br from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              <img src={Logo} alt="logo" className="h-10 w-10 rounded-full" />
+              <span style={{ fontFamily: 'Orbitron, sans-serif' }} className="text-3xl font-extrabold bg-gradient-to-br from-blue-400 to-purple-500 bg-clip-text text-transparent">
                 SkyStream
               </span>
             </button>

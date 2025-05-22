@@ -55,7 +55,7 @@ export default function FeaturesSection() {
 
   return (
     <section className="bg-black text-white py-20 px-4">
-      <h2 data-aos="zoom-in-down" className="text-4xl font-bold text-center mb-16">
+      <h2 data-aos="zoom-in-down"  style={{ fontFamily: 'Orbitron, sans-serif' }} className="text-4xl font-bold text-center mb-16">
         Explore Our WebRTC Features
       </h2>
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -70,6 +70,7 @@ export default function FeaturesSection() {
           >
             <button
               onClick={() => navigate(feature.route)}
+              style={{ fontFamily: 'Playfair Display SC, sans-serif' }}
               className="mt-6 px-5 py-2 text-sm font-semibold bg-pink-600 hover:bg-pink-700 text-white rounded-full transition-colors"
             >
               Explore

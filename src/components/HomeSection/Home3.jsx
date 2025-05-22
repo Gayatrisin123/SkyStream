@@ -45,10 +45,11 @@ export default function Home3() {
     });
   }, []);
   return (
-    <div className="flex justify-end items-center">
+    <div className="flex justify-end items-center overflow-hidden">
       <div className="w-full">
         <h1
           data-aos="zoom-in-down"
+          style={{ fontFamily: 'Orbitron, sans-serif' }}
           className="text-4xl font-extrabold text-white mb-8 drop-shadow-lg"
         >
           Discover What Makes Us Unique
