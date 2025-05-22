@@ -17,7 +17,7 @@ const AnimatedBeamCardHome2 = ({
   return (
     <Card
       className={cn(
-        "relative group/card bg-black/50 border border-white/10 rounded-2xl backdrop-blur-xl p-6 overflow-hidden transition-shadow duration-500 ease-out hover:shadow-[0_6px_20px_rgba(255,64,128,0.35)]",
+        "relative group/card bg-black/50 border border-white/10 rounded-2xl backdrop-blur-xl pt-8 overflow-hidden transition-transform duration-500 ease-out hover:scale-[1.03] hover:shadow-[0_6px_20px_rgba(255,64,128,0.35)]",
         className
       )}
     >
@@ -30,13 +30,17 @@ const AnimatedBeamCardHome2 = ({
         />
       </div>
 
-      <CardContent className="relative z-10 flex flex-col items-center justify-between text-center h-full space-y-4">
-        <div className="w-14 h-14 flex items-center justify-center rounded-full bg-white/10 border border-white/20 backdrop-blur-md shadow-inner">
+      <CardContent className="relative z-10 flex flex-col items-center justify-between text-center h-full space-y-6">
+        <div className="w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-white/20 to-gray-900/30 border border-white/30 backdrop-blur-md shadow-inner">
           {icon}
         </div>
-        <h3 className="text-xl font-semibold text-white">{title}</h3>
-        <p className="text-sm text-gray-300 max-w-xs">{description}</p>
-        <div className="pt-2">{children}</div>
+        <h3 className="text-2xl font-bold bg-gradient-to-r from-pink-400 to-red-500 text-transparent bg-clip-text">
+          {title}
+        </h3>
+        <p className="text-sm text-gray-300 leading-relaxed  ">
+          {description}
+        </p>
+        <div className="pt-4">{children}</div>
       </CardContent>
     </Card>
   );
