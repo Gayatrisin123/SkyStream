@@ -12,21 +12,21 @@ const data = [
     name: "Screen Sharing",
     type: "Live Collaboration Tool",
     quote:
-      "Share your screen in real-time to present ideas, demonstrate workflows, or troubleshoot issues. Perfect for remote teams, live demos, and online training sessions. With low-latency performance, it's like being in the same room — even when you're continents apart.",
+      "Show your screen instantly to share ideas, demonstrate workflows, or guide others. Designed for teamwork and remote collaboration, our tool ensures clarity and connection. Collaborate from anywhere with high performance and no lag interruptions in real-time sessions.",
     src: "https://www.sorryonmute.com/wp-content/uploads/2022/08/Feature-Image-2.png",
   },
   {
     name: "Video Calling",
     type: "Face-to-Face Communication",
     quote:
-      "Experience smooth, high-quality video conferencing that bridges the distance. Ideal for meetings, interviews, and daily check-ins, our video calling feature makes remote interaction more human and engaging.",
+      "Connect face-to-face from anywhere. Our video calling delivers smooth, high-quality performance for meetings, interviews, and check-ins. Stay close with teammates, clients, or family members — making virtual interaction feel personal, seamless, and effective every single time.",
     src: "https://thumbs.dreamstime.com/b/conference-video-call-people-talking-to-each-other-monitor-screen-working-home-remote-project-management-conference-video-186775025.jpg",
   },
   {
     name: "File Sharing",
     type: "Secure Transfer System",
     quote:
-      "Easily upload, download, and manage documents, images, videos, and more. Our file sharing system ensures fast delivery and end-to-end encryption, making collaboration efficient and secure across devices and platforms.",
+      "Share documents, images, and videos effortlessly across platforms. Our secure system ensures safe, fast transfers with encryption. Whether for work or personal use, sending and receiving files is streamlined and reliable — no stress, no waiting, just results.",
     src: "https://mumbaimirror.indiatimes.com/photo/76099716.cms",
   },
 ];
@@ -34,9 +34,9 @@ const data = [
 export default function Home3() {
   return (
     <div className="flex justify-end items-center">
-      <div className="w-full md:w-2/3 lg:w-1/2 xl:w-3/5">
-        <h1 className="text-white text-3xl font-semibold shadow-md mt-2 -mb-7">
-          Our Components Brief
+      <div className="w-full">
+        <h1 className="text-4xl font-extrabold text-white mb-8 drop-shadow-lg">
+            Discover What Makes Us Unique
         </h1>
         <AnimatedTestimonials testimonials={data} autoplay={true} />
       </div>

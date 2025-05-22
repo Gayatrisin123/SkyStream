@@ -63,7 +63,7 @@ export default function FeaturesSection() {
           <AnimatedBeamCard
             key={index}
             icon={feature.icon}
-            title={feature.title}
+            designation={feature.title}
             description={feature.description}
             className="min-h-[440px] flex flex-col justify-between"
             aosAnimation={feature.animation}
