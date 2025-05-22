@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { Card, CardContent } from "./card";
 import { cn } from "../../lib/utils";
 import { BorderBeam } from "./magicui/border-beam";
@@ -13,6 +15,7 @@ const AnimatedBeamCardHome2 = ({
   beamColorFrom = "#ff4d6d",
   beamColorTo = "#c70039",
   children,
+  aosAnimation,
 }) => {
   return (
     <Card
@@ -20,6 +23,7 @@ const AnimatedBeamCardHome2 = ({
         "relative group/card bg-black/50 border border-white/10 rounded-2xl backdrop-blur-xl pt-8 overflow-hidden transition-transform duration-500 ease-out hover:scale-[1.03] hover:shadow-[0_6px_20px_rgba(255,64,128,0.35)]",
         className
       )}
+      data-aos={aosAnimation}
     >
       <div className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
         <BorderBeam
@@ -37,7 +41,7 @@ const AnimatedBeamCardHome2 = ({
         <h3 className="text-2xl font-bold bg-gradient-to-r from-pink-400 to-red-500 text-transparent bg-clip-text">
           {title}
         </h3>
-        <p className="text-sm text-gray-300 leading-relaxed  ">
+        <p className="text-sm text-gray-300 leading-relaxed">
           {description}
         </p>
         <div className="pt-4">{children}</div>
