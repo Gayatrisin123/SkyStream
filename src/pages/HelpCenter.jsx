@@ -23,14 +23,13 @@ export default function HelpCenter() {
 
       <div className="text-center mb-12">
         <motion.div variants={textVariant(0.4)} initial="hidden" animate="show">
-          <h2 className="text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight">
+          <h2 style={{ fontFamily: 'Orbitron, sans-serif' }} className="text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight">
             How It Works
           </h2>
         </motion.div>
         <motion.div variants={textVariant(0.9)} initial="hidden" animate="show">
-          <p className="text-lg text-white mt-4 max-w-2xl mx-auto opacity-90">
-            Discover a seamless and efficient way to collaborate in real-time by
-            following these simple steps to get started.
+          <p style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-lg text-white mt-4 max-w-2xl mx-auto opacity-90">
+            Discover a seamless and efficient way to collaborate in real-time by following these simple steps to get started and unlock the full potential of your teamwork.
           </p>
         </motion.div>
         <motion.div variants={textVariant(1.1)} initial="hidden" animate="show">
