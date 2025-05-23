@@ -1,8 +1,8 @@
 import React from "react";
 
 const metadata = {
-  title: "SkyShare",
-  description: "Share your screen📽️ instantly with anyone using a simple room code. No logins, no downloads required, just instant access.",
+  title: "SkyStream",
+  description: "SkyStream makes remote collaboration effortless without the hassle with instant real-time collaboration powered by WebRTC, secure screen sharing, Video calls, File Sharing—no downloads or logins required! 🌐✨ Integrated chat rooms enhance interaction, and a simple sign-in process ensures a personalized, seamless experience. Fast, secure, and accessible, SkyStream brings teams together effortlessly, anytime, anywhere.",
   metadataBase: "https://sky-stream-share.vercel.app/",
 };
 
