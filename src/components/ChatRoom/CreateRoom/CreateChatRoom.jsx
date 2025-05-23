@@ -204,19 +204,25 @@ function CreateGroupRoom() {
           </motion.div>
 
           {showQR && roomId && (
-            <div
-              id="qr-code-container"
-              className="absolute top-16 right-0 bg-gray-900 p-4 shadow-lg rounded-xl"
-              onClick={(e) => e.stopPropagation()}
-            >
+          <div
+            id="qr-code-container"
+            className="absolute top-16 right-0 bg-gray-800 bg-opacity-40 backdrop-blur-lg p-5 shadow-lg rounded-2xl border border-gray-700"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative flex flex-col items-center space-y-4">
               <QRCode
                 value={`${baseUrl}/joinroom?room=${roomId}`}
-                size={150}
+                size={160}
                 fgColor="#ffffff"
-                bgColor="#1a202c"
-                className="rounded-lg shadow-md"
+                bgColor="transparent"
+                className="rounded-xl shadow-lg"
               />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-black via-gray-800 to-gray-900 opacity-20 blur-sm"></div>
+              <p className="text-gray-300 text-sm font-medium text-center">
+                Scan to join the ChatRoom
+              </p>
             </div>
+          </div>
           )}
 
           <motion.div
