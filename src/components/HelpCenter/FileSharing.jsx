@@ -49,13 +49,15 @@ export default function HelpCenter() {
           animate="show"
         >
         <div className="relative">
-          <img
-            src={FileSharingHelp}
-            alt="How it works illustration"
-            className="rounded-2xl shadow-xl w-full h-auto object-cover object-center transition-all duration-700 transform hover:scale-105"
-          />
-          <div className="absolute -top-4 -right-4 w-12 h-12 bg-blue-400 rounded-full opacity-75 blur-lg animate-pulse"></div>
+            <img
+                src={FileSharingHelp}
+                alt="How it works illustration"
+                className="rounded-2xl shadow-xl w-full h-auto object-cover object-center transition-all duration-700 transform hover:scale-105"
+            />
+            <div className="absolute -top-4 -right-4 w-12 h-12 bg-blue-400 rounded-full opacity-75 blur-lg animate-pulse"></div>
         </div>
+        <h2 style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="mt-4 text-2xl font-semibold text-center text-gray-700">How File Sharing Works</h2>
+
         </motion.div>
 
         <div className="space-y-10 relative">

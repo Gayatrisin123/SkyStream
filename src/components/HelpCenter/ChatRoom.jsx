@@ -98,6 +98,7 @@ export default function HelpCenter() {
             />
             <div className="absolute -top-4 -right-4 w-12 h-12 bg-blue-400 rounded-full opacity-75 blur-lg animate-pulse"></div>
           </div>
+          <h2 style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="mt-4 text-2xl font-semibold text-center text-gray-700">How Chat Room Works</h2>
         </motion.div>
       </div>
     </section>
