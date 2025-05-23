@@ -16,7 +16,7 @@ const textVariant = (delay) => ({
 const steps = [
   {
     title: "Sign Up or Log In",
-    description: "Start by creating an account or logging in to access your personalized chat room.",
+    description: "Start by creating an account or logging in to access your personalized chat.",
     icon: <PiNumberOneBold className="text-white text-[1.8rem]" />,
   },
   {

@@ -1,7 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import ShareScreen from "../components/HelpCenter/ShareScreen";
-import ChatScreen from "../components/HelpCenter/Chat";
+import ChatRoomScreen from "../components/HelpCenter/ChatRoom";
+import FileSharingScreen from "../components/HelpCenter/FileSharing";
+import VideoCallScreen from "../components/HelpCenter/VideoCalling";
 
 const textVariant = (delay) => ({
   hidden: { y: -50, opacity: 0 },
@@ -41,7 +43,17 @@ export default function HelpCenter() {
       </div>
       <motion.div variants={textVariant(5)} initial="hidden" animate="show">
         <div>
-          <ChatScreen />
+          <ChatRoomScreen />
+        </div>
+      </motion.div>
+      <motion.div variants={textVariant(8)} initial="hidden" animate="show">
+        <div>
+          <FileSharingScreen />
+        </div>
+      </motion.div>
+      <motion.div variants={textVariant(12)} initial="hidden" animate="show">
+        <div>
+          <VideoCallScreen />
         </div>
       </motion.div>
     </section>
