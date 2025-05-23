@@ -1,8 +1,13 @@
 {
   "name": "sky-stream",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
+  "description": "SkyStream offers fast, secure real-time collaboration with WebRTC, video calls, screen sharing, file sharing, and chat—no downloads needed.",
+  "keywords": [ "SkyStream", "real-time collaboration", "WebRTC", "screen sharing", "video calls", "file sharing", "secure communication", "no downloads", "no logins", "chat rooms", "team collaboration", "remote work", "instant communication", "seamless experience", "fast and secure", "web app", "online meetings", "collaboration tools", "anytime anywhere", "teamwork"
+  ],
+  "author": "UjjwalS",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
