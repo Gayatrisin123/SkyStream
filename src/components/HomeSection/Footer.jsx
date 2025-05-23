@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../../public/SkyShare-Logo.png";
+import Logo from "../../assets/SkyShare-Logo.png";
 import { Github, Instagram, Linkedin, Twitter } from "lucide-react";
 
 export default function Footer() {
