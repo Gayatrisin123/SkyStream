@@ -7,6 +7,8 @@ import ChatRoom from "./pages/ChatRoom.jsx";
 import About from "./pages/About.jsx";
 import ContactUs from "./pages/ContactUs.jsx";
 import Help from "./pages/HelpCenter.jsx";
+import PrivacyPolicy from "./components/Legal/PrivacyPolicy.jsx";
+import TermsAndCondition from "./components/Legal/TermsAndCondition.jsx";
 import Host from "./components/ScreenSharing/HostRoom.jsx";
 import Join from "./components/ScreenSharing/JoinRoom.jsx";
 import CreateChatRoom from "./components/ChatRoom/CreateRoom/CreateChatRoom.jsx";
@@ -48,6 +50,8 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/help-center" element={<Help />} />
+            <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+            <Route path="/termsandconditons" element={<TermsAndCondition />} />
             {/* Route - Error Route Handling */}
             <Route path="/error404" element={<Error404 />} />
             <Route path="*" element={<Navigate to="/error404" />} />

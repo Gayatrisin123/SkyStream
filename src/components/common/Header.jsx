@@ -233,7 +233,7 @@ function Header() {
               </li>
               <li>
                 <a
-                  href="/conditons"
+                  href="/termsandconditons"
                   className="block text-white text-base hover:text-blue-500 transition"
                 >
                   Terms & Condition
