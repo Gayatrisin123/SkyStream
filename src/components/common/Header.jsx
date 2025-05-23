@@ -132,12 +132,12 @@ function Header() {
             </svg>
           </button>
           {isHelpMenuOpen && (
-            <div className="absolute top-10 left-0 bg-white shadow-lg rounded-lg z-50 p-4 w-40">
+            <div className="absolute top-10 left-0 bg-black/60 backdrop-blur-lg shadow-xl rounded-2xl z-50 p-4 w-40 border border-gray-700">
               <ul className="list-none space-y-2">
                 <li>
                   <a
                     href="/about"
-                    className="block text-black text-base hover:text-blue-500 transition"
+                    className="block text-white text-base hover:text-cyan-400 transition"
                   >
                     About
                   </a>
@@ -145,7 +145,7 @@ function Header() {
                 <li>
                   <a
                     href="/contact"
-                    className="block text-black text-base hover:text-blue-500 transition"
+                    className="block text-white text-base hover:text-cyan-400 transition"
                   >
                     Contact Us
                   </a>
@@ -153,7 +153,7 @@ function Header() {
                 <li>
                   <a
                     href="/help-center"
-                    className="block text-black text-base hover:text-blue-500 transition"
+                    className="block text-white text-base hover:text-cyan-400 transition"
                   >
                     Help Center
                   </a>
@@ -205,12 +205,12 @@ function Header() {
           </button>
         </div>
         {isUserMenuOpen && (
-          <div className="absolute top-12 right-0 bg-white shadow-lg rounded-lg z-50 p-4 w-48">
+          <div className="absolute top-12 right-0 bg-black/60 backdrop-blur-lg shadow-xl rounded-2xl z-50 p-4 w-48 border border-gray-700">
             <ul className="list-none space-y-2">
               <li>
                 <a
                   href="/contact"
-                  className="block text-black text-base hover:text-blue-500 transition"
+                  className="block text-white text-base hover:text-blue-500 transition"
                 >
                   Contact Us
                 </a>
@@ -218,9 +218,25 @@ function Header() {
               <li>
                 <a
                   href="/help-center"
-                  className="block text-black text-base hover:text-blue-500 transition"
+                  className="block text-white text-base hover:text-blue-500 transition"
                 >
                   Help Center
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/privacypolicy"
+                  className="block text-white text-base hover:text-blue-500 transition"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/conditons"
+                  className="block text-white text-base hover:text-blue-500 transition"
+                >
+                  Terms & Condition
                 </a>
               </li>
             </ul>

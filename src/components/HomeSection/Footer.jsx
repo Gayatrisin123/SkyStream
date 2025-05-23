@@ -51,8 +51,8 @@ export default function Footer() {
             <FooterColumn
               title="Company"
               links={[
-                { label: "Terms & Conditions", href: "#" },
-                { label: "Privacy Policy", href: "#" },
+                { label: "Terms & Conditions", href: "/conditons" },
+                { label: "Privacy Policy", href: "/privacypolicy" },
                 { label: "License Issued", href: "#" },
               ]}
             />
@@ -79,7 +79,7 @@ export default function Footer() {
             <p className="mt-3 md:mt-0">
               Building in public at{" "}
               <a
-                href="#"
+                href="https://github.com/UjjwalSaini07"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ml-1 font-medium text-purple-400 hover:text-white transition hover:underline"
