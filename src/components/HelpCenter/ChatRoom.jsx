@@ -62,8 +62,8 @@ export default function HelpCenter() {
                 {step.icon}
               </div>
               <div className="transition-all duration-300 group-hover:translate-x-2">
-                <h3 className="text-2xl font-semibold mb-2">{step.title}</h3>
-                <p className="opacity-90">{step.description}</p>
+                <h3 style={{ fontFamily: 'Cormorant Upright, sans-serif' }} className="text-2xl font-semibold mb-2">{step.title}</h3>
+                <p style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="opacity-90">{step.description}</p>
               </div>
             </motion.div>
           ))}
@@ -80,6 +80,7 @@ export default function HelpCenter() {
               >
                 <a
                   href="/chatroom"
+                  style={{ fontFamily: 'Playfair Display SC, sans-serif' }}
                   className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-10 py-4 rounded-full font-bold shadow-lg hover:shadow-2xl transition-all duration-300"
                 >
                   Get Started

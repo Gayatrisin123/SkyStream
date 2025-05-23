@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { motion } from "framer-motion";
 import ShareScreen from "../components/HelpCenter/ShareScreen";
 import ChatRoomScreen from "../components/HelpCenter/ChatRoom";
@@ -15,6 +17,15 @@ const textVariant = (delay) => ({
 });
 
 export default function HelpCenter() {
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      delay: 10,
+      duration: 2000,
+      easing: "ease",
+      once: false,
+    });
+  }, []);
   return (
     <section
       id="help-center"
@@ -41,21 +52,15 @@ export default function HelpCenter() {
       <div>
         <ShareScreen />
       </div>
-      <motion.div variants={textVariant(5)} initial="hidden" animate="show">
-        <div>
+        <div data-aos="zoom-in">
           <ChatRoomScreen />
         </div>
-      </motion.div>
-      <motion.div variants={textVariant(8)} initial="hidden" animate="show">
-        <div>
+        <div data-aos="zoom-in-down">
           <FileSharingScreen />
         </div>
-      </motion.div>
-      <motion.div variants={textVariant(12)} initial="hidden" animate="show">
-        <div>
+        <div data-aos="zoom-in-up">
           <VideoCallScreen />
         </div>
-      </motion.div>
     </section>
   );
 }
