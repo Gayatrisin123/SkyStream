@@ -113,6 +113,7 @@ function JoinChatRoom() {
           >
             <Button
               variant="outline"
+              style={{ fontFamily: 'Ancizar Serif, sans-serif' }} 
               className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 rounded-xl shadow-xl"
               onClick={() => window.history.back()}
             >
@@ -136,11 +137,11 @@ function JoinChatRoom() {
               }}
             >
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-white text-2xl font-extrabold">
+                <CardTitle style={{ fontFamily: 'Almendra, sans-serif' }} className="flex items-center gap-2 text-white text-2xl font-extrabold">
                   <Users className="h-7 w-7 text-blue-500 hover:scale-110 transition-transform duration-300" />
                   Join a Chat Room
                 </CardTitle>
-                <CardDescription className="text-gray-400 text-sm">
+                <CardDescription style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-gray-400 text-md">
                   Enter the room code to join and start chatting.
                 </CardDescription>
               </CardHeader>
@@ -149,6 +150,7 @@ function JoinChatRoom() {
                 <div className="space-y-4">
                   <Input
                     className="p-4 rounded-lg bg-gray-800 text-gray-200 focus:ring-2 focus:ring-blue-500 border border-gray-600 transition-all duration-300"
+                    style={{ fontFamily: 'Exo, sans-serif' }}
                     placeholder="Enter room code"
                     value={roomId}
                     onChange={(e) => setRoomId(e.target.value)}
@@ -157,6 +159,7 @@ function JoinChatRoom() {
                   <Button
                     className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-transform duration-300"
                     onClick={joinRoom}
+                    style={{ fontFamily: 'Exo, sans-serif' }}
                     disabled={isConnecting || !roomId.trim()}
                   >
                     {isConnecting ? "Connecting..." : "Join Room"}

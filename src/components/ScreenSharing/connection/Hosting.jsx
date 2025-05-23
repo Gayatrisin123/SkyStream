@@ -123,6 +123,7 @@ export default function HostPage() {
       >
         <Button
           variant="outline"
+          style={{ fontFamily: 'Ancizar Serif, sans-serif' }}
           className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 rounded-xl shadow-xl"
           onClick={() => navigate("/sharescreen")}
         >
@@ -132,6 +133,7 @@ export default function HostPage() {
 
         <Button
           variant="outline"
+          style={{ fontFamily: 'Ancizar Serif, sans-serif' }}
           className="px-4 py-3 text-white bg-gray-800 hover:bg-gray-700 rounded-xl shadow-lg"
           onClick={(e) => {
             e.stopPropagation();
@@ -167,18 +169,18 @@ export default function HostPage() {
         style={{ boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)" }}
       >
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-xl font-bold">
+          <CardTitle style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="flex items-center gap-2 text-xl font-bold">
             <Monitor className="h-6 w-6 text-purple-400" />
             Your Screen Sharing Room
           </CardTitle>
-          <CardDescription className="text-gray-400">
+          <CardDescription style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-gray-400 text-md">
             Share this room code with others to let them view your screen.
           </CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-6">
           <div className="flex items-center gap-2">
-            <code className="flex-1 py-2 px-3 bg-gray-800 rounded-lg text-lg font-mono">
+            <code style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="flex-1 py-2 px-3 bg-gray-800 rounded-lg text-lg font-mono">
               {roomId || "Generating room code..."}
             </code>
             <Button
@@ -217,20 +219,20 @@ export default function HostPage() {
           <div className="flex items-center justify-between p-4 bg-gray-800 rounded-lg">
             <div className="flex items-center gap-2">
               <Users className="h-5 w-5 text-gray-400" />
-              <span className="text-sm text-gray-400">Current Viewers</span>
+              <span style={{ fontFamily: 'Exo, sans-serif' }} className="text-sm text-gray-400">Current Viewers</span>
             </div>
-            <span className="text-lg font-semibold text-white">{viewers}</span>
+            <span style={{ fontFamily: 'Exo, sans-serif' }} className="text-lg font-semibold text-white">{viewers}</span>
           </div>
 
           {viewers > 0 && !activeStream && (
-            <Button className="w-full bg-green-600 hover:bg-green-500" onClick={startScreenSharing}>
+            <Button style={{ fontFamily: 'Exo, sans-serif' }} className="w-full bg-green-600 hover:bg-green-500" onClick={startScreenSharing}>
               <Play className="h-5 w-5" />
               Start Sharing
             </Button>
           )}
 
           {activeStream && (
-            <Button className="w-full bg-red-600 hover:bg-red-500" onClick={stopScreenSharing}>
+            <Button style={{ fontFamily: 'Exo, sans-serif' }} className="w-full bg-red-600 hover:bg-red-500" onClick={stopScreenSharing}>
               <XCircle className="h-5 w-5" />
               Stop Sharing
             </Button>
