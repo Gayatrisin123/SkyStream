@@ -82,14 +82,14 @@ function Header() {
       <a href="/" style={{ textDecoration: "none" }}>
         <div className="flex items-center ml-4">
           <img src={logo} alt="SkyShare-Logo" className="w-8 h-auto" />
-          <h1 className="text-lg md:text-xl font-semibold text-white ml-2">
+          <h1 style={{ fontFamily: 'Exo, sans-serif' }} className="text-lg md:text-xl font-semibold text-white ml-2">
             SkyStream<span className="text-blue-500">.</span>
           </h1>
         </div>
       </a>
 
       {/* Desktop Menu */}
-      <div className="hidden md:flex justify-center items-center gap-7 flex-1 mr-14">
+      <div style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="hidden md:flex justify-center items-center gap-7 flex-1 mr-14">
         {[
           { name: "Home", path: "/" },
           { name: "ChatRoom", path: "/chatroom" },
@@ -100,7 +100,7 @@ function Header() {
           <a
             key={link.path}
             href={link.path}
-            className={`text-sm font-semibold ${
+            className={`text-md font-semibold ${
               currentPath === link.path
                 ? "text-white"
                 : "text-gray-400 hover:text-white"
@@ -132,12 +132,12 @@ function Header() {
             </svg>
           </button>
           {isHelpMenuOpen && (
-            <div className="absolute top-10 left-0 bg-white shadow-lg rounded-lg z-50 p-4 w-40">
+            <div className="absolute top-10 left-0 bg-black/60 backdrop-blur-lg shadow-xl rounded-2xl z-50 p-4 w-40 border border-gray-700">
               <ul className="list-none space-y-2">
                 <li>
                   <a
                     href="/about"
-                    className="block text-black text-base hover:text-blue-500 transition"
+                    className="block text-white text-base hover:text-cyan-400 transition"
                   >
                     About
                   </a>
@@ -145,7 +145,7 @@ function Header() {
                 <li>
                   <a
                     href="/contact"
-                    className="block text-black text-base hover:text-blue-500 transition"
+                    className="block text-white text-base hover:text-cyan-400 transition"
                   >
                     Contact Us
                   </a>
@@ -153,7 +153,7 @@ function Header() {
                 <li>
                   <a
                     href="/help-center"
-                    className="block text-black text-base hover:text-blue-500 transition"
+                    className="block text-white text-base hover:text-cyan-400 transition"
                   >
                     Help Center
                   </a>
@@ -166,7 +166,7 @@ function Header() {
 
       {/* Desktop User Menu */}
       <div ref={userMenuRef} className="relative hidden md:inline-block">
-        <div className="flex flex-row justify-between items-center space-x-4">
+        <div style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="flex flex-row justify-between items-center space-x-4">
           {isChatRoute ? (
             user ? (
               <button 
@@ -205,12 +205,12 @@ function Header() {
           </button>
         </div>
         {isUserMenuOpen && (
-          <div className="absolute top-12 right-0 bg-white shadow-lg rounded-lg z-50 p-4 w-48">
+          <div style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="absolute top-12 right-0 bg-black/60 backdrop-blur-lg shadow-xl rounded-2xl z-50 p-4 w-48 border border-gray-700">
             <ul className="list-none space-y-2">
               <li>
                 <a
                   href="/contact"
-                  className="block text-black text-base hover:text-blue-500 transition"
+                  className="block text-white text-base hover:text-blue-500 transition"
                 >
                   Contact Us
                 </a>
@@ -218,9 +218,25 @@ function Header() {
               <li>
                 <a
                   href="/help-center"
-                  className="block text-black text-base hover:text-blue-500 transition"
+                  className="block text-white text-base hover:text-blue-500 transition"
                 >
                   Help Center
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/privacypolicy"
+                  className="block text-white text-base hover:text-blue-500 transition"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/termsandconditons"
+                  className="block text-white text-base hover:text-blue-500 transition"
+                >
+                  Terms & Condition
                 </a>
               </li>
             </ul>
@@ -229,7 +245,7 @@ function Header() {
       </div>
 
       {/* Mobile Menu */}
-      <div ref={mobileMenuRef} className="relative md:hidden">
+      <div style={{ fontFamily: 'Ancizar Serif, sans-serif' }} ref={mobileMenuRef} className="relative md:hidden">
         <button
           className="text-gray-400 text-2xl cursor-pointer focus:outline-none"
           onClick={toggleMobileMenu}

@@ -134,6 +134,7 @@ export default function SendFile() {
       >
         <Button
           variant="outline"
+          style={{ fontFamily: 'Ancizar Serif, sans-serif' }}
           className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 rounded-xl shadow-xl"
           onClick={() => navigate("/fileshare")}
         >
@@ -143,6 +144,7 @@ export default function SendFile() {
 
         <Button
           variant="outline"
+          style={{ fontFamily: 'Ancizar Serif, sans-serif' }}
           className="px-4 py-3 text-white bg-gray-800 hover:bg-gray-700 rounded-xl shadow-lg"
           onClick={(e) => {
             e.stopPropagation();
@@ -155,16 +157,22 @@ export default function SendFile() {
 
       {showQR && (
         <div
-          className="absolute top-16 right-0 bg-gray-900 p-4 shadow-lg rounded-xl"
+          className="absolute top-16 right-0 bg-gray-800 bg-opacity-40 backdrop-blur-lg p-5 shadow-lg rounded-2xl border border-gray-700"
           onClick={(e) => e.stopPropagation()}
         >
-          <QRCode
-            value={roomId ? `${baseUrl}/fileshare/receivefile?senderscode=${roomId}` : ""} //! Error
-            size={150}
-            fgColor="#ffffff"
-            bgColor="#1a202c"
-            className="rounded-lg shadow-md"
-          />
+          <div className="relative flex flex-col items-center space-y-4">
+            <QRCode
+              value={roomId ? `${baseUrl}/fileshare/receivefile?senderscode=${roomId}` : ""}
+              size={160}
+              fgColor="#ffffff"
+              bgColor="transparent"
+              className="rounded-xl shadow-lg"
+            />
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-black via-gray-800 to-gray-900 opacity-20 blur-sm"></div>
+            <p className="text-gray-300 text-sm font-medium text-center">
+              Scan to receive the file
+            </p>
+          </div>
         </div>
       )}
 
@@ -174,18 +182,18 @@ export default function SendFile() {
           style={{ boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)" }}
         >
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-xl font-bold">
+            <CardTitle style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="flex items-center gap-2 text-xl font-bold">
               <Users className="h-6 w-6 text-purple-400" />
               Your File Sharing Room
             </CardTitle>
-            <CardDescription className="text-gray-400">
+            <CardDescription style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-gray-400 text-md">
               Share this room code with others to let them receive your file.
             </CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-6">
             <div className="flex items-center gap-2">
-              <code className="flex-1 py-2 px-3 bg-gray-800 rounded-lg text-lg font-mono">
+              <code style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="flex-1 py-2 px-3 bg-gray-800 rounded-lg text-lg font-mono">
                 {roomId || "Generating room code..."}
               </code>
               <Button
@@ -224,11 +232,12 @@ export default function SendFile() {
             <input
               type="file"
               onChange={handleFileSelect}
+              style={{ fontFamily: 'Ancizar Serif, sans-serif' }}
               className="w-full text-white bg-gray-800 p-3 rounded-lg"
             />
 
             {selectedFile && (
-              <div className="text-gray-400">
+              <div style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-gray-400">
                 Selected File: <strong>{selectedFile.name}</strong>
               </div>
             )}
@@ -236,6 +245,7 @@ export default function SendFile() {
             <Button
               className="w-full bg-green-600 hover:bg-green-500"
               onClick={sendFile}
+              style={{ fontFamily: 'Exo, sans-serif' }}
               disabled={!selectedFile}
             >
               Send File
@@ -243,6 +253,7 @@ export default function SendFile() {
 
             <Button
               className="w-full bg-red-600 hover:bg-red-500"
+              style={{ fontFamily: 'Exo, sans-serif' }}
               onClick={endSession}
             >
               <XCircle className="h-5 w-5" />

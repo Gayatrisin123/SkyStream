@@ -25,7 +25,7 @@ export default function MainSection() {
             initial="hidden"
             animate="show"
           >
-            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+            <h1 style={{ fontFamily: 'Orbitron, sans-serif' }} className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
               Create a Room,{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
                 Connect
@@ -41,7 +41,7 @@ export default function MainSection() {
             initial="hidden"
             animate="show"
           >
-            <p className="text-lg md:text-xl text-gray-400">
+            <p style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-lg md:text-xl text-gray-400">
               Collaborate seamlessly with our powerful screen sharing and live
               chat platform.
             </p>
@@ -63,17 +63,17 @@ export default function MainSection() {
             >
               <div className="absolute -top-3 -right-3 h-8 w-8 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 blur-xl opacity-30"></div>
               <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-white">
+                <CardTitle style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="flex items-center gap-3 text-white">
                   <CircleFadingPlus className="h-8 w-8 text-purple-500 duration-300 hover:scale-110 transition-transform" />
                   Create a Room
                 </CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardDescription style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-gray-300">
                   Create a room and chat with others instantly
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Link to="/createroom">
-                  <Button className="w-full bg-gradient-to-r border-2 border-gray-500 text-white hover:shadow-lg hover:shadow-purple-500/50 text-white transition-transform transform hover:scale-105 rounded-lg">
+                  <Button style={{ fontFamily: 'Almendra, sans-serif' }} className="w-full bg-gradient-to-r border-2 border-gray-500 text-white hover:shadow-lg hover:shadow-purple-500/50 text-white transition-transform transform hover:scale-105 rounded-lg">
                     Create Room
                   </Button>
                 </Link>
@@ -95,11 +95,11 @@ export default function MainSection() {
             >
               <div className="absolute -top-3 -right-3 h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-green-400 blur-xl opacity-30"></div>
               <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-white">
+                <CardTitle style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="flex items-center gap-3 text-white">
                   <Users className="h-8 w-8 text-blue-500 hover:scale-110 transition-transform duration-300" />
                   Join a Room
                 </CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardDescription style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-gray-300">
                   Enter a chat room code to start chatting.
                 </CardDescription>
               </CardHeader>
@@ -107,6 +107,7 @@ export default function MainSection() {
                 <Link to="/joinroom">
                   <Button
                     variant="outline"
+                    style={{ fontFamily: 'Almendra, sans-serif' }}
                     className="w-full border-2 border-gray-500 text-white bg-gradient-to-r hover:shadow-lg transition-transform transform hover:scale-105 rounded-lg"
                   >
                     Join Room

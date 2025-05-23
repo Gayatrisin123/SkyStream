@@ -25,7 +25,7 @@ export default function MainSection() {
             initial="hidden"
             animate="show"
           >
-            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+            <h1 style={{ fontFamily: 'Orbitron, sans-serif' }} className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
               Send Anything,{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
                 Instantly
@@ -41,7 +41,7 @@ export default function MainSection() {
             initial="hidden"
             animate="show"
           >
-            <p className="text-lg md:text-xl text-gray-400">
+            <p style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-lg md:text-xl text-gray-400">
               Send and receive files instantly through secure, room-based sharing — fast, simple, and reliable
             </p>
           </motion.div>
@@ -62,17 +62,17 @@ export default function MainSection() {
             >
               <div className="absolute -top-3 -right-3 h-8 w-8 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 blur-xl opacity-30"></div>
               <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-white">
+                <CardTitle style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="flex items-center gap-3 text-white">
                   <CircleFadingPlus className="h-8 w-8 text-purple-500 duration-300 hover:scale-110 transition-transform" />
                     Send a File
                 </CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardDescription style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-gray-300">
                   Instantly share any file with a single click.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Link to="/fileshare/sendfile">
-                  <Button className="w-full bg-gradient-to-r border-2 border-gray-500 text-white hover:shadow-lg hover:shadow-purple-500/50 text-white transition-transform transform hover:scale-105 rounded-lg">
+                  <Button style={{ fontFamily: 'Almendra, sans-serif' }} className="w-full bg-gradient-to-r border-2 border-gray-500 text-white hover:shadow-lg hover:shadow-purple-500/50 text-white transition-transform transform hover:scale-105 rounded-lg">
                     Send a File
                   </Button>
                 </Link>
@@ -94,11 +94,11 @@ export default function MainSection() {
             >
               <div className="absolute -top-3 -right-3 h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-green-400 blur-xl opacity-30"></div>
               <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-white">
+                <CardTitle style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="flex items-center gap-3 text-white">
                   <Users className="h-8 w-8 text-blue-500 hover:scale-110 transition-transform duration-300" />
                     Receive a File
                 </CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardDescription style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-gray-300">
                   Accept shared files instantly from any device.
                 </CardDescription>
               </CardHeader>
@@ -106,6 +106,7 @@ export default function MainSection() {
                 <Link to="/fileshare/receivefile">
                   <Button
                     variant="outline"
+                    style={{ fontFamily: 'Almendra, sans-serif' }}
                     className="w-full border-2 border-gray-500 text-white bg-gradient-to-r hover:shadow-lg transition-transform transform hover:scale-105 rounded-lg"
                   >
                     Receive Now

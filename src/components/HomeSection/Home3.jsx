@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { AnimatedTestimonials } from "../ui/animated-testimonials";
+import { AnimatedUniqueness } from "../ui/animatedUniqueness";
 
 const data = [
   {
@@ -52,14 +52,14 @@ export default function Home3() {
           style={{ fontFamily: 'Orbitron, sans-serif' }}
           className="text-4xl font-extrabold text-white mb-8 drop-shadow-lg"
         >
-          Discover What Makes Us Unique
+          Explore the Essence of Our Uniqueness
         </h1>
         <div
           data-aos="flip-left"
           data-aos-easing="ease-out-cubic"
           data-aos-duration="3000"
         >
-          <AnimatedTestimonials testimonials={data} autoplay={true} />
+          <AnimatedUniqueness testimonials={data} autoplay={true} />
         </div>
       </div>
     </div>

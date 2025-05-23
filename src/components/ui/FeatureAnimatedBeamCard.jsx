@@ -7,7 +7,7 @@ import { Card, CardContent } from "./card";
 import { cn } from "../../lib/utils";
 import { BorderBeam } from "./magicui/border-beam";
 
-const AnimatedBeamCardHome2 = ({
+const FeatureAnimatedBeamCard = ({
   icon,
   title,
   description,
@@ -38,10 +38,10 @@ const AnimatedBeamCardHome2 = ({
         <div className="w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-white/20 to-gray-900/30 border border-white/30 backdrop-blur-md shadow-inner">
           {icon}
         </div>
-        <h3 className="text-2xl font-bold bg-gradient-to-r from-pink-400 to-red-500 text-transparent bg-clip-text">
+        <h3 style={{ fontFamily: 'Almendra, sans-serif' }} className="text-2xl font-bold text-white">
           {title}
         </h3>
-        <p className="text-sm text-gray-300 leading-relaxed">
+        <p style={{ fontFamily: 'Cormorant Upright, sans-serif' }} className="text-md text-gray-300 leading-relaxed">
           {description}
         </p>
         <div className="pt-4">{children}</div>
@@ -50,4 +50,4 @@ const AnimatedBeamCardHome2 = ({
   );
 };
 
-export default AnimatedBeamCardHome2;
+export default FeatureAnimatedBeamCard;

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { motion } from "framer-motion";
 import ShareScreen from "../components/HelpCenter/ShareScreen";
-import ChatScreen from "../components/HelpCenter/Chat";
+import ChatRoomScreen from "../components/HelpCenter/ChatRoom";
+import FileSharingScreen from "../components/HelpCenter/FileSharing";
+import VideoCallScreen from "../components/HelpCenter/VideoCalling";
 
 const textVariant = (delay) => ({
   hidden: { y: -50, opacity: 0 },
@@ -13,6 +17,15 @@ const textVariant = (delay) => ({
 });
 
 export default function HelpCenter() {
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      delay: 10,
+      duration: 2000,
+      easing: "ease",
+      once: false,
+    });
+  }, []);
   return (
     <section
       id="help-center"
@@ -23,14 +36,13 @@ export default function HelpCenter() {
 
       <div className="text-center mb-12">
         <motion.div variants={textVariant(0.4)} initial="hidden" animate="show">
-          <h2 className="text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight">
+          <h2 style={{ fontFamily: 'Orbitron, sans-serif' }} className="text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight">
             How It Works
           </h2>
         </motion.div>
         <motion.div variants={textVariant(0.9)} initial="hidden" animate="show">
-          <p className="text-lg text-white mt-4 max-w-2xl mx-auto opacity-90">
-            Discover a seamless and efficient way to collaborate in real-time by
-            following these simple steps to get started.
+          <p style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-lg text-white mt-4 max-w-2xl mx-auto opacity-90">
+            Discover a seamless and efficient way to collaborate in real-time by following these simple steps to get started and unlock the full potential of your teamwork.
           </p>
         </motion.div>
         <motion.div variants={textVariant(1.1)} initial="hidden" animate="show">
@@ -40,11 +52,15 @@ export default function HelpCenter() {
       <div>
         <ShareScreen />
       </div>
-      <motion.div variants={textVariant(5)} initial="hidden" animate="show">
-        <div>
-          <ChatScreen />
+        <div data-aos="zoom-in">
+          <ChatRoomScreen />
         </div>
-      </motion.div>
+        <div data-aos="zoom-in-down">
+          <FileSharingScreen />
+        </div>
+        <div data-aos="zoom-in-up">
+          <VideoCallScreen />
+        </div>
     </section>
   );
 }

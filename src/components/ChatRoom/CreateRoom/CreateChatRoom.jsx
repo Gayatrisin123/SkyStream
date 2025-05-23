@@ -183,6 +183,7 @@ function CreateGroupRoom() {
           >
             <Button
               variant="outline"
+              style={{ fontFamily: 'Ancizar Serif, sans-serif' }} 
               className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 rounded-xl shadow-xl"
               onClick={() => window.history.back()}
             >
@@ -191,6 +192,7 @@ function CreateGroupRoom() {
             </Button>
             <Button
               variant="outline"
+              style={{ fontFamily: 'Ancizar Serif, sans-serif' }} 
               className="px-4 py-3 text-white bg-gray-800 hover:bg-gray-700 rounded-xl shadow-lg"
               onClick={(e) => {
                 e.stopPropagation();
@@ -202,19 +204,25 @@ function CreateGroupRoom() {
           </motion.div>
 
           {showQR && roomId && (
-            <div
-              id="qr-code-container"
-              className="absolute top-16 right-0 bg-gray-900 p-4 shadow-lg rounded-xl"
-              onClick={(e) => e.stopPropagation()}
-            >
+          <div
+            id="qr-code-container"
+            className="absolute top-16 right-0 bg-gray-800 bg-opacity-40 backdrop-blur-lg p-5 shadow-lg rounded-2xl border border-gray-700"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative flex flex-col items-center space-y-4">
               <QRCode
                 value={`${baseUrl}/joinroom?room=${roomId}`}
-                size={150}
+                size={160}
                 fgColor="#ffffff"
-                bgColor="#1a202c"
-                className="rounded-lg shadow-md"
+                bgColor="transparent"
+                className="rounded-xl shadow-lg"
               />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-black via-gray-800 to-gray-900 opacity-20 blur-sm"></div>
+              <p className="text-gray-300 text-sm font-medium text-center">
+                Scan to join the ChatRoom
+              </p>
             </div>
+          </div>
           )}
 
           <motion.div
@@ -227,33 +235,35 @@ function CreateGroupRoom() {
               style={{ boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)" }}
             >
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-xl font-bold">
+                <CardTitle style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="flex items-center gap-2 text-xl font-bold">
                   <CircleFadingPlus className="h-7 w-7 text-purple-500 duration-300 hover:scale-110 transition-transform" />
                   Create a Group Room
                 </CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-gray-400 text-md">
                   Start a new group for messaging and collaboration.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <label className="block text-gray-300 mb-2">Group Name</label>
+                  <label style={{ fontFamily: 'Almendra, sans-serif' }} className="block text-sm text-gray-300 mb-2">Group Name</label>
                   <input
                     type="text"
                     value={groupName}
                     onChange={(e) => setGroupName(e.target.value)}
+                    style={{ fontFamily: 'Exo, sans-serif' }}
                     placeholder="Enter group name"
                     className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:ring-2 focus:ring-purple-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-gray-300 mb-2">
+                  <label style={{ fontFamily: 'Almendra, sans-serif' }} className="block text-sm text-gray-300 mb-2">
                     Group Description
                   </label>
                   <textarea
                     value={groupDescription}
                     onChange={(e) => setGroupDescription(e.target.value)}
+                    style={{ fontFamily: 'Exo, sans-serif' }}
                     placeholder="Enter group description (optional)"
                     className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:ring-2 focus:ring-purple-500"
                   ></textarea>
@@ -262,7 +272,7 @@ function CreateGroupRoom() {
                 {roomId && (
                   <div className="space-y-4">
                     <div className="flex items-center gap-2">
-                      <code className="flex-1 py-2 px-3 bg-gray-800 rounded-lg text-lg font-mono">
+                      <code style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="flex-1 py-2 px-3 bg-gray-800 rounded-lg text-lg font-mono">
                         {roomId || "Generating room code..."}
                       </code>
                       <Button
@@ -301,6 +311,7 @@ function CreateGroupRoom() {
 
                 <Button
                   className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                  style={{ fontFamily: 'Exo, sans-serif' }}
                   onClick={createGroup}
                 >
                   Create Group
@@ -308,6 +319,7 @@ function CreateGroupRoom() {
                 <Button
                   className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-transform duration-300"
                   onClick={joinRoom}
+                  style={{ fontFamily: 'Exo, sans-serif' }}
                   disabled={isConnecting || !roomId.trim()}
                 >
                   {isConnecting ? "Connecting..." : "Join Room"}

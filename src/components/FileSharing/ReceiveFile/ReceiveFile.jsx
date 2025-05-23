@@ -102,6 +102,7 @@ export default function ReceiveFile() {
       >
         <Button
           variant="outline"
+          style={{ fontFamily: 'Ancizar Serif, sans-serif' }} 
           className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 rounded-xl shadow-xl"
           onClick={() => window.history.back()}
         >
@@ -116,11 +117,11 @@ export default function ReceiveFile() {
           style={{ boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)" }}
         >
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-white text-2xl font-extrabold">
+            <CardTitle style={{ fontFamily: 'Almendra, sans-serif' }} className="flex items-center gap-2 text-white text-2xl font-extrabold">
               <Users className="h-7 w-7 text-blue-500 hover:scale-110 transition-transform duration-300" />
               Receive a file
             </CardTitle>
-            <CardDescription className="text-gray-400 text-sm">
+            <CardDescription style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-gray-400 text-md">
               Enter the sender's code to receive the file instantly.
             </CardDescription>
           </CardHeader>
@@ -130,6 +131,7 @@ export default function ReceiveFile() {
               <div className="space-y-4">
                 <Input
                   className="p-4 rounded-lg bg-gray-800 text-gray-200 focus:ring-2 focus:ring-blue-500 border border-gray-600 transition-all duration-300"
+                  style={{ fontFamily: 'Exo, sans-serif' }}
                   placeholder="Enter room code"
                   value={roomId}
                   onChange={(e) => setRoomId(e.target.value)}
@@ -137,6 +139,7 @@ export default function ReceiveFile() {
                 />
                 <Button
                   className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                  style={{ fontFamily: 'Exo, sans-serif' }}
                   onClick={joinRoom}
                   disabled={isConnecting || !roomId.trim()}
                 >
@@ -145,31 +148,65 @@ export default function ReceiveFile() {
               </div>
             ) : receivedFile ? (
                 <div className="space-y-6 text-center p-6 bg-gray-900 rounded-lg shadow-xl border border-gray-700">
-                <h3 className="text-white text-2xl font-semibold">🎉File Transfer Successful</h3>
+                <h3 style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-white text-2xl font-semibold">🎉File Transfer Successful</h3>
                 <div className="bg-gray-800 rounded-md p-4 shadow-inner">
                     <div className="flex justify-between items-center border-b border-gray-700 pb-2 mb-2 text-gray-300">
-                    <span className="font-medium">File Name:</span>
-                    <span className="text-gray-100">{receivedFile.name}</span>
+                    <span style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="font-medium">File Name:</span>
+                    <span style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-gray-100">{receivedFile.name}</span>
                     </div>
                     <div className="flex justify-between items-center border-b border-gray-700 pb-2 mb-2 text-gray-300">
-                    <span className="font-medium">File Type:</span>
-                    <span className="text-gray-100">{fileType}</span>
+                    <span style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="font-medium">File Type:</span>
+                    <span style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-gray-100">{fileType}</span>
                     </div>
                     <div className="flex justify-between items-center text-gray-300">
-                    <span className="font-medium">File Size:</span>
-                    <span className="text-gray-100">{(fileSize / (1024 * 1024)).toFixed(2)} MB</span>
+                    <span style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="font-medium">File Size:</span>
+                    <span style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-gray-100">{(fileSize / (1024 * 1024)).toFixed(2)} MB</span>
                     </div>
                 </div>
                 <a
                     href={receivedFile.url}
                     download={receivedFile.name}
+                    style={{ fontFamily: 'Exo, sans-serif' }}
                     className="inline-block px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 >
                     Download File
                 </a>
                 </div>
             ) : (
-              <div className="text-gray-400 text-center">Waiting for file...</div>
+              <div
+                style={{ fontFamily: 'Ancizar Serif, sans-serif' }}
+                className="flex flex-col items-center justify-center h-full text-gray-400 text-center space-y-2"
+              >
+                <p className="text-lg">
+                  Waiting for file
+                  <span className="loading-dots"></span>
+                </p>
+
+                <style jsx>{`
+                  .loading-dots {
+                    display: inline-block;
+                  }
+                  .loading-dots::after {
+                    content: '';
+                    display: inline-block;
+                    animation: dots 1.5s infinite;
+                  }
+                  @keyframes dots {
+                    0% {
+                      content: '';
+                    }
+                    33% {
+                      content: '.';
+                    }
+                    66% {
+                      content: '..';
+                    }
+                    100% {
+                      content: '...';
+                    }
+                  }
+                `}</style>
+              </div>
             )}
           </CardContent>
         </Card>

@@ -3,7 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useNavigate } from "react-router-dom";
 import { Sparkles, ScreenShare, Video, FolderOpen } from "lucide-react";
-import AnimatedBeamCard from "../ui/AnimatedBeamCardHome2";
+import FeatureAnimatedBeamCard from "../ui/FeatureAnimatedBeamCard";
 
 export default function FeaturesSection() {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ export default function FeaturesSection() {
     },
     {
       icon: <Video size={28} className="text-white" />,
-      title: "Crystal Clear Video Calls",
+      title: "Seamless Video Conferencing",
       description:
         "Host seamless video calls with ultra-low latency and stunning quality using cutting-edge WebRTC streams. 🎥 Experience natural face-to-face conversations with smooth audio and vibrant video anywhere.",
       route: "/videoroom",
@@ -60,10 +60,10 @@ export default function FeaturesSection() {
       </h2>
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {features.map((feature, index) => (
-          <AnimatedBeamCard
+          <FeatureAnimatedBeamCard
             key={index}
             icon={feature.icon}
-            designation={feature.title}
+            title={feature.title}
             description={feature.description}
             className="min-h-[440px] flex flex-col justify-between"
             aosAnimation={feature.animation}
@@ -75,7 +75,7 @@ export default function FeaturesSection() {
             >
               Explore
             </button>
-          </AnimatedBeamCard>
+          </FeatureAnimatedBeamCard>
         ))}
       </div>
     </section>

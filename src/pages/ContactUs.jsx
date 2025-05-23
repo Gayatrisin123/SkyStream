@@ -52,7 +52,7 @@ export default function HelpCenter() {
           initial="hidden"
           animate="show"
         >
-        <h2 className="text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight">
+        <h2 style={{ fontFamily: 'Orbitron, sans-serif' }} className="text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight mt-3">
           Contact Form
         </h2>
         </motion.div>
@@ -61,7 +61,7 @@ export default function HelpCenter() {
           initial="hidden"
           animate="show"
         >
-        <p className="text-lg text-white mt-4 max-w-2xl mx-auto opacity-90">
+        <p style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-lg text-white mt-4 max-w-2xl mx-auto opacity-90">
           Easily connect with us through our contact page. Submit your details, and we’ll respond promptly to assist you.
         </p>
         </motion.div>
