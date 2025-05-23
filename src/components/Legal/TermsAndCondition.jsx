@@ -63,7 +63,7 @@ const TermsAndCondition = () => {
           {dataArray.map((data, index) => (
             <div
               key={index}
-              className={`shadow-lg cursor-pointer py-2 px-4 bg-white mt-6 rounded-lg transform transition-transform duration-300 hover:scale-[1.01] ${
+              className={`shadow-lg cursor-pointer py-3 px-5 bg-white mt-6 rounded-lg transform transition-transform duration-300 hover:scale-[1.01] ${
                 activeIndex === index ? "animate-slideDown" : ""
               }`}
             >

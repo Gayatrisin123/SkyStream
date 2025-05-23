@@ -3,7 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useNavigate } from "react-router-dom";
 import { Sparkles, ScreenShare, Video, FolderOpen } from "lucide-react";
-import AnimatedBeamCard from "../ui/AnimatedBeamCardHome2";
+import FeatureAnimatedBeamCard from "../ui/FeatureAnimatedBeamCard";
 
 export default function FeaturesSection() {
   const navigate = useNavigate();
@@ -60,7 +60,7 @@ export default function FeaturesSection() {
       </h2>
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {features.map((feature, index) => (
-          <AnimatedBeamCard
+          <FeatureAnimatedBeamCard
             key={index}
             icon={feature.icon}
             title={feature.title}
@@ -75,7 +75,7 @@ export default function FeaturesSection() {
             >
               Explore
             </button>
-          </AnimatedBeamCard>
+          </FeatureAnimatedBeamCard>
         ))}
       </div>
     </section>

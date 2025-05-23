@@ -7,7 +7,7 @@ import { Card, CardContent } from "./card";
 import { cn } from "../../lib/utils";
 import { BorderBeam } from "./magicui/border-beam";
 
-const AnimatedBeamCardHome2 = ({
+const FeatureAnimatedBeamCard = ({
   icon,
   title,
   description,
@@ -50,4 +50,4 @@ const AnimatedBeamCardHome2 = ({
   );
 };
 
-export default AnimatedBeamCardHome2;
+export default FeatureAnimatedBeamCard;

@@ -3,7 +3,7 @@ import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
 
-export const AnimatedTestimonials = ({
+export const AnimatedUniqueness = ({
   testimonials,
   autoplay = false
 }) => {
