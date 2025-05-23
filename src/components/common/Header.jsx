@@ -89,7 +89,7 @@ function Header() {
       </a>
 
       {/* Desktop Menu */}
-      <div className="hidden md:flex justify-center items-center gap-7 flex-1 mr-14">
+      <div style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="hidden md:flex justify-center items-center gap-7 flex-1 mr-14">
         {[
           { name: "Home", path: "/" },
           { name: "ChatRoom", path: "/chatroom" },
@@ -100,7 +100,7 @@ function Header() {
           <a
             key={link.path}
             href={link.path}
-            className={`text-sm font-semibold ${
+            className={`text-md font-semibold ${
               currentPath === link.path
                 ? "text-white"
                 : "text-gray-400 hover:text-white"
@@ -166,7 +166,7 @@ function Header() {
 
       {/* Desktop User Menu */}
       <div ref={userMenuRef} className="relative hidden md:inline-block">
-        <div className="flex flex-row justify-between items-center space-x-4">
+        <div style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="flex flex-row justify-between items-center space-x-4">
           {isChatRoute ? (
             user ? (
               <button 
@@ -205,7 +205,7 @@ function Header() {
           </button>
         </div>
         {isUserMenuOpen && (
-          <div className="absolute top-12 right-0 bg-black/60 backdrop-blur-lg shadow-xl rounded-2xl z-50 p-4 w-48 border border-gray-700">
+          <div style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="absolute top-12 right-0 bg-black/60 backdrop-blur-lg shadow-xl rounded-2xl z-50 p-4 w-48 border border-gray-700">
             <ul className="list-none space-y-2">
               <li>
                 <a
@@ -245,7 +245,7 @@ function Header() {
       </div>
 
       {/* Mobile Menu */}
-      <div ref={mobileMenuRef} className="relative md:hidden">
+      <div style={{ fontFamily: 'Ancizar Serif, sans-serif' }} ref={mobileMenuRef} className="relative md:hidden">
         <button
           className="text-gray-400 text-2xl cursor-pointer focus:outline-none"
           onClick={toggleMobileMenu}
