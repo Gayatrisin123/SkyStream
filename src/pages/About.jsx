@@ -26,7 +26,7 @@ export default function About() {
           initial="hidden"
           animate="show"
         >
-        <h2 className="text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight">
+        <h2 style={{ fontFamily: 'Orbitron, sans-serif' }} className="text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight mt-4">
           About Sky Stream
         </h2>
         </motion.div>
@@ -35,8 +35,8 @@ export default function About() {
           initial="hidden"
           animate="show"
         >
-        <p className="text-lg text-white mt-4 max-w-3xl mx-auto opacity-90">
-          Sky Stream transforms remote collaboration with instant, secure screen sharing requiring no downloads or logins. Its integrated chat rooms enhance interactions, offering a seamless experience that becomes personalized and secure through a simple sign-in process.
+        <p style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="text-lg text-white mt-4 max-w-3xl mx-auto opacity-90">
+          SkyStream enables real-time communication with WebRTC-powered tools for seamless collaboration. Experience secure interactions, instant connections, and enhanced productivity—perfect for teams and developers looking to streamline teamwork!
         </p>
         </motion.div>
         <motion.div
@@ -60,16 +60,15 @@ export default function About() {
             initial="hidden"
             animate="show"
           >
-          <h3 className="text-2xl font-bold">Instant Access</h3>
+          <h3 style={{ fontFamily: 'Cormorant Upright, sans-serif' }} className="text-3xl font-bold">Instant Access</h3>
           </motion.div>
           <motion.div
             variants={textVariant(2)}
             initial="hidden"
             animate="show"
           >
-          <p className="mt-2 opacity-90">
-            No sign-ups, no installations Required. Just share your screen with a single 
-          click and collaborate instantly with joining code and qrcode scanning.
+          <p style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="mt-2 opacity-90">
+            No sign-ups or installations needed. Connect instantly via WebRTC with a single click using a joining code, QR code scan, and seamless real-time collaboration.
           </p>
           </motion.div>
         </div>
@@ -86,14 +85,14 @@ export default function About() {
             initial="hidden"
             animate="show"
           >
-          <h3 className="text-2xl font-bold">Secure Sharing</h3>
+          <h3 style={{ fontFamily: 'Cormorant Upright, sans-serif' }} className="text-3xl font-bold">Secure Sharing</h3>
           </motion.div>
           <motion.div
             variants={textVariant(3.4)}
             initial="hidden"
             animate="show"
           >
-          <p className="mt-2 opacity-90">
+          <p style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="mt-2 opacity-90">
             Your privacy is our priority. Sky Share uses end-to-end encryption, 
           ensuring that your data and shared content remain protected at all times.
           </p>
@@ -112,16 +111,15 @@ export default function About() {
             initial="hidden"
             animate="show"
           >
-          <h3 className="text-2xl font-bold">Multi-Device Support</h3>
+          <h3 style={{ fontFamily: 'Cormorant Upright, sans-serif' }} className="text-2xl font-bold">Multi-Device Support</h3>
           </motion.div>
           <motion.div
             variants={textVariant(5)}
             initial="hidden"
             animate="show"
           >
-          <p className="mt-2 opacity-90">
-            Whether you're on a desktop, tablet, or mobile device, Sky Share provides 
-          a seamless sharing experience with High quality Video Sharing.
+          <p style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="mt-2 opacity-90">
+            Whether you're on a desktop, tablet, or mobile device, Sky Share provides a seamless, high-quality, secure, and reliable real-time collaboration experience.
           </p>
           </motion.div>
         </div>
@@ -134,15 +132,15 @@ export default function About() {
           initial="hidden"
           animate="show"
         >
-        <h3 className="text-4xl font-bold text-white">Start Sharing Instantly</h3>
+        <h3 style={{ fontFamily: 'Almendra, sans-serif' }} className="text-4xl font-bold text-white">Start Sharing Instantly</h3>
         </motion.div>
         <motion.div
           variants={textVariant(6.1)}
           initial="hidden"
           animate="show"
         >
-        <p className="mt-4 text-lg text-white opacity-90">
-        No apps to install or accounts to create—start sharing your screen instantly and enjoy seamless, hassle-free collaboration within seconds, making teamwork faster, easier, and more efficient than ever before.
+        <p style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="mt-4 text-lg text-white opacity-90">
+          No downloads or sign-ups required—connect instantly and collaborate effortlessly with secure, real-time communication, making teamwork smoother, faster, and more productive than ever before.
         </p>
         </motion.div>
         <motion.div
@@ -152,7 +150,8 @@ export default function About() {
         >
         <div className="mt-5">
           <Link 
-            to="/" 
+            to="/"
+            style={{ fontFamily: 'Almendra, sans-serif' }}
             className="inline-block px-6 py-3 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-lg transition-transform transform hover:scale-110 hover:shadow-xl"
           >
             Get Started
