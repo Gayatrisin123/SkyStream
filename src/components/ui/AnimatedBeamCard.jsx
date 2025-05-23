@@ -34,8 +34,8 @@ const AnimatedBeamCard = ({
         <div className="w-14 h-14 flex items-center justify-center rounded-full bg-white/10 border border-white/20 backdrop-blur-md shadow-inner">
           {icon}
         </div>
-        <h3 className="text-xl font-semibold text-white">{title}</h3>
-        <p className="text-sm text-gray-300 max-w-xs">{description}</p>
+        <h3 style={{ fontFamily: 'Almendra, sans-serif' }} className="text-xl font-semibold text-white">{title}</h3>
+        <p style={{ fontFamily: 'Cormorant Upright, sans-serif' }} className="text-md text-gray-300 max-w-xs">{description}</p>
       </CardContent>
     </Card>
   );

@@ -82,7 +82,7 @@ function Header() {
       <a href="/" style={{ textDecoration: "none" }}>
         <div className="flex items-center ml-4">
           <img src={logo} alt="SkyShare-Logo" className="w-8 h-auto" />
-          <h1 className="text-lg md:text-xl font-semibold text-white ml-2">
+          <h1 style={{ fontFamily: 'Exo, sans-serif' }} className="text-lg md:text-xl font-semibold text-white ml-2">
             SkyStream<span className="text-blue-500">.</span>
           </h1>
         </div>

@@ -63,8 +63,8 @@ const AnimatedCard = ({ icon, title, description, className }) => {
         <div className="flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-white/10 border border-white/10 backdrop-blur-md shadow-inner">
           {icon}
         </div>
-        <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
-        <p className="text-gray-300 text-sm">{description}</p>
+        <h3 style={{ fontFamily: 'Almendra, sans-serif' }} className="text-2xl font-bold text-white mb-2">{title}</h3>
+        <p style={{ fontFamily: 'Cormorant Upright, sans-serif' }} className="text-gray-300 text-md">{description}</p>
       </CardContent>
     </Card>
   );

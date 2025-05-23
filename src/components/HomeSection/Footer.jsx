@@ -23,7 +23,7 @@ export default function Footer() {
               </span>
             </button>
 
-            <p className="mb-6 max-w-md text-sm leading-relaxed text-justify">
+            <p style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="mb-6 max-w-md text-sm leading-relaxed text-justify">
               Real-time WebRTC made simple. Plug, play, and collaborate
               effortlessly.
             </p>
@@ -70,7 +70,7 @@ export default function Footer() {
         {/* Bottom Strip */}
         <div className="relative mt-14 border-t border-gray-800 pt-6">
           <div className="absolute left-1/2 top-0 h-0.5 w-1/2 -translate-x-1/2 bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
-          <div className="flex flex-col items-center justify-between text-sm text-gray-500 md:flex-row">
+          <div style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="flex flex-col items-center justify-between text-sm text-gray-500 md:flex-row">
             <p>
               © {new Date().getFullYear()}{" "}
               <span className="font-semibold text-white">SkyStream</span>. All
@@ -110,10 +110,10 @@ function SocialIcon({ href, icon }) {
 function FooterColumn({ title, links }) {
   return (
     <div>
-      <h3 className="mb-5 text-sm font-bold text-white tracking-widest uppercase">
+      <h3 style={{ fontFamily: 'Playfair Display SC, sans-serif' }} className="mb-5 text-sm font-bold text-white tracking-widest uppercase">
         {title}
       </h3>
-      <ul className="space-y-3 text-sm">
+      <ul style={{ fontFamily: 'Cormorant Garamond, sans-serif' }} className="space-y-3 text-md">
         {links.map(({ label, href }) => (
           <li key={label}>
             <a

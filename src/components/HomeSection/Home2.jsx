@@ -37,7 +37,7 @@ export default function FeaturesSection() {
     },
     {
       icon: <Video size={28} className="text-white" />,
-      title: "Crystal Clear Video Calls",
+      title: "Seamless Video Conferencing",
       description:
         "Host seamless video calls with ultra-low latency and stunning quality using cutting-edge WebRTC streams. 🎥 Experience natural face-to-face conversations with smooth audio and vibrant video anywhere.",
       route: "/videoroom",
@@ -63,7 +63,7 @@ export default function FeaturesSection() {
           <AnimatedBeamCard
             key={index}
             icon={feature.icon}
-            designation={feature.title}
+            title={feature.title}
             description={feature.description}
             className="min-h-[440px] flex flex-col justify-between"
             aosAnimation={feature.animation}

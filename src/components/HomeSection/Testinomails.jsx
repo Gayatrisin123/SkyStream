@@ -164,17 +164,17 @@ const Testimonials = () => {
             >
               <div className="absolute inset-x-0 -top-px mx-auto h-0.5 w-1/2 bg-gradient-to-r from-transparent via-primary to-transparent shadow-2xl transition-all duration-500 group-hover:w-3/4"></div>
               <div className="absolute inset-x-0 -bottom-px mx-auto h-0.5 w-1/2 bg-gradient-to-r from-transparent via-primary to-transparent shadow-2xl transition-all duration-500 group-hover:h-px"></div>
-              <span className="relative">Testimonials</span>
+              <span style={{ fontFamily: 'Orbitron, sans-serif' }} className="relative">Testimonials</span>
             </button>
           </div>
-          <h2
+          <h2 style={{ fontFamily: 'Ancizar Serif, sans-serif' }} 
             className={
               "mt-5 text-white bg-gradient-to-r from-foreground/60 via-foreground to-foreground/60 bg-clip-text text-center text-4xl font-semibold tracking-tighter text-transparent dark:from-muted-foreground/55 dark:via-foreground dark:to-muted-foreground/55 md:text-[54px] md:leading-[60px]"
             }
           >
             What our users say
           </h2>
-          <p className="mt-3 text-center text-lg text-zinc-500">
+          <p style={{ fontFamily: 'Ancizar Serif, sans-serif' }} className="mt-3 text-center text-lg text-zinc-500">
             From intuitive design to powerful features, our website has become an
             essential tool for users around the world.
           </p>
