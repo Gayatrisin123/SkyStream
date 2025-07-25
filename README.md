@@ -1,5 +1,5 @@
-<h1 align="center">SkyStream - Effortless WebRTC Collaboration 🌐</h1>
-<!--# SkyStream - Effortless WebRTC Collaboration 🌐-->
+<!--# <h1 align="center">SkyStream - Effortless WebRTC Collaboration 🌐</h1>-->
+# SkyStream - Effortless WebRTC Collaboration 🌐
 SkyStream makes remote collaboration effortless without the hassle with instant real-time collaboration powered by WebRTC, secure screen sharing, video calls, file sharing—no downloads or logins required! 🌐✨ Integrated chat rooms enhance interaction, and a simple sign-in process ensures a personalized, seamless experience. Fast, secure, and accessible, SkyStream brings teams together effortlessly, anytime, anywhere. 🚀
 
 [![Github License](https://img.shields.io/github/license/UjjwalSaini07/SkyStream)](https://github.com/UjjwalSaini07/SkyStream/blob/main/LICENSE)
