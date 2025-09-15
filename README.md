@@ -72,7 +72,7 @@ You can visit the live site here - https://sky-stream-share.vercel.app/
 5. Now Simply use the Project using Docker Container
 
 ## Author ✍️
-- [@Ujjwal Saini](https://github.com/UjjwalSaini07)
+- [@Ujjwal Saini](https://github.com/UjjwalSaini07), [@Gayatri Singh](https://github.com/Gayatrisin123/SkyStream)
 
 ## Screenshots 📷
 ![image](https://github.com/user-attachments/assets/769a5ed4-e9eb-4470-8ddb-0e1a87b3f166)
@@ -81,7 +81,7 @@ You can visit the live site here - https://sky-stream-share.vercel.app/
 Feel free to reach out if you have any questions or suggestions!
 
 - Raise an issue for the same [Issue](https://github.com/UjjwalSaini07/SkyStream/issues)
-- Github: [@Ujjwal Saini](https://github.com/UjjwalSaini07)
+- Github: [@Ujjwal Saini](https://github.com/UjjwalSaini07), [@Gayatri Singh](https://github.com/Gayatrisin123/SkyStream)
 
 ## License 📄
 License Credential [Check](https://github.com/UjjwalSaini07/SkyStream/blob/main/LICENSE). </br>You can use this project the way you want Make sure to fork before. Feel free to credit me if you want to!
