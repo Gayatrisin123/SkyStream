@@ -34,11 +34,10 @@ You can visit the live site here - https://sky-stream-share.vercel.app/
 - **ShadCN** – Used for beautifully designed, responsive components.
 
 ## Installation 🛠️
-- First Read this [License](https://github.com/UjjwalSaini07/SkyStream/blob/main/LICENSE) & their terms then proceed.
-- Star the [Repository](https://github.com/UjjwalSaini07/SkyStream)
+- Star the [Repository](https://github.com/Gayatrisin123/SkyStream)
 - Clone the repository:
 ```bash
-  git clone https://github.com/UjjwalSaini07/SkyStream.git
+  git clone https://github.com/Gayatrisin123/SkyStream.git
 ```
 - Install the necessary dependencies:
 ```bash
